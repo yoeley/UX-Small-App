@@ -1,0 +1,21 @@
+{
+  "boolean": true,
+  "Thursday night": {
+    "goal": "b",
+    "def": "d",
+    "mid": "f",
+    "att": "e"
+  },
+  "Sunday evening": {
+    "goal": "b",
+    "def": "d",
+    "mid": "f",
+    "att": "e"
+  },
+  "Saturday morning": {
+    "goal": "b",
+    "def": "d",
+    "mid": "f",
+    "att": "e"
+  }
+}

@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">FootApp</string>
+    <string name="prompt_date">Date</string>
+    <string name="prompt_time">Time</string>
+    <string name="prompt_location">Location</string>
+    <string name="prompt_ip">URL</string>
+    <string name="create_new_team">Create team</string>
+    <string name="team_creation">Team Creation</string>
+    <string name="load_team">Load team</string>
+    <string name="app_title">FootApp!</string>
+    <string name="welcome_msg">"Welcome to FootApp!"</string>
+    <string name="create">"Create"</string>
+    <string name="back">"Back"</string>
+    <string name="share">"Share"</string>
+    <string name="add_player">"Add Player"</string>
+    <string name="todo">"Todo"</string>
+    <string name="search_google">"Search Google"</string>
+    <string name="to_final_screen">"Finished"</string>
+
+    <string-array name="num_of_players">
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+    </string-array>
+
+</resources>
