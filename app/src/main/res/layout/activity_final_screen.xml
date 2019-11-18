@@ -6,59 +6,119 @@
     android:layout_height="match_parent"
     tools:context=".FinalScreen">
 
+    <TextView
+        android:id="@+id/teamName"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/team_name" />
+
     <ImageView
         android:id="@+id/pitch_imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintBottom_toTopOf="@id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintTop_toBottomOf="@id/teamName"
+        app:srcCompat="@mipmap/ic_launcher" />
 
-    <Button
-        android:id="@+id/GoogleSearchBtn"
-        android:layout_width="173dp"
-        android:layout_height="55dp"
-        android:text="@string/search_google"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintBottom_toTopOf="@+id/backButton">
+
+        <Button
+            android:id="@+id/shareButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:enabled="true"
+            android:hapticFeedbackEnabled="false"
+            android:minHeight="0dip"
+            android:onClick="share"
+            android:text="@string/share"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="@dimen/activity_button_text_size" />
+
+        <Button
+            android:id="@+id/dateTimeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/shareButton"
+            android:enabled="true"
+            android:hapticFeedbackEnabled="false"
+            android:minHeight="0dip"
+            android:onClick="share"
+            android:text="@string/date_and_time_button"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="@dimen/activity_button_text_size" />
+
+        <Button
+            android:id="@+id/locationButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/dateTimeButton"
+            android:layout_below="@+id/shareButton"
+            android:layout_centerHorizontal="true"
+            android:enabled="true"
+            android:hapticFeedbackEnabled="false"
+            android:minHeight="0dip"
+            android:onClick="share"
+            android:text="@string/location_button"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textSize="@dimen/activity_button_text_size" />
+
+        <Button
+            android:id="@+id/GoogleSearchBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/locationButton"
+            android:layout_centerHorizontal="true"
+            android:elegantTextHeight="true"
+            android:minHeight="0dip"
+            android:text="@string/search_google"
+            android:textSize="@dimen/activity_button_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textAllCaps="false"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginBottom="228dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:enabled="true"
         android:onClick="back"
-        android:text="@string/back"
+        android:text="@string/go_to_edit_screen"
+        android:textSize="@dimen/activity_button_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.362"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GoogleSearchBtn"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/shareButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginBottom="228dp"
-        android:enabled="true"
-        android:onClick="share"
-        android:text="@string/share"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.135"
-        app:layout_constraintStart_toEndOf="@+id/backButton"
-        app:layout_constraintTop_toBottomOf="@+id/GoogleSearchBtn"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

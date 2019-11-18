@@ -83,10 +83,8 @@ public class FinalScreen extends AppCompatActivity {
         img.setImageBitmap(scaledImage);
     }
 
-
-
     public void back(View view) {
-        Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
+        Intent EditTeam = new Intent(this, EditTeam.class);
         EditTeam.putExtra("Index", image);
         EditTeam.putExtra("Orig", orig);
         startActivity(EditTeam);
