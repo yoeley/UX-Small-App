@@ -12,115 +12,206 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context=".TeamCreationForm">
 
-    <Button
-        android:id="@+id/createTeamButton"
+    <TextView
+        android:id="@+id/teamCreationTitleView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginBottom="80dp"
-        android:layout_marginTop="130dp"
-        android:enabled="true"
-        android:onClick="create"
-        android:text="@string/create"
-        app:layout_constraintBottom_toTopOf="@id/backButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/location"
-        app:layout_constraintVertical_bias="0.300" />
-
-    <EditText
-        android:id="@+id/date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="24dp"
-
-        android:hint="@string/prompt_date"
-        android:selectAllOnFocus="true"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/numOfPlayersSpinner" />
+        android:text="@string/team_creation" />
 
-    <EditText
-        android:id="@+id/location"
+    <TextView
+        android:id="@+id/numOfPlayersTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teamCreationTitleView"
+        android:text="@string/numOfPlayers" />
+
+    <Spinner
+        android:id="@+id/numOfPlayersSpinner"
+        style="@android:style/Widget.Holo.Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginTop="28dp"
 
+        android:enabled="true"
+        android:entries="@array/num_of_players"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toTopOf="@+id/date"
+        app:layout_constraintStart_toEndOf="@+id/numOfPlayersTextView"
+        app:layout_constraintTop_toBottomOf="@+id/teamCreationTitleView" />
+
+    <!--TODO: add fields for ball, t-shirts, water, judge-->
+    <EditText
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:hint="@string/prompt_location"
+
+        android:hint="@string/prompt_date"
         android:imeOptions="actionDone"
-        android:inputType="textPassword"
+        android:inputType="date"
+        android:importantForAutofill="no"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time" />
+        app:layout_constraintTop_toBottomOf="@+id/numOfPlayersSpinner"
+        tools:layout_editor_absoluteY="16dp" />
 
     <EditText
         android:id="@+id/time"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
 
         android:hint="@string/prompt_time"
+        android:imeOptions="actionDone"
+        android:inputType="time"
+        android:importantForAutofill="no"
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date"
         app:layout_constraintBottom_toTopOf="@+id/location" />
 
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
 
-    <TextView
-        android:id="@+id/teamCreationTitleView"
-        android:layout_width="89dp"
-        android:layout_height="48dp"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/date"
+        android:layout_marginEnd="24dp"
+        android:hint="@string/prompt_location"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:importantForAutofill="no"
+        android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/team_creation" />
+        app:layout_constraintTop_toBottomOf="@+id/time" />
 
-    <Spinner
-        android:id="@+id/numOfPlayersSpinner"
+    <ScrollView
+        android:id="@+id/TeamCreationScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--TODO: add fields for ball, t-shirts, water, judge-->
+            <EditText
+                android:id="@+id/field1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+
+                android:hint="@string/prompt_field1"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:importantForAutofill="no"
+                android:selectAllOnFocus="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/numOfPlayersSpinner"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/field2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+
+                android:hint="@string/prompt_field2"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:importantForAutofill="no"
+                android:selectAllOnFocus="true"
+                app:layout_constraintBottom_toTopOf="@+id/location"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date" />
+
+            <EditText
+                android:id="@+id/field3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+
+                android:hint="@string/prompt_field3"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:importantForAutofill="no"
+                android:selectAllOnFocus="true"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/time" />
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/advancedOptionsButton"
+        style="@android:style/Widget.Holo.Light.Button.Toggle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginTop="40dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-
-        android:background="@android:drawable/btn_dropdown"
         android:enabled="true"
-        android:entries="@array/num_of_players"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toTopOf="@+id/date"
+        android:onClick="toggle_contents"
+        android:text="@string/advanced"
+        app:layout_constraintBottom_toTopOf="@+id/createTeamButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/teamCreationTitleView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.988" />
+        app:layout_constraintTop_toBottomOf="@+id/TeamCreationScrollView" />
+
+    <Button
+        android:id="@+id/createTeamButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:enabled="true"
+        android:onClick="create"
+        android:text="@string/create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/advancedOptionsButton" />
 
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginBottom="228dp"
         android:enabled="true"
         android:onClick="back"
         android:text="@string/back"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createTeamButton"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/createTeamButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

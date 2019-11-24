@@ -5,7 +5,7 @@
     <string name="prompt_location">Location</string>
     <string name="prompt_ip">URL</string>
     <string name="create_new_team">Create team</string>
-    <string name="team_creation">Team Creation</string>
+    <string name="team_creation">Create Team</string>
     <string name="load_team">Load team</string>
     <string name="app_title">FootApp!</string>
     <string name="welcome_msg">"Welcome to FootApp!"</string>
@@ -16,6 +16,11 @@
     <string name="todo">"Todo"</string>
     <string name="search_google">"Search Google"</string>
     <string name="to_final_screen">"Finished"</string>
+    <string name="prompt_field1">Captain</string>
+    <string name="prompt_field2">Judge</string>
+    <string name="prompt_field3">field3</string>
+    <string name="advanced">Advanced</string>
+    <string name="numOfPlayers">Players: </string>
 
     <string-array name="num_of_players">
         <item>6</item>
