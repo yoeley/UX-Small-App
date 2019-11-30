@@ -24,35 +24,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="@string/team_creation" />
+        android:text="@string/game_creation" />
 
-    <TextView
-        android:id="@+id/numOfPlayersTextView"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/numOfPlayers"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="28dp"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/teamCreationTitleView"
-        android:text="@string/numOfPlayers" />
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
 
-    <Spinner
-        android:id="@+id/numOfPlayersSpinner"
-        style="@android:style/Widget.Holo.Spinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-
-        android:enabled="true"
-        android:entries="@array/num_of_players"
-        android:spinnerMode="dropdown"
+        android:hint="@string/promt_num_of_players"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:importantForAutofill="no"
+        android:selectAllOnFocus="true"
         app:layout_constraintBottom_toTopOf="@+id/date"
-        app:layout_constraintStart_toEndOf="@+id/numOfPlayersTextView"
         app:layout_constraintTop_toBottomOf="@+id/teamCreationTitleView" />
 
     <!--TODO: add fields for ball, t-shirts, water, judge-->
@@ -70,8 +56,7 @@
         android:selectAllOnFocus="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numOfPlayersSpinner"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintTop_toBottomOf="@+id/numOfPlayers" />
 
     <EditText
         android:id="@+id/time"
@@ -122,7 +107,7 @@
 
             <!--TODO: add fields for ball, t-shirts, water, judge-->
             <EditText
-                android:id="@+id/field1"
+                android:id="@+id/captain"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -135,11 +120,10 @@
                 android:selectAllOnFocus="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/numOfPlayersSpinner"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/field2"
+                android:id="@+id/judge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -150,27 +134,9 @@
                 android:inputType="text"
                 android:importantForAutofill="no"
                 android:selectAllOnFocus="true"
-                app:layout_constraintBottom_toTopOf="@+id/location"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/date" />
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <EditText
-                android:id="@+id/field3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
-
-                android:hint="@string/prompt_field3"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:importantForAutofill="no"
-                android:selectAllOnFocus="true"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/time" />
         </LinearLayout>
     </ScrollView>
 

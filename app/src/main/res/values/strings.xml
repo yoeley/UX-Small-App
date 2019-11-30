@@ -20,7 +20,8 @@
     <string name="prompt_field2">Judge</string>
     <string name="prompt_field3">field3</string>
     <string name="advanced">Advanced</string>
-    <string name="numOfPlayers">Players: </string>
+    <string name="promt_num_of_players">Number of players</string>
+    <string name="game_creation">Create Game</string>
 
     <string-array name="num_of_players">
         <item>6</item>
