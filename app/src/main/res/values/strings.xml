@@ -22,6 +22,8 @@
     <string name="advanced">Advanced</string>
     <string name="promt_num_of_players">Number of players</string>
     <string name="game_creation">Create Game</string>
+    <string name="numOfPlayers">Players: </string>
+    <string name="name">Name</string>
 
     <string-array name="num_of_players">
         <item>6</item>
