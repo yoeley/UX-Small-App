@@ -12,7 +12,7 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:contentDescription="@string/todo"
-        android:src="@drawable/pitch_slide"
+        android:src="@drawable/pitch"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
