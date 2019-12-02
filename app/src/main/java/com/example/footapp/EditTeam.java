@@ -30,29 +30,31 @@ public class EditTeam extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_edit_team);
 
         Intent in = getIntent();
-        image = in.getIntExtra("Index", -1);
-        orig = in.getIntExtra("Orig", -1);
+//        image = in.getIntExtra("Index", -1);
+//        orig = in.getIntExtra("Orig", -1);
 //        data = in.getStringExtra("Game");
+
         data = StringConst.data;
 
         parseDataIntoGameObject();
         initEditTexts();
-        updateGameSettings();
+//        updateGameSettings();
     }
 
 
     private void updateGameSettings(){
-        time = findViewById(R.id.time);
-        time.setText(gameData.getTime());
-
-        location = findViewById(R.id.location);
-        location.setText(gameData.getLocation());
-
-        referee = findViewById(R.id.referee);
-        referee.setText(gameData.getReferee());
-
-        date = findViewById(R.id.date);
-        date.setText(gameData.getDate());
+//        time = findViewById(R.id.time);
+//        time.setText(gameData.getTime());
+//
+//        location = findViewById(R.id.location);
+//        location.setText(gameData.getLocation());
+//
+//        referee = findViewById(R.id.referee);
+//        referee.setText(gameData.getReferee());
+//
+//        date = findViewById(R.id.date);
+//        date.setText(gameData.getDate());
+        return;
     }
 
     private void initEditTexts(){
@@ -76,7 +78,8 @@ public class EditTeam extends AppCompatActivity implements Serializable {
 
 
     private void parseDataIntoGameObject(){
-        final ObjectMapper mapper = new ObjectMapper();
+        final ObjectMapper mapper
+                = new ObjectMapper();
         try {
             gameData = mapper.readValue(data, GameData.class);
         } catch (IOException e) {
@@ -103,8 +106,8 @@ public class EditTeam extends AppCompatActivity implements Serializable {
     public void toFinalScreen(View view) {
         insertDataToGameObject();
         Intent FinalScreen = new Intent(getApplicationContext(), FinalScreen.class);
-        FinalScreen.putExtra("Index", image);
-        FinalScreen.putExtra("Orig", 1);
+//        FinalScreen.putExtra("Index", image);
+//        FinalScreen.putExtra("Orig", 1);
         FinalScreen.putExtra("Data", gameData);
         startActivity(FinalScreen);
     }
