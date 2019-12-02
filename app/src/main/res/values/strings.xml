@@ -21,6 +21,7 @@
     <string name="prompt_field3">field3</string>
     <string name="advanced">Advanced</string>
     <string name="numOfPlayers">Players: </string>
+    <string name="last_config">Load Last Unsaved Configuration </string>
 
     <string-array name="num_of_players">
         <item>6</item>

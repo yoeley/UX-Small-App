@@ -13,63 +13,85 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/favoriteGroup2Button"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/favoriteGroup3Button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/favoriteGroup1Button"
+        app:layout_constraintTop_toBottomOf="@+id/createTeamButton" />
+
+    <Button
+        android:id="@+id/favoriteGroup3Button"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
+        android:onClick="@string/load_team"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/favoriteGroup2Button"
+        app:layout_constraintTop_toBottomOf="@+id/createTeamButton" />
+
+    <Button
         android:id="@+id/createTeamButton"
-        android:layout_width="wrap_content"
+        android:layout_width="315dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:enabled="true"
 
+        android:layout_marginTop="100dp"
+        android:enabled="true"
         android:onClick="createNewTeam"
         android:text="@string/create_new_team"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.386" />
+        app:layout_constraintTop_toBottomOf="@+id/LoginTextView" />
 
     <TextView
         android:id="@+id/LoginTextView"
         android:layout_width="97dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="220dp"
+        android:onClick="@string/load_team"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="18sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toTopOf="@+id/createTeamButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/welcome_msg" />
 
-    <Spinner
-        android:id="@+id/numOfPlayersSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginTop="40dp"
-        android:enabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createTeamButton"
-        android:background="@android:drawable/btn_dropdown"
-        android:spinnerMode="dropdown"/>
-
 
     <Button
-        android:id="@+id/loadTeamButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:enabled="true"
+        android:id="@+id/favoriteGroup1Button"
+        android:layout_width="120dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="32dp"
         android:onClick="loadTeam"
-        android:text="@string/load_team"
+        app:layout_constraintEnd_toStartOf="@+id/favoriteGroup2Button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createTeamButton" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:onClick="exitProgram"
+        android:text="X"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/lastConfigButton"
+        android:layout_width="315dp"
+        android:layout_height="wrap_content"
+        android:text="@string/last_config"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/numOfPlayersSpinner"
-        app:layout_constraintHorizontal_bias="0.50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.150" />
+        app:layout_constraintTop_toBottomOf="@+id/favoriteGroup2Button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
