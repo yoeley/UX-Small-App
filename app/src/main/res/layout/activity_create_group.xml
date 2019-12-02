@@ -55,7 +55,7 @@
         app:layout_constraintStart_toEndOf="@+id/numOfPlayersTextView"
         app:layout_constraintTop_toBottomOf="@+id/teamCreationTitleView" />
 
-    <!--TODO: add fields for ball, t-shirts, water, judge-->
+    <!--TODO: add fields for ball, t-shirts, water, referee-->
     <EditText
         android:id="@+id/date"
         android:layout_width="match_parent"
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--TODO: add fields for ball, t-shirts, water, judge-->
+            <!--TODO: add fields for ball, t-shirts, water, referee-->
             <EditText
                 android:id="@+id/field1"
                 android:layout_width="match_parent"

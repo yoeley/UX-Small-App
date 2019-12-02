@@ -44,7 +44,7 @@ public class FinalScreen extends AppCompatActivity {
         if(image > -1)
         {
             int pic = getImg(image);
-            ImageView img = (ImageView) findViewById(R.id.imageView2);
+            ImageView img = (ImageView) findViewById(R.id.pitch_imageView);
             scaleImg(img, pic);
         }
     }
