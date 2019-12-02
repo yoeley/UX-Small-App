@@ -1,19 +1,28 @@
 package com.example.footapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-public class EditTeam extends AppCompatActivity {
+public class EditTeam extends AppCompatActivity implements Serializable {
 
     int image = -1;
     int orig = 2;
+    String data;
+    GameData gameData;
+    TextView time;
+    TextView date;
+    TextView location;
+    TextView referee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,63 +32,80 @@ public class EditTeam extends AppCompatActivity {
         Intent in = getIntent();
         image = in.getIntExtra("Index", -1);
         orig = in.getIntExtra("Orig", -1);
+//        data = in.getStringExtra("Game");
+        data = StringConst.data;
 
-        if(image > -1)
-        {
-            int pic = getImg(image);
-            ImageView img = (ImageView) findViewById(R.id.imageView2);
-            scaleImg(img, pic);
+        parseDataIntoGameObject();
+        initEditTexts();
+        updateGameSettings();
+    }
+
+
+    private void updateGameSettings(){
+        time = findViewById(R.id.time);
+        time.setText(gameData.getTime());
+
+        location = findViewById(R.id.location);
+        location.setText(gameData.getLocation());
+
+        referee = findViewById(R.id.referee);
+        referee.setText(gameData.getReferee());
+
+        date = findViewById(R.id.date);
+        date.setText(gameData.getDate());
+    }
+
+    private void initEditTexts(){
+        List<TeamData> teamsData = gameData.getTeamData();
+        String playerId;
+        for(TeamData teamData : teamsData) {
+            for (Player player : teamData.getPlayers()) {
+                playerId = player.getPlayerId();
+                int id = getResources().getIdentifier(playerId, "id", getPackageName());
+                EditText et = findViewById(id);
+                et.setText(player.getPlayerName());
+            }
         }
     }
 
-    private int getImg(int index)
-    {
-        switch(index)
-        {
-            case 0:
-                return R.drawable.blue_team;
-            case 1:
-                return R.drawable.yellow_team;
-            case 2:
-                return R.drawable.orange_team;
-            default:
-                return -1;
-        }
-    }
-    private void scaleImg(ImageView img, int pic)
-    {
-        Display screen = getWindowManager().getDefaultDisplay();
-        BitmapFactory.Options options = new BitmapFactory.Options();
-
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(getResources(), pic, options);
-
-        int imgWidth = options.outWidth;
-        int screenWidth = screen.getWidth();
-
-        if(imgWidth > screenWidth)
-        {
-            options.inSampleSize = Math.round((float)imgWidth / (float)screenWidth );
-        }
-        options.inJustDecodeBounds = false;
-        Bitmap scaledImage = BitmapFactory.decodeResource(getResources(), pic, options);
-        img.setImageBitmap(scaledImage);
-    }
 
     public void back(View view) {
         if(orig == 1) startActivity(new Intent(this, MainActivity.class));
         else startActivity(new Intent(this, TeamCreationForm.class));
     }
 
-    public void addPlayer(View view) {
-        //do something
-        return;
+
+    private void parseDataIntoGameObject(){
+        final ObjectMapper mapper = new ObjectMapper();
+        try {
+            gameData = mapper.readValue(data, GameData.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(EditTeam.this,"Failed parsing the json",Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+    private void insertDataToGameObject(){
+        List<TeamData> teamsData = gameData.getTeamData();
+        String playerId;
+        for(TeamData teamData : teamsData) {
+            for (Player player : teamData.getPlayers()) {
+                playerId = player.getPlayerId();
+                int id = getResources().getIdentifier(playerId, "id", getPackageName());
+                EditText et = findViewById(id);
+                player.setPlayerName(et.getText().toString());
+            }
+        }
+
     }
 
     public void toFinalScreen(View view) {
+        insertDataToGameObject();
         Intent FinalScreen = new Intent(getApplicationContext(), FinalScreen.class);
         FinalScreen.putExtra("Index", image);
         FinalScreen.putExtra("Orig", 1);
+        FinalScreen.putExtra("Data", gameData);
         startActivity(FinalScreen);
     }
 }
