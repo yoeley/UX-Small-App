@@ -22,6 +22,7 @@
     <string name="numOfPlayers">Players: </string>
     <string name="last_config">Load Last Unsaved Configuration </string>
     <string name="name">Name</string>
+    <string name="logo">Logo</string>
     <string name="promt_num_of_players">Number of players</string>
     <string name="game_creation">Create Game</string>
     <string name="prompt_referee">Team 1 referee</string>
