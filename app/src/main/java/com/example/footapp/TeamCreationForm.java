@@ -27,8 +27,9 @@ public class TeamCreationForm extends AppCompatActivity {
     private EditText date;
     private EditText time;
     private EditText location;
-    private EditText captain;
-    private EditText judge;
+    private EditText referee;
+    private EditText captain1;
+    private EditText captain2;
     private JSONObject game;
 
     @Override
@@ -41,8 +42,9 @@ public class TeamCreationForm extends AppCompatActivity {
         date = findViewById(R.id.date);
         time = findViewById(R.id.time);
         location = findViewById(R.id.location);
-        captain = findViewById(R.id.captain);
-        judge = findViewById(R.id.judge);
+        referee = findViewById(R.id.referee);
+        captain1 = findViewById(R.id.captain1);
+        captain2 = findViewById(R.id.captain2);
 
         // hide until "advanced" is clicked
         TeamCreationScrollView.setVisibility(View.GONE);
@@ -51,15 +53,21 @@ public class TeamCreationForm extends AppCompatActivity {
     }
 
     private void createGameJSON() {
-        game = new JSONObject();
         try {
-            game.put("numOfPlayers", numOfPlayers.getText().toString());
+            game = new JSONObject(StringConst.newTeamJason);
+
             game.put("date", date.getText().toString());
             game.put("time", time.getText().toString());
             game.put("location", location.getText().toString());
-            game.put("captain", captain.getText().toString());
-            game.put("judge", judge.getText().toString());
-            game.put("players", new JSONArray());
+            game.put("referee", referee.getText().toString());
+
+            game.getJSONArray("teams").getJSONObject(0).put("teamName", "teamOne");
+            game.getJSONArray("teams").getJSONObject(0).put("numOfPlayers", numOfPlayers.getText().toString());
+            game.getJSONArray("teams").getJSONObject(0).put("captain", captain1.getText().toString());
+
+            game.getJSONArray("teams").getJSONObject(1).put("teamName", "teamTwo");
+            game.getJSONArray("teams").getJSONObject(1).put("numOfPlayers", numOfPlayers.getText().toString());
+            game.getJSONArray("teams").getJSONObject(1).put("captain", captain2.getText().toString());
         }
         catch (org.json.JSONException e) {
             e.printStackTrace();
@@ -72,18 +80,17 @@ public class TeamCreationForm extends AppCompatActivity {
     public void create(View view) {
         Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
         createGameJSON();
-        EditTeam.putExtra("Index", 0);
         EditTeam.putExtra("Orig", 2);
         EditTeam.putExtra("Game", game.toString());
 
         //TODO: delete this printing option before submission
-        /*
+
         try {
             System.out.println(game.toString(4));
         }
         catch (org.json.JSONException e) {
             e.printStackTrace();
-        }*/
+        }
         startActivity(EditTeam);
     }
     public void toggle_contents(View v){
