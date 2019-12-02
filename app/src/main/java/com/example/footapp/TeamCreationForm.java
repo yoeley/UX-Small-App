@@ -7,6 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.io.PrintWriter;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,12 +23,13 @@ import org.json.JSONArray;
 public class TeamCreationForm extends AppCompatActivity {
 
     private ScrollView TeamCreationScrollView;
+    private EditText numOfPlayers;
     private EditText date;
     private EditText time;
     private EditText location;
-    private EditText feild1;
-    private EditText field2;
-    private EditText field3;
+    private EditText captain;
+    private EditText judge;
+    private JSONObject game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +37,33 @@ public class TeamCreationForm extends AppCompatActivity {
         setContentView(R.layout.activity_create_group);
 
         TeamCreationScrollView = findViewById(R.id.TeamCreationScrollView);
+        numOfPlayers = findViewById(R.id.numOfPlayers);
+        date = findViewById(R.id.date);
+        time = findViewById(R.id.time);
+        location = findViewById(R.id.location);
+        captain = findViewById(R.id.captain);
+        judge = findViewById(R.id.judge);
+
         // hide until "advanced" is clicked
         TeamCreationScrollView.setVisibility(View.GONE);
 
-        // just trying the validation method, non of this is for real
-        location = findViewById(R.id.location);
-        location.addTextChangedListener(new TextValidator(location) {
-            @Override public void validate(TextView textView, String text) {
-                Pattern p = Pattern.compile( "[0-9]" );
-                Matcher m = p.matcher(text);
-                if (m.find())
-                {
-                    textView.setError("location may not contain numbers");
-                }
-            }
-        });
+        numOfPlayers.addTextChangedListener(new TextValidator(numOfPlayers, TextValidator.numPlayersValid){});
+    }
+
+    private void createGameJSON() {
+        game = new JSONObject();
+        try {
+            game.put("numOfPlayers", numOfPlayers.getText().toString());
+            game.put("date", date.getText().toString());
+            game.put("time", time.getText().toString());
+            game.put("location", location.getText().toString());
+            game.put("captain", captain.getText().toString());
+            game.put("judge", judge.getText().toString());
+            game.put("players", new JSONArray());
+        }
+        catch (org.json.JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void back(View view) {
@@ -57,8 +71,19 @@ public class TeamCreationForm extends AppCompatActivity {
     }
     public void create(View view) {
         Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
+        createGameJSON();
         EditTeam.putExtra("Index", 0);
         EditTeam.putExtra("Orig", 2);
+        EditTeam.putExtra("Game", game.toString());
+
+        //TODO: delete this printing option before submission
+        /*
+        try {
+            System.out.println(game.toString(4));
+        }
+        catch (org.json.JSONException e) {
+            e.printStackTrace();
+        }*/
         startActivity(EditTeam);
     }
     public void toggle_contents(View v){
