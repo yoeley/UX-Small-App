@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0BB990"
+    android:background="@drawable/bg"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -17,6 +17,9 @@
         android:layout_width="120dp"
         android:layout_height="100dp"
         android:layout_marginTop="32dp"
+        android:background="@drawable/small"
+        android:onClick="loadTeam"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/favoriteGroup3Button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/favoriteGroup1Button"
@@ -27,7 +30,9 @@
         android:layout_width="120dp"
         android:layout_height="100dp"
         android:layout_marginTop="32dp"
-        android:onClick="@string/load_team"
+        android:background="@drawable/small"
+        android:onClick="loadTeam"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/favoriteGroup2Button"
@@ -38,30 +43,16 @@
         android:layout_width="315dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/big"
         android:enabled="true"
         android:onClick="createNewTeam"
         android:text="@string/create_new_team"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LoginTextView" />
-
-    <TextView
-        android:id="@+id/LoginTextView"
-        android:layout_width="97dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="220dp"
-        android:onClick="@string/load_team"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/welcome_msg" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
     <Button
@@ -69,7 +60,9 @@
         android:layout_width="120dp"
         android:layout_height="100dp"
         android:layout_marginTop="32dp"
+        android:background="@drawable/small"
         android:onClick="loadTeam"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toStartOf="@+id/favoriteGroup2Button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,8 +72,8 @@
         android:id="@+id/exitButton"
         android:layout_width="64dp"
         android:layout_height="64dp"
+        android:background="@drawable/x"
         android:onClick="exitProgram"
-        android:text="X"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,10 +81,31 @@
         android:id="@+id/lastConfigButton"
         android:layout_width="315dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/big"
+        android:onClick="loadUnsaved"
         android:text="@string/last_config"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/favoriteGroup2Button" />
+        app:layout_constraintTop_toBottomOf="@+id/favoriteGroup2Button"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="260dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/small"
+        android:contentDescription="@strings/logo"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.24000001" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
