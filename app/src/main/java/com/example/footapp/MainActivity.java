@@ -105,7 +105,6 @@ public class MainActivity extends Activity {
 
 
 
-
     public void createNewTeam(View view) {
         startActivity(new Intent(this, TeamCreationForm.class));
     }
