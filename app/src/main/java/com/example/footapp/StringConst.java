@@ -2,7 +2,7 @@ package com.example.footapp;
 
 public class StringConst {
     // Data Json example.
-    public static String data = "{"+
+    public static final String data = "{"+
             "\"date\": \"12.12.2019\","+
             "\"time\": \"18:00\","+
             "\"location\": \"Jerusalem\","+
@@ -38,4 +38,41 @@ public class StringConst {
     "}"+
         "]"+
 "}";
+
+    public static final String newTeamJason = "{"+
+            "\"date\": \"\","+
+            "\"time\": \"\","+
+            "\"location\": \"\","+
+            "\"referee\": \"\","+
+            "\"teams\": ["+
+            "{"+
+            "\"teamName\": \"teamOne\","+
+            "\"numOfPlayers\": \"6\","+
+            "\"captain\": \"\","+
+            "\"players\":"+
+            "["+
+            "{\"playerName\": \"\", \"playerId\": \"team1Pos0\", \"playerPos\": \"GK\"},"+
+            "{\"playerName\": \"\", \"playerId\": \"team1Pos1\", \"playerPos\": \"MID\"},"+
+            "{\"playerName\": \"\", \"playerId\": \"team1Pos2\", \"playerPos\": \"LB\"},"+
+            "{\"playerName\": \"\", \"playerId\": \"team1Pos3\", \"playerPos\": \"RB\"},"+
+            "{\"playerName\": \"\", \"playerId\": \"team1Pos4\", \"playerPos\": \"LF\"},"+
+            "{\"playerName\": \"\", \"playerId\": \"team1Pos5\", \"playerPos\": \"RF\"}"+
+            "]"+
+            "},"+
+            "{"+
+            "\"teamName\": \"teamTwo\","+
+            "\"numOfPlayers\": \"6\","+
+            "\"captain\": \"Capt\","+
+            "\"players\":"+
+            "["+
+            "{\"playerName\": \"\", \"playerId\":\"team2Pos0\", \"playerPos\":\"GK\"},"+
+            "{\"playerName\": \"\", \"playerId\":\"team2Pos1\", \"playerPos\":\"MID\"},"+
+            "{\"playerName\": \"\", \"playerId\":\"team2Pos2\", \"playerPos\":\"LB\"},"+
+            "{\"playerName\": \"\", \"playerId\":\"team2Pos3\", \"playerPos\":\"RB\"},"+
+            "{\"playerName\": \"\", \"playerId\":\"team2Pos4\", \"playerPos\":\"LF\"},"+
+            "{\"playerName\": \"\", \"playerId\":\"team2Pos5\", \"playerPos\":\"LR\"}"+
+            "]"+
+            "}"+
+            "]"+
+            "}";
 }
