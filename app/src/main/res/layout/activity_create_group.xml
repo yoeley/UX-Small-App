@@ -121,7 +121,7 @@
 
             <!--TODO: add fields for ball, t-shirts, water, judge-->
             <EditText
-                android:id="@+id/captain"
+                android:id="@+id/captain1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -130,7 +130,7 @@
                 android:drawableBottom="@drawable/ic_create_team_underscore"
                 android:background="@android:color/transparent"
 
-                android:hint="@string/prompt_field1"
+                android:hint="@string/prompt_captain1"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:importantForAutofill="no"
@@ -140,7 +140,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/judge"
+                android:id="@+id/captain2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -149,7 +149,25 @@
                 android:drawableBottom="@drawable/ic_create_team_underscore"
                 android:background="@android:color/transparent"
 
-                android:hint="@string/prompt_field2"
+                android:hint="@string/prompt_captain2"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:importantForAutofill="no"
+                android:selectAllOnFocus="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:id="@+id/referee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:drawableBottom="@drawable/ic_create_team_underscore"
+                android:background="@android:color/transparent"
+
+                android:hint="@string/prompt_referee"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:importantForAutofill="no"
@@ -183,7 +201,7 @@
         android:id="@+id/createTeamButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="start"
         android:enabled="true"
         android:onClick="create"

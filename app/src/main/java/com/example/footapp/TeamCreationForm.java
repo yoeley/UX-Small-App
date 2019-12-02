@@ -27,8 +27,9 @@ public class TeamCreationForm extends AppCompatActivity {
     private EditText date;
     private EditText time;
     private EditText location;
-    private EditText captain;
-    private EditText judge;
+    private EditText referee;
+    private EditText captain1;
+    private EditText captain2;
     private JSONObject game;
 
     @Override
@@ -41,8 +42,9 @@ public class TeamCreationForm extends AppCompatActivity {
         date = findViewById(R.id.date);
         time = findViewById(R.id.time);
         location = findViewById(R.id.location);
-        captain = findViewById(R.id.captain);
-        judge = findViewById(R.id.judge);
+        referee = findViewById(R.id.referee);
+        captain1 = findViewById(R.id.captain1);
+        captain2 = findViewById(R.id.captain2);
 
         // hide until "advanced" is clicked
         TeamCreationScrollView.setVisibility(View.GONE);
@@ -51,87 +53,21 @@ public class TeamCreationForm extends AppCompatActivity {
     }
 
     private void createGameJSON() {
-        game = new JSONObject();
         try {
+            game = new JSONObject(StringConst.newTeamJason);
+
             game.put("date", date.getText().toString());
             game.put("time", time.getText().toString());
             game.put("location", location.getText().toString());
-            game.put("judge", judge.getText().toString());
+            game.put("referee", referee.getText().toString());
 
-            int numPlayers;
-            try {
-                numPlayers = Integer.parseInt(numOfPlayers.getText().toString());
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-                numPlayers = 0;
-            }
+            game.getJSONArray("teams").getJSONObject(0).put("teamName", "teamOne");
+            game.getJSONArray("teams").getJSONObject(0).put("numOfPlayers", numOfPlayers.getText().toString());
+            game.getJSONArray("teams").getJSONObject(0).put("captain", captain1.getText().toString());
 
-            JSONArray players1 = new JSONArray();
-            for (int i = 0; i < numPlayers; ++i)
-            {
-                JSONObject player = new JSONObject("{\"playerName\": \"\", \"playerId\": null, \"playerPos\": \"\"}");
-                players1.put(player);
-            }
-            JSONArray players2 = new JSONArray();
-            for (int i = 0; i < numPlayers; ++i)
-            {
-                JSONObject player = new JSONObject("{\"playerName\": \"\", \"playerId\": null, \"playerPos\": \"\"}");
-                players2.put(player);
-            }
-
-
-            JSONArray teams = new JSONArray();
-
-            JSONObject team1 = new JSONObject();
-            team1.put("teamName", "teamOne");
-            team1.put("numOfPlayers", numOfPlayers.getText().toString());
-            team1.put("captain", captain.getText().toString());
-            team1.put("players", players1);
-
-            JSONObject team2 = new JSONObject();
-            team2.put("teamName", "teamTwo");
-            team2.put("numOfPlayers", numOfPlayers.getText().toString());
-            team2.put("captain", captain.getText().toString());
-            team2.put("players", players2);
-
-            teams.put(team1);
-            teams.put(team2);
-
-            game.put("teams", teams);
-
-
-            /*
-            {
-                "date": "12.12.2019",
-                "time": "18:00",
-                "location": "Jerusalem",
-                "judge": "Sam",
-                "teams": [
-                            {
-                            "teamName": "teamOne",
-                            "numOfPlayers": "6",
-                            "captain": "Ain?",
-                            "players":
-                                [
-                                {"playerName": "Yoel", "playerId": 0, "playerPos": "GK"},
-                                {"playerName": "Dan", "playerId": 1, "playerPos": "MID"}
-                                ]
-                            },
-                            {
-                            "teamName": "teamTwo",
-                            "numOfPlayers": "6",
-                            "captain": "Capt",
-                            "players":
-                                [
-                                {"playerName": "Avi", "playerId":2, "playerPos":"GK"},
-                                {"playerName": "Mar", "playerId":3, "playerPos":"MID"},
-                                {"playerName": "Noa", "playerId":4, "playerPos":"LF"}
-                                ]
-                            }
-                ]
-}
-             */
+            game.getJSONArray("teams").getJSONObject(1).put("teamName", "teamTwo");
+            game.getJSONArray("teams").getJSONObject(1).put("numOfPlayers", numOfPlayers.getText().toString());
+            game.getJSONArray("teams").getJSONObject(1).put("captain", captain2.getText().toString());
         }
         catch (org.json.JSONException e) {
             e.printStackTrace();
@@ -144,7 +80,6 @@ public class TeamCreationForm extends AppCompatActivity {
     public void create(View view) {
         Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
         createGameJSON();
-        EditTeam.putExtra("Index", 0);
         EditTeam.putExtra("Orig", 2);
         EditTeam.putExtra("Game", game.toString());
 
