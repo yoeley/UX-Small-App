@@ -110,12 +110,9 @@ public class TeamCreationForm extends AppCompatActivity {
         EditTeam.putExtra("Game", game.toString());
 
         try {
-            String gamesString = AppFileWriter.readFromFile(getApplicationContext(), "savedGames.txt");
-            System.out.println("GAME STRING IS:\n");
-            System.out.println(gamesString);
+            String gamesString = AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt");
             JSONObject gamesJSON;
-            if (gamesString == "") {
-                System.out.println("IN IF\nIN IF \nIN IF\n");
+            if (gamesString.equals("")) {
                 gamesJSON = new JSONObject(StringConst.savedTeamsHeader);
             }
             else {
@@ -127,9 +124,9 @@ public class TeamCreationForm extends AppCompatActivity {
             gamesJSON.getJSONArray("savedGames").put(1, gamesArr.getJSONObject(0));
             gamesJSON.getJSONArray("savedGames").put(0, game);
 
-            AppFileWriter.writeToFile(gamesJSON.toString(4), "savedGames.txt", getApplicationContext());
+            AppFileManager.writeToFile(gamesJSON.toString(4), "savedGames.txt", getApplicationContext());
 
-            System.out.println(AppFileWriter.readFromFile(getApplicationContext(), "savedGames.txt"));
+            System.out.println(AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt"));
         }
         catch (org.json.JSONException e) {
             e.printStackTrace();
