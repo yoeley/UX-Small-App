@@ -40,9 +40,8 @@
         android:enabled="true"
         android:onClick="back"
         android:text="@string/go_to_edit_screen"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/pitch_imageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GoogleSearchBtn"
         app:layout_constraintVertical_bias="0.057" />
 
 

@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EditTeam extends AppCompatActivity implements Serializable {
@@ -19,8 +18,7 @@ public class EditTeam extends AppCompatActivity implements Serializable {
     int orig = 2;
     String data;
     GameData gameData;
-    TextView time;
-    TextView date;
+    TextView dateAndTime;
     TextView location;
     TextView referee;
 
@@ -31,31 +29,28 @@ public class EditTeam extends AppCompatActivity implements Serializable {
 
         Intent in = getIntent();
 //        image = in.getIntExtra("Index", -1);
-//        orig = in.getIntExtra("Orig", -1);
-//        data = in.getStringExtra("Game");
+        orig = in.getIntExtra("Orig", -1);
+        data = in.getStringExtra("Game");
 
         data = StringConst.data;
 
         parseDataIntoGameObject();
         initEditTexts();
-//        updateGameSettings();
+        updateGameSettings();
     }
 
 
     private void updateGameSettings(){
-//        time = findViewById(R.id.time);
-//        time.setText(gameData.getTime());
-//
-//        location = findViewById(R.id.location);
-//        location.setText(gameData.getLocation());
-//
-//        referee = findViewById(R.id.referee);
-//        referee.setText(gameData.getReferee());
-//
-//        date = findViewById(R.id.date);
-//        date.setText(gameData.getDate());
-        return;
+        dateAndTime = findViewById(R.id.dateAndTime);
+        dateAndTime.setText("Date: " + gameData.getDate() + "     Time: " + gameData.getTime());
+
+        location = findViewById(R.id.location);
+        location.setText("Location: " + gameData.getLocation());
+
+        referee = findViewById(R.id.referee);
+        location.setText("Referee: " + gameData.getReferee());
     }
+
 
     private void initEditTexts(){
         List<TeamData> teamsData = gameData.getTeamData();
