@@ -7,64 +7,38 @@
     android:screenOrientation="portrait"
     tools:context=".EditTeam">
 
-    <EditText
-        android:id="@+id/date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/time"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:ems="10"
-        android:inputType="time"
-        tools:layout_editor_absoluteX="3dp" />
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical">-->
 
-    <TextView
-        android:id="@+id/referee"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--            <TextView-->
+<!--                android:id="@+id/location"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="76dp"-->
+<!--                android:text="TextView" />-->
 
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="match_parent"
-        android:layout_height="76dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/referee" />
+<!--            <TextView-->
+<!--                android:id="@+id/referee"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="TextView" />-->
 
-    <LinearLayout
-        android:layout_width="406dp"
-        android:layout_height="241dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout">
+<!--            <EditText-->
+<!--                android:id="@+id/time"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:ems="10"-->
+<!--                android:inputType="time" />-->
 
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/nextBtn"
-        android:layout_width="80dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="37dp"
-        android:backgroundTint="#044404"
-        android:enabled="true"
-        android:foreground="@drawable/baseline_done_black_18dp"
-        android:onClick="toFinalScreen"
-        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
-        app:layout_constraintEnd_toEndOf="parent" />
+<!--            <EditText-->
+<!--                android:id="@+id/date"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:ems="10"-->
+<!--                android:inputType="date" />-->
+<!--        </LinearLayout>-->
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -81,6 +55,56 @@
             app:srcCompat="@mipmap/ic_launcher" />
 
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="400dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="60dp"
+        android:background="#0C6961"
+        android:text="Edit Teams"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+
+
+    <!--    <LinearLayout-->
+<!--        android:layout_width="406dp"-->
+<!--        android:layout_height="241dp"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/frameLayout">-->
+
+<!--    </LinearLayout>-->
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:background="#0C6961"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+
+    <Button
+        android:id="@+id/nextBtn"
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="37dp"
+        android:backgroundTint="#044404"
+        android:enabled="true"
+        android:foreground="@drawable/baseline_done_black_18dp"
+        android:onClick="toFinalScreen"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
     <Button

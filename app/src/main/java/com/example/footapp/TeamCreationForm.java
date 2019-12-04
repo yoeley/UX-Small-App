@@ -2,27 +2,40 @@ package com.example.footapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.PrintWriter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 
 public class TeamCreationForm extends AppCompatActivity {
 
     private ScrollView TeamCreationScrollView;
+    private EditText gameName;
     private EditText numOfPlayers;
     private EditText date;
     private EditText time;
@@ -38,6 +51,7 @@ public class TeamCreationForm extends AppCompatActivity {
         setContentView(R.layout.activity_create_group);
 
         TeamCreationScrollView = findViewById(R.id.TeamCreationScrollView);
+        gameName = findViewById(R.id.gameName);
         numOfPlayers = findViewById(R.id.numOfPlayers);
         date = findViewById(R.id.date);
         time = findViewById(R.id.time);
@@ -56,6 +70,7 @@ public class TeamCreationForm extends AppCompatActivity {
         try {
             game = new JSONObject(StringConst.newTeamJason);
 
+            game.put("gameName", gameName.getText().toString());
             game.put("date", date.getText().toString());
             game.put("time", time.getText().toString());
             game.put("location", location.getText().toString());
@@ -72,6 +87,17 @@ public class TeamCreationForm extends AppCompatActivity {
         catch (org.json.JSONException e) {
             e.printStackTrace();
         }
+        // making JSONString into GameData class - if needed
+        /*
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            GameData gameData = mapper.readValue(game.toString(4), GameData.class);
+            String gameDataString = mapper.writeValueAsString(gameData);
+            System.out.println(gameDataString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+         */
     }
 
     public void back(View view) {
@@ -83,14 +109,41 @@ public class TeamCreationForm extends AppCompatActivity {
         EditTeam.putExtra("Orig", 2);
         EditTeam.putExtra("Game", game.toString());
 
-        //TODO: delete this printing option before submission
+        try {
+            String gamesString = AppFileWriter.readFromFile(getApplicationContext(), "savedGames.txt");
+            System.out.println("GAME STRING IS:\n");
+            System.out.println(gamesString);
+            JSONObject gamesJSON;
+            if (gamesString == "") {
+                System.out.println("IN IF\nIN IF \nIN IF\n");
+                gamesJSON = new JSONObject(StringConst.savedTeamsHeader);
+            }
+            else {
+                gamesJSON = new JSONObject(gamesString);
+            }
 
+            JSONArray gamesArr = gamesJSON.getJSONArray("savedGames");
+            gamesJSON.getJSONArray("savedGames").put(2, gamesArr.getJSONObject(1));
+            gamesJSON.getJSONArray("savedGames").put(1, gamesArr.getJSONObject(0));
+            gamesJSON.getJSONArray("savedGames").put(0, game);
+
+            AppFileWriter.writeToFile(gamesJSON.toString(4), "savedGames.txt", getApplicationContext());
+
+            System.out.println(AppFileWriter.readFromFile(getApplicationContext(), "savedGames.txt"));
+        }
+        catch (org.json.JSONException e) {
+            e.printStackTrace();
+        }
+
+        //TODO: delete this printing option before submission
+        /*
         try {
             System.out.println(game.toString(4));
         }
         catch (org.json.JSONException e) {
             e.printStackTrace();
         }
+        */
         startActivity(EditTeam);
     }
     public void toggle_contents(View v){
@@ -98,5 +151,4 @@ public class TeamCreationForm extends AppCompatActivity {
                 ? View.GONE
                 : View.VISIBLE );
     }
-
 }

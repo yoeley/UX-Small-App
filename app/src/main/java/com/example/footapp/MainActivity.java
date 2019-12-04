@@ -96,13 +96,17 @@ public class MainActivity extends Activity {
 //        if(loadSpinner.getSelectedItem().equals("Thursday night")) image = 0;
 //        else if(loadSpinner.getSelectedItem().equals("Sunday evening")) image = 1;
 //        else if(loadSpinner.getSelectedItem().equals("Saturday morning")) image = 2;
-        EditTeam.putExtra("Index", id);
+//        EditTeam.putExtra("Index", id);
         EditTeam.putExtra("Orig", 1);
         startActivity(EditTeam);
         Toast.makeText(MainActivity.this, "Team \"" +
                 text + "\"\nloaded successfully", Toast.LENGTH_SHORT).show();
     }
 
+    public void loadUnsaved(View v)
+    {
+
+    }
 
 
 
