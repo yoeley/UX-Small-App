@@ -75,4 +75,9 @@ public class StringConst {
             "}"+
             "]"+
             "}";
+
+    public static final String savedTeamsHeader = "{\n" +
+            "    \"hasNames\": true,\n" +
+            "    \"savedGames\": [{}, {}, {}]\n" +
+            "}";
 }

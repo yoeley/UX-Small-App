@@ -29,10 +29,28 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/numOfPlayers"
+        android:id="@+id/gameName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:drawableBottom="@drawable/ic_create_team_underscore"
+        android:background="@android:color/transparent"
+
+        android:hint="@string/promt_game_name"
+        android:imeOptions="actionDone"
+        android:inputType="number"
+        android:importantForAutofill="no"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@+id/numOfPlayers"
+        app:layout_constraintTop_toBottomOf="@+id/teamCreationTitleView" />
+
+    <EditText
+        android:id="@+id/numOfPlayers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:drawableBottom="@drawable/ic_create_team_underscore"
@@ -44,7 +62,7 @@
         android:importantForAutofill="no"
         android:selectAllOnFocus="true"
         app:layout_constraintBottom_toTopOf="@+id/date"
-        app:layout_constraintTop_toBottomOf="@+id/teamCreationTitleView" />
+        app:layout_constraintTop_toBottomOf="@+id/gameName" />
 
     <!--TODO: add fields for ball, t-shirts, water, judge-->
     <EditText
