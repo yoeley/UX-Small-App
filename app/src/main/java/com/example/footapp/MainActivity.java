@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -21,46 +19,92 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class MainActivity extends Activity {
 
+    public static final int SECOND_FAVORITE = 1;
+    public static final int THIRD_FAVORITE = 2;
+    public static final int FIRST_FAVORITE = 0;
     public Button create, favorite1, favorite2, favorite3;
 //    public Spinner loadSpinner;
 //    public String loadFilePath = Environment. + "load";
-    List<String> team_names = new ArrayList<String>();
+//    List<String> gameList = new ArrayList<String>();
+//    List<String> gameStrings = new ArrayList<String>();
 //    String saved_1, saved_2, saved_3;
 //    String LoadedTeam;
+    String[] jsonString;
+    JSONObject gamesJson;
+    JSONArray gamesArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        String names = read_file("teamNames.txt");
+        String games = read_file("savedTeams.txt");
+        favorite1 = findViewById(R.id.favoriteGroup1Button);
+        favorite2 = findViewById(R.id.favoriteGroup2Button);
+        favorite3 = findViewById(R.id.favoriteGroup3Button);
         try {
-            JSONObject names_json = new JSONObject(names);
-            if(names_json.getBoolean("hasNames"))
+            gamesJson = new JSONObject(games);
+            if(gamesJson.getBoolean("hasNames"))
             {
-                JSONArray array_names_json = names_json.getJSONArray("savedTeams");
-                team_names.add(array_names_json.getJSONObject(0).getString("Team_1"));
-                team_names.add(array_names_json.getJSONObject(0).getString("Team_2"));
-                team_names.add(array_names_json.getJSONObject(0).getString("Team_3"));
+                gamesArray = gamesJson.getJSONArray("savedGames");
+                if(gamesArray.getJSONObject(FIRST_FAVORITE).getString("gameName").equals(""))
+                {
+//                    gameList.add("");
+                    killButton(favorite1);
+                }
+                else
+                {
+//                    gameList.add(gamesArray.getJSONObject(0).toString());
+                    jsonString[MainActivity.FIRST_FAVORITE] = gamesArray.getJSONObject(FIRST_FAVORITE).toString();
+                    favorite1.setText(gamesArray.getJSONObject(FIRST_FAVORITE).getString("gameName"));
+                    // add the whole game string to pass on
+                }
+                if(gamesArray.getJSONObject(SECOND_FAVORITE).getString("gameName").equals(""))
+                {
+//                    gameList.add("");
+                    killButton(favorite2);
+                }
+                else
+                {
+//                    gameList.add(gamesArray.getJSONObject(1).toString());
+                    jsonString[SECOND_FAVORITE] = gamesArray.getJSONObject(SECOND_FAVORITE).toString();
+                    favorite2.setText(gamesArray.getJSONObject(SECOND_FAVORITE).getString("gameName"));
+                }
+                if(gamesArray.getJSONObject(THIRD_FAVORITE).getString("gameName").equals(""))
+                {
+//                    gameList.add("");
+                    killButton(favorite3);
+                }
+                else
+                {
+//                    gameList.add(gamesArray.getJSONObject(2).toString());
+                    jsonString[MainActivity.THIRD_FAVORITE] = gamesArray.getJSONObject(MainActivity.THIRD_FAVORITE).toString();
+                    favorite3.setText(gamesArray.getJSONObject(MainActivity.THIRD_FAVORITE).getString("gameName"));
+                }
+//                gameList.add(gamesArray.getJSONObject(0).getString("Team_1"));
+//                gameList.add(array_names_json.getJSONObject(0).getString("Team_2"));
+//                gameList.add(array_names_json.getJSONObject(0).getString("Team_3"));
+            }
+            else
+            {
+                killButton(favorite1);
+                killButton(favorite2);
+                killButton(favorite3);
             }
         } catch (JSONException e) {
-            Toast.makeText(MainActivity.this,"Failed loading saved team names",Toast.LENGTH_LONG).show();
+            e.printStackTrace(); //for debug
+            Toast.makeText(MainActivity.this,"Failed loading saved teams",Toast.LENGTH_LONG).show();
         }
 
 
-        create = (Button) findViewById(R.id.createTeamButton);
-        favorite1 = findViewById(R.id.favoriteGroup1Button);
-        favorite1.setText(team_names.get(0));
-        favorite2 = (Button) findViewById(R.id.favoriteGroup2Button);
-        favorite2.setText(team_names.get(1));
-        favorite3 = (Button) findViewById(R.id.favoriteGroup3Button);
-        favorite3.setText(team_names.get(2));
-//        loadSpinner = (Spinner) findViewById(R.id.numOfPlayersSpinner);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, team_names);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        create = findViewById(R.id.createTeamButton);
+
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_spinner_item, gameList);
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        loadSpinner.setAdapter(dataAdapter);
     }
 
@@ -85,39 +129,45 @@ public class MainActivity extends Activity {
         }
     }
 
-
-    public void loadTeam(View v) {
-
-        Button b = (Button)v;
-        String id = v.getResources().getResourceEntryName(v.getId());
-        String text = b.getText().toString();
-        Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
-//        int image = -1;
-//        if(loadSpinner.getSelectedItem().equals("Thursday night")) image = 0;
-//        else if(loadSpinner.getSelectedItem().equals("Sunday evening")) image = 1;
-//        else if(loadSpinner.getSelectedItem().equals("Saturday morning")) image = 2;
-//        EditTeam.putExtra("Index", id);
-        EditTeam.putExtra("Orig", 1);
-        startActivity(EditTeam);
-        Toast.makeText(MainActivity.this, "Team \"" +
-                text + "\"\nloaded successfully", Toast.LENGTH_SHORT).show();
-    }
-
-    public void loadUnsaved(View v)
+    public void killButton(Button button)
     {
-
+        button.setText("No Favorite");
+        button.setTextColor(getResources().getColor(R.color.greydOut));
+        button.setShadowLayer(5,0,0,getResources().getColor(R.color.white));
+        button.setBackground(getResources().getDrawable(R.drawable.small2));
+        button.setEnabled(false);
     }
 
+    public void goToNextScreen(Intent intent, int idx)
+    {
+        intent.putExtra("Game",jsonString[idx]);
+        startActivity(intent);
+    }
+
+    public void loadTeam1(View v) {
+
+        Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
+        EditTeam.putExtra("Orig", 1);
+        goToNextScreen(EditTeam, FIRST_FAVORITE);
+    }
+
+    public void loadTeam2(View v) {
+
+        Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
+        EditTeam.putExtra("Orig", 1);
+        goToNextScreen(EditTeam, SECOND_FAVORITE);
+    }
+
+    public void loadTeam3(View v) {
+
+        Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
+        EditTeam.putExtra("Orig", 1);
+        goToNextScreen(EditTeam, THIRD_FAVORITE);
+    }
 
 
     public void createNewTeam(View view) {
         startActivity(new Intent(this, TeamCreationForm.class));
     }
 
-    public void exitProgram(View view)
-    {
-        //TODO: save current configuration to json
-        finish();
-        System.exit(0);
-    }
 }
