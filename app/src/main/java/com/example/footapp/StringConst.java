@@ -3,7 +3,8 @@ package com.example.footapp;
 public class StringConst {
     // Data Json example.
     public static final String data = "{"+
-            "\"date\": \"12.12.2019\","+
+            "\"gameName\": \"Game On!\","+
+            "\"date\": \"9.12.2019\","+
             "\"time\": \"18:00\","+
             "\"location\": \"Jerusalem\","+
             "\"referee\": \"Sam\","+
@@ -14,12 +15,12 @@ public class StringConst {
             "\"captain\": \"Ain?\","+
             "\"players\":"+
             "["+
-        "{\"playerName\": \"Yoel\", \"playerId\": \"team1Pos0\", \"playerPos\": \"GK\"},"+
-        "{\"playerName\": \"Dan\", \"playerId\": \"team1Pos1\", \"playerPos\": \"MID\"},"+
-        "{\"playerName\": \"ser\", \"playerId\": \"team1Pos2\", \"playerPos\": \"LB\"},"+
-        "{\"playerName\": \"agn\", \"playerId\": \"team1Pos3\", \"playerPos\": \"RB\"},"+
-        "{\"playerName\": \"fghjn\", \"playerId\": \"team1Pos4\", \"playerPos\": \"LF\"},"+
-        "{\"playerName\": \"f56n\", \"playerId\": \"team1Pos5\", \"playerPos\": \"RF\"}"+
+        "{\"playerName\": \"\", \"playerId\": \"team1Pos0\", \"playerPos\": \"GK\"},"+
+        "{\"playerName\": \"\", \"playerId\": \"team1Pos1\", \"playerPos\": \"MID\"},"+
+        "{\"playerName\": \"\", \"playerId\": \"team1Pos2\", \"playerPos\": \"LB\"},"+
+        "{\"playerName\": \"\", \"playerId\": \"team1Pos3\", \"playerPos\": \"RB\"},"+
+        "{\"playerName\": \"\", \"playerId\": \"team1Pos4\", \"playerPos\": \"LF\"},"+
+        "{\"playerName\": \"\", \"playerId\": \"team1Pos5\", \"playerPos\": \"RF\"}"+
             "]"+
     "},"+
     "{"+
@@ -28,18 +29,19 @@ public class StringConst {
             "\"captain\": \"Capt\","+
             "\"players\":"+
             "["+
-        "{\"playerName\": \"Avi\", \"playerId\":\"team2Pos0\", \"playerPos\":\"GK\"},"+
-        "{\"playerName\": \"Mar\", \"playerId\":\"team2Pos1\", \"playerPos\":\"MID\"},"+
-        "{\"playerName\": \"Noa\", \"playerId\":\"team2Pos2\", \"playerPos\":\"LB\"},"+
-        "{\"playerName\": \"Noa\", \"playerId\":\"team2Pos3\", \"playerPos\":\"RB\"},"+
-        "{\"playerName\": \"Noa\", \"playerId\":\"team2Pos4\", \"playerPos\":\"LF\"},"+
-        "{\"playerName\": \"Noa\", \"playerId\":\"team2Pos5\", \"playerPos\":\"LR\"}"+
+        "{\"playerName\": \"\", \"playerId\":\"team2Pos0\", \"playerPos\":\"GK\"},"+
+        "{\"playerName\": \"\", \"playerId\":\"team2Pos1\", \"playerPos\":\"MID\"},"+
+        "{\"playerName\": \"\", \"playerId\":\"team2Pos2\", \"playerPos\":\"LB\"},"+
+        "{\"playerName\": \"\", \"playerId\":\"team2Pos3\", \"playerPos\":\"RB\"},"+
+        "{\"playerName\": \"\", \"playerId\":\"team2Pos4\", \"playerPos\":\"LF\"},"+
+        "{\"playerName\": \"\", \"playerId\":\"team2Pos5\", \"playerPos\":\"LR\"}"+
             "]"+
     "}"+
         "]"+
 "}";
 
     public static final String newTeamJason = "{"+
+            "\"gameName\": \"\","+
             "\"date\": \"\","+
             "\"time\": \"\","+
             "\"location\": \"\","+

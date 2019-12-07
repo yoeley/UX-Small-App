@@ -66,4 +66,12 @@ public class GameData implements Serializable {
     public void setTeamData(List<TeamData> teamData) {
         this.teamData = teamData;
     }
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
+    }
 }

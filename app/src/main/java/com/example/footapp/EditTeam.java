@@ -14,11 +14,12 @@ import java.util.List;
 
 public class EditTeam extends AppCompatActivity implements Serializable {
 
-    int image = -1;
-    int orig = 2;
+    private String noName = "No Name";
+
     String data;
     GameData gameData;
     TextView dateAndTime;
+    TextView gameNameTextView;
     TextView location;
     TextView referee;
 
@@ -28,11 +29,9 @@ public class EditTeam extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_edit_team);
 
         Intent in = getIntent();
-//        image = in.getIntExtra("Index", -1);
-        orig = in.getIntExtra("Orig", -1);
         data = in.getStringExtra("Game");
 
-        data = StringConst.data;
+//        data = StringConst.data; # Test screen without previous screen being ready.
 
         parseDataIntoGameObject();
         initEditTexts();
@@ -41,6 +40,11 @@ public class EditTeam extends AppCompatActivity implements Serializable {
 
 
     private void updateGameSettings(){
+
+        gameNameTextView = findViewById(R.id.gameNameTextView);
+        if(gameData.getGameName().equals("")) gameNameTextView.setText("Game on!");
+        else gameNameTextView.setText(gameData.getGameName());
+
         dateAndTime = findViewById(R.id.dateAndTime);
         dateAndTime.setText("Date: " + gameData.getDate() + "     Time: " + gameData.getTime());
 
@@ -48,7 +52,7 @@ public class EditTeam extends AppCompatActivity implements Serializable {
         location.setText("Location: " + gameData.getLocation());
 
         referee = findViewById(R.id.referee);
-        location.setText("Referee: " + gameData.getReferee());
+        referee.setText("Referee: " + gameData.getReferee());
     }
 
 
@@ -63,12 +67,6 @@ public class EditTeam extends AppCompatActivity implements Serializable {
                 et.setText(player.getPlayerName());
             }
         }
-    }
-
-
-    public void back(View view) {
-        if(orig == 1) startActivity(new Intent(this, MainActivity.class));
-        else startActivity(new Intent(this, TeamCreationForm.class));
     }
 
 
@@ -92,7 +90,10 @@ public class EditTeam extends AppCompatActivity implements Serializable {
                 playerId = player.getPlayerId();
                 int id = getResources().getIdentifier(playerId, "id", getPackageName());
                 EditText et = findViewById(id);
-                player.setPlayerName(et.getText().toString());
+                if(et.getText().toString().equals("")) {
+                    player.setPlayerName(noName);
+                }
+                else player.setPlayerName(et.getText().toString());
             }
         }
 
@@ -101,8 +102,6 @@ public class EditTeam extends AppCompatActivity implements Serializable {
     public void toFinalScreen(View view) {
         insertDataToGameObject();
         Intent FinalScreen = new Intent(getApplicationContext(), FinalScreen.class);
-//        FinalScreen.putExtra("Index", image);
-//        FinalScreen.putExtra("Orig", 1);
         FinalScreen.putExtra("Data", gameData);
         startActivity(FinalScreen);
     }

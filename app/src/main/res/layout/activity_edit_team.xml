@@ -4,45 +4,564 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:screenOrientation="landscape"
+    android:screenOrientation="portrait"
     tools:context=".EditTeam">
 
-    <ImageView
-        android:id="@+id/pitch_imageView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:contentDescription="@string/todo"
-        android:src="@drawable/pitch"
+
+    <FrameLayout
+        android:id="@+id/pitchFrameLayout"
+        android:layout_width="408dp"
+        android:layout_height="522dp"
+        android:layout_marginBottom="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@mipmap/ic_launcher" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
+        <ImageView
+            android:id="@+id/pitchImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/pitch" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/team1Pos0Frame"
+                android:layout_width="94dp"
+                android:layout_height="38dp"
+                android:layout_above="@+id/team1Pos0"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="168dp"
+                android:layout_marginEnd="157dp"
+                android:layout_marginBottom="1dp">
+
+                <ImageView
+                    android:id="@+id/team1Pos0Image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/team_2_tshirt" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/team1Pos1Frame"
+                android:layout_width="94dp"
+                android:layout_height="38dp"
+                android:layout_above="@+id/team1Pos1"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="168dp"
+                android:layout_marginEnd="157dp"
+                android:layout_marginBottom="1dp">
+
+                <ImageView
+                    android:id="@+id/team1Pos1Image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/team_2_tshirt" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/team1Pos2Frame"
+                android:layout_width="94dp"
+                android:layout_height="38dp"
+                android:layout_above="@+id/team1Pos2"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="279dp"
+                android:layout_marginBottom="1dp">
+
+                <ImageView
+                    android:id="@+id/team1Pos2Image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/team_2_tshirt" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/team1Pos3Frame"
+                android:layout_width="94dp"
+                android:layout_height="38dp"
+                android:layout_above="@+id/team1Pos3"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="281dp"
+                android:layout_marginEnd="44dp"
+                android:layout_marginBottom="1dp">
+
+                <ImageView
+                    android:id="@+id/team1Pos3Image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/team_2_tshirt" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:id="@+id/team1Pos4Frame"
+                android:layout_width="94dp"
+                android:layout_height="38dp"
+                android:layout_above="@+id/team1Pos4"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="46dp"
+                android:layout_marginEnd="279dp"
+                android:layout_marginBottom="1dp">
+
+                <ImageView
+                    android:id="@+id/team1Pos4Image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/team_2_tshirt" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/team1Pos5Frame"
+                android:layout_width="94dp"
+                android:layout_height="38dp"
+                android:layout_above="@+id/team1Pos5"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="281dp"
+                android:layout_marginEnd="44dp"
+                android:layout_marginBottom="1dp">
+
+                <ImageView
+                    android:id="@+id/team1Pos5Image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/team_2_tshirt" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/team2Pos0Frame"
+                android:layout_width="94dp"
+                android:layout_height="38dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="165dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="152dp">
+
+                <ImageView
+                    android:id="@+id/team2Pos0Image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/team_1_tshirt" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/team2Pos1Frame"
+                android:layout_width="94dp"
+                android:layout_height="38dp"
+                android:layout_alignBottom="@+id/team2Pos1"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="162dp"
+                android:layout_marginEnd="155dp"
+                android:layout_marginBottom="25dp">
+
+                <ImageView
+                    android:id="@+id/team2Pos1Image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/team_1_tshirt" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/team2Pos2Frame"
+                android:layout_width="94dp"
+                android:layout_height="38dp"
+                android:layout_below="@+id/team2Pos0"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-6dp"
+                android:layout_marginEnd="38dp">
+
+                <ImageView
+                    android:id="@+id/team2Pos2Image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/team_1_tshirt" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/team2Pos3Frame"
+                android:layout_width="94dp"
+                android:layout_height="38dp"
+                android:layout_below="@+id/team2Pos0"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="-6dp">
+
+                <ImageView
+                    android:id="@+id/team2Pos3Image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/team_1_tshirt" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/team2Pos4Frame"
+                android:layout_width="94dp"
+                android:layout_height="38dp"
+                android:layout_alignBottom="@+id/team2Pos4"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="268dp"
+                android:layout_marginTop="-6dp"
+                android:layout_marginEnd="46dp"
+                android:layout_marginBottom="25dp">
+
+                <ImageView
+                    android:id="@+id/team2Pos4Image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/team_1_tshirt" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/team2Pos5Frame"
+                android:layout_width="94dp"
+                android:layout_height="38dp"
+                android:layout_alignBottom="@+id/team2Pos5"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="38dp"
+                android:layout_marginTop="-6dp"
+                android:layout_marginBottom="25dp">
+
+                <ImageView
+                    android:id="@+id/team2Pos5Image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/team_1_tshirt" />
+            </FrameLayout>
+
+            <EditText
+                android:id="@+id/team1Pos0"
+                android:layout_width="75dp"
+
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="168dp"
+                android:layout_marginEnd="167dp"
+                android:layout_marginBottom="20dp"
+                android:background="#056B62"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/team1Pos1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/team1Pos0"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="164dp"
+                android:layout_marginEnd="161dp"
+                android:layout_marginBottom="96dp"
+                android:background="#056B62"
+                android:ems="15"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/team1Pos2"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/team1Pos0"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginBottom="45dp"
+                android:background="#056B62"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/team1Pos3"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/team1Pos0"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="54dp"
+                android:layout_marginBottom="45dp"
+                android:background="#056B62"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/team1Pos4"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/team1Pos2"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginBottom="72dp"
+                android:background="#056B62"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/team1Pos5"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/team1Pos3"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="158dp"
+                android:layout_marginEnd="54dp"
+                android:layout_marginBottom="72dp"
+                android:layout_toEndOf="@+id/team1Pos4"
+                android:background="#056B62"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/team2Pos0"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/team2Pos0Frame"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="163dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="167dp"
+                android:background="#056B62"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/team2Pos1"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/team2Pos0"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="161dp"
+                android:layout_marginTop="96dp"
+                android:layout_marginEnd="164dp"
+                android:background="#056B62"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/team2Pos2"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/team2Pos3Frame"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="270dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="54dp"
+                android:background="#056B62"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/team2Pos3"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/team2Pos3Frame"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="240dp"
+                android:background="#056B62"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/team2Pos4"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/team2Pos2Frame"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="54dp"
+                android:layout_marginBottom="30dp"
+                android:background="#056B62"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+            <EditText
+                android:id="@+id/team2Pos5"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/team2Pos3Frame"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginEnd="157dp"
+                android:layout_marginBottom="30dp"
+                android:layout_toStartOf="@+id/team2Pos4"
+                android:background="#056B62"
+                android:ems="10"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
+
+        </RelativeLayout>
+    </FrameLayout>
+
+
+<!--    <Button-->
+<!--        android:id="@+id/nextBtn"-->
+<!--        android:layout_width="80dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:backgroundTint="#00000000"-->
+<!--        android:enabled="true"-->
+<!--        android:foreground="@drawable/check_circle_outline_24px_white"-->
+<!--        android:onClick="toFinalScreen"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.858"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <ImageButton
         android:id="@+id/nextBtn"
-        android:layout_width="173dp"
-        android:layout_height="55dp"
+        android:layout_width="98dp"
+        android:layout_height="83dp"
         android:layout_marginEnd="16dp"
-        android:enabled="true"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="#00000000"
         android:onClick="toFinalScreen"
-        android:text="@string/to_final_screen"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pitchFrameLayout"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/check_circle_outline_24px_white" />
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:enabled="true"
-        android:onClick="back"
-        android:text="@string/go_to_edit_screen"
-        app:layout_constraintBottom_toBottomOf="@+id/pitch_imageView"
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="217dp"
+        android:layout_height="70dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nextBtn"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/dateAndTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/referee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/gameNameTextView"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/pitchFrameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
