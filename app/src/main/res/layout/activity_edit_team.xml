@@ -484,18 +484,18 @@
     </FrameLayout>
 
 
-<!--    <Button-->
-<!--        android:id="@+id/nextBtn"-->
-<!--        android:layout_width="80dp"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:backgroundTint="#00000000"-->
-<!--        android:enabled="true"-->
-<!--        android:foreground="@drawable/check_circle_outline_24px_white"-->
-<!--        android:onClick="toFinalScreen"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.858"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/nextBtn"-->
+    <!--        android:layout_width="80dp"-->
+    <!--        android:layout_height="60dp"-->
+    <!--        android:backgroundTint="#00000000"-->
+    <!--        android:enabled="true"-->
+    <!--        android:foreground="@drawable/check_circle_outline_24px_white"-->
+    <!--        android:onClick="toFinalScreen"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.858"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
     <ImageButton
         android:id="@+id/nextBtn"

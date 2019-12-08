@@ -18,7 +18,7 @@
     <string name="to_final_screen">"Finished"</string>
     <string name="prompt_field1">Captain</string>
     <string name="prompt_field2">Judge</string>
-    <string name="advanced">Advanced</string>
+    <string name="advanced">more…</string>
     <string name="numOfPlayers">Players: </string>
     <string name="last_config">Load Last Unsaved Configuration </string>
     <string name="name">Name</string>
@@ -48,15 +48,16 @@
         <item>11</item>
     </string-array>
 
-<!--    edit team screen-->
+    <!--    edit team screen-->
     <string name="back">Back</string>
 
-<!--    final screen -->
+
+    <!--    final screen -->
+    <string name="promt_game_name">Game Name</string>
+    <string name="save_date">save date to calendar</string>
     <string name="go_to_edit_screen">"Edit game"</string>
     <string name="team_name">Current team name</string>
     <string name="location_button">location</string>
     <string name="date_and_time_button">date and time</string>
-    <string name="promt_game_name">Game Name</string>
-
 
 </resources>
