@@ -2,7 +2,6 @@ package com.example.footapp;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -64,7 +63,7 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
         parseDataIntoGameObject();
         initPlayerNames();
         setGameInfoOnScreen();
-        savetoJSOMfile();
+        saveToJSOMfile();
     }
 
     private void setGameInfoOnScreen() {
@@ -124,8 +123,8 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
 
 
         Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, calDate.getYear()); //TODO something's wrong
-        cal.set(Calendar.MONTH, calDate.getMonthValue()); // TODO here too
+        cal.set(Calendar.YEAR, calDate.getYear());
+        cal.set(Calendar.MONTH, calDate.getMonthValue() - 1);
         cal.set(Calendar.DAY_OF_MONTH, calDate.getDayOfMonth());
         cal.set(Calendar.HOUR_OF_DAY, calTime.getHour());
         cal.set(Calendar.MINUTE, calTime.getMinute());
@@ -140,32 +139,78 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
         startActivity(intent);
     }
 
-    private Bitmap screenShot(View view) {
-        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        view.draw(canvas);
-        return bitmap;
-    }
+
+//    public void toShare(View view) {
+//        view = getWindow().getDecorView().getRootView();
+//        view.setDrawingCacheEnabled(true);
+//        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+//        Canvas canvas = new Canvas(bitmap);
+//        view.draw(canvas);
+//        view.setDrawingCacheEnabled(false);
+//
+//        File file = saveBitmap(bitmap, "game.png");
+//        Uri uri = Uri.fromFile(new File(file.getAbsolutePath()));
+//        Intent shareIntent = new Intent();
+//        shareIntent.setAction(Intent.ACTION_SEND);
+//        shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out my app.");
+//        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+//        shareIntent.setType("image/*");
+//        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+////        startActivity(Intent.createChooser(shareIntent, "share via"));
+//        // TODO: find where the image stored, enable sending it and fix share here
+//    }
+//
+//    private void openScreenshot(File imageFile) {
+//        Intent intent = new Intent();
+//        intent.setAction(Intent.ACTION_VIEW);
+//        Uri uri = Uri.fromFile(imageFile);
+//        intent.setDataAndType(uri, "image/*");
+//        Log.d("FinalScreen", "displayimage");
+//        startActivity(intent);
+//    }
+//
+//
+//    public void toShare(View view){
+//        Date now = new Date();
+//        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+//
+//        try {
+//            // image naming and path  to include sd card  appending name you choose for file
+//            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+//
+//            // create bitmap screen capture
+//            View v1 = getWindow().getDecorView().getRootView();
+//            v1.setDrawingCacheEnabled(true);
+//            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+//            v1.setDrawingCacheEnabled(false);
+//            Log.d("FinalScreen", "success");
+//
+//            File imageFile = new File(mPath);
+//
+//            FileOutputStream outputStream = new FileOutputStream(imageFile);
+//            int quality = 100;
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+//            outputStream.flush();
+//            outputStream.close();
+//
+//            openScreenshot(imageFile);
+//
+//        } catch (Throwable e) {
+//            Log.d("FinalScreen", "error");
+//            // Several error may come out with file handling or DOM
+//            e.printStackTrace();
+//        }
+//    }
 
     public void toShare(View view) {
-        view = getWindow().getDecorView().getRootView();
-        view.setDrawingCacheEnabled(true);
-        Bitmap bm = screenShot(view);
-        view.setDrawingCacheEnabled(false);
-        File file = saveBitmap(bm, "game.png");
-        Log.d("FinalScreen", "filepath: " + file.getAbsolutePath());
-        Uri uri = Uri.fromFile(new File(file.getAbsolutePath()));
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out my app.");
-        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        shareIntent.setType("image/*");
-        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//        startActivity(Intent.createChooser(shareIntent, "share via"));
-        // TODO: find where the image stored, enable sending it and fix share here
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("image/jpeg");
+        share.putExtra(Intent.EXTRA_STREAM, Uri.parse("C:\\Users\\Marynar\\Documents\\UX\\UX-Small-App\\app\\src\\main\\res\\drawable\\tshirt_referee.png"));
+        startActivity(Intent.createChooser(share, "Share Image"));
     }
 
-    public void savetoJSOMfile() { //TODO: AVIAD?
+
+    public void saveToJSOMfile() { //TODO: AVIAD?
         // save the GameData gameData obj
     }
 }
