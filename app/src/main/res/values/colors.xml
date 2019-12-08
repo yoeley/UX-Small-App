@@ -6,11 +6,11 @@
     <color name="date_picker_accent">#008577</color>
     <color name="chosen_header_bg_color">#008577</color>
     <color name="white">#FFFFFF</color>
-    <color name="TeamCreationTitleColor">#000000</color>
+    <color name="TeamCreationTitleColor">#008577</color>
     <color name="EditTextColor">#000000</color>
     <color name="EditTextHintColor">#80000000</color>
     <color name="EditTextBackgroundTintColor">#000000</color>
-    <color name="moreButtonTextColor">#000000</color>
+    <color name="moreButtonTextColor">#008577</color>
     <color name="createButtonBackgroundTintColor">#EEEEEE</color>
-    <color name="TeamCreationBackground">#EEEEEE</color>
+    <color name="colorBackground">#EEEEEE</color>
 </resources>

@@ -16,7 +16,7 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/TeamCreationBackground"
+            android:background="@color/colorBackground"
             android:orientation="vertical"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                 android:layout_marginEnd="24dp"
 
                 android:hint="@string/promt_num_of_players"
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                 android:layout_marginEnd="24dp"
 
                 android:hint="@string/prompt_date"
@@ -103,7 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                 android:layout_marginEnd="24dp"
 
                 android:hint="@string/prompt_time"
@@ -124,7 +124,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                 android:layout_marginEnd="24dp"
 
                 android:hint="@string/prompt_location"
@@ -159,7 +159,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                         android:layout_marginEnd="24dp"
 
                         android:hint="@string/prompt_captain1"
@@ -179,7 +179,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                         android:layout_marginEnd="24dp"
 
                         android:hint="@string/prompt_captain2"
@@ -198,7 +198,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                         android:layout_marginEnd="24dp"
 
                         android:hint="@string/prompt_referee"

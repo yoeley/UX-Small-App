@@ -41,7 +41,6 @@
 
 
     <!--    final screen -->
-    <string name="promt_game_name">Game Name</string>
     <string name="save_date">save date to calendar</string>
     <string name="go_to_edit_screen">"Edit game"</string>
     <string name="team_name">Current team name</string>
