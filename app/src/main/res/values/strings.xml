@@ -36,14 +36,16 @@
     <string name="promt_game_name">Name your game</string>
     <string name="advanced">more...</string>
 
-<!--    edit team screen-->
+    <!--    edit team screen-->
     <string name="back">Back</string>
 
-<!--    final screen -->
+
+    <!--    final screen -->
+    <string name="promt_game_name">Game Name</string>
+    <string name="save_date">save date to calendar</string>
     <string name="go_to_edit_screen">"Edit game"</string>
     <string name="team_name">Current team name</string>
     <string name="location_button">location</string>
     <string name="date_and_time_button">date and time</string>
-
 
 </resources>

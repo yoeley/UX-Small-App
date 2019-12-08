@@ -1,27 +1,56 @@
 package com.example.footapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.CalendarContract;
+import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
 
 public class FinalScreen extends AppCompatActivity implements Serializable {
 
     String data;
     GameData gameData;
-//    TextView time;
-//    TextView date;
-//    TextView location;
-//    TextView referee;
+    TextView dateAndTime;
+    TextView location;
+    TextView referee;
+    Bitmap screenshot;
+
+    private static File saveBitmap(Bitmap bm, String fileName) {
+        final String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
+        Log.d("FinalScreen", "filepath: " + path);
+        File dir = new File(path);
+        if (!dir.exists())
+            dir.mkdirs();
+        File file = new File(dir, fileName);
+        try {
+            FileOutputStream fOut = new FileOutputStream(file);
+            bm.compress(Bitmap.CompressFormat.PNG, 90, fOut);
+            fOut.flush();
+            fOut.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,47 +59,41 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
 
         Intent in = getIntent();
 //        data = in.getStringExtra("Game");
-        data = StringConst.data;
-
+        data = StringConst.data; // Test screen without previous screen being ready.
         parseDataIntoGameObject();
-        initEditTexts();
-//        updateGameSettings();
+        initPlayerNames();
+        setGameInfoOnScreen();
+        saveToJSOMfile();
     }
 
+    private void setGameInfoOnScreen() {
+        location = findViewById(R.id.location);
+        if (gameData.getGameName().equals("")) {
+            location.setText("Soccer game, location: " + gameData.getLocation());
+        } else {
+            location.setText(gameData.getGameName() + " location: " + gameData.getLocation());
+        }
 
-    private void updateGameSettings(){
-//        time = findViewById(R.id.time);
-//        time.setText(gameData.getTime());
-//
-//        location = findViewById(R.id.location);
-//        location.setText(gameData.getLocation());
-//
-//        referee = findViewById(R.id.referee);
-//        referee.setText(gameData.getReferee());
-//
-//        date = findViewById(R.id.date);
-//        date.setText(gameData.getDate());
-        return;
+        dateAndTime = findViewById(R.id.dateAndTime);
+        dateAndTime.setText(gameData.getDate() + ", " + "sunday " + "evening, " + gameData.getTime());
+
+        referee = findViewById(R.id.referee);
+        referee.setText(gameData.getReferee());
     }
 
-    private void initEditTexts(){
+    private void initPlayerNames() {
         List<TeamData> teamsData = gameData.getTeamData();
         String playerId;
+        TextView et;
         for(TeamData teamData : teamsData) {
             for (Player player : teamData.getPlayers()) {
                 playerId = player.getPlayerId();
                 int id = getResources().getIdentifier(playerId, "id", getPackageName());
-                EditText et = findViewById(id);
+                et = findViewById(id);
                 et.setText(player.getPlayerName());
                 et.setEnabled(false);
             }
         }
-    }
-
-    public void back(View view) {
-        Intent EditTeam = new Intent(this, EditTeam.class);
-        EditTeam.putExtra("Data", gameData);
-        startActivity(EditTeam);
     }
 
     private void parseDataIntoGameObject(){
@@ -79,8 +102,115 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
             gameData = mapper.readValue(data, GameData.class);
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(FinalScreen.this,"Failed parsing the json",Toast.LENGTH_LONG).show();
+            Toast.makeText(FinalScreen.this, "oops! something's wrong!", Toast.LENGTH_LONG).show();
         }
     }
 
+    public void toCalendar(View view) {
+        Intent intent = new Intent(Intent.ACTION_INSERT);
+        intent.setData(CalendarContract.Events.CONTENT_URI);
+        intent.putExtra(CalendarContract.Events.TITLE, gameData.getGameName());
+        intent.putExtra(CalendarContract.Events.EVENT_LOCATION, gameData.getLocation());
+
+        LocalDate calDate;
+        LocalTime calTime;
+        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("kk:mm");
+        calDate = LocalDate.parse(gameData.getDate(), formatterDate);
+        calTime = LocalTime.parse(gameData.getTime(), formatterTime);
+        Log.d("FinalScreen", "calDate " + calDate.toString());
+        Log.d("FinalScreen", "calTime " + calTime.toString());
+
+
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, calDate.getYear());
+        cal.set(Calendar.MONTH, calDate.getMonthValue() - 1);
+        cal.set(Calendar.DAY_OF_MONTH, calDate.getDayOfMonth());
+        cal.set(Calendar.HOUR_OF_DAY, calTime.getHour());
+        cal.set(Calendar.MINUTE, calTime.getMinute());
+        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, cal.getTimeInMillis());
+
+        startActivity(intent);
+    }
+
+    public void toMap(View view) {
+        String uri = "geo:0,0?q=" + gameData.getLocation();
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        startActivity(intent);
+    }
+
+
+//    public void toShare(View view) {
+//        view = getWindow().getDecorView().getRootView();
+//        view.setDrawingCacheEnabled(true);
+//        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+//        Canvas canvas = new Canvas(bitmap);
+//        view.draw(canvas);
+//        view.setDrawingCacheEnabled(false);
+//
+//        File file = saveBitmap(bitmap, "game.png");
+//        Uri uri = Uri.fromFile(new File(file.getAbsolutePath()));
+//        Intent shareIntent = new Intent();
+//        shareIntent.setAction(Intent.ACTION_SEND);
+//        shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out my app.");
+//        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+//        shareIntent.setType("image/*");
+//        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+////        startActivity(Intent.createChooser(shareIntent, "share via"));
+//        // TODO: find where the image stored, enable sending it and fix share here
+//    }
+//
+//    private void openScreenshot(File imageFile) {
+//        Intent intent = new Intent();
+//        intent.setAction(Intent.ACTION_VIEW);
+//        Uri uri = Uri.fromFile(imageFile);
+//        intent.setDataAndType(uri, "image/*");
+//        Log.d("FinalScreen", "displayimage");
+//        startActivity(intent);
+//    }
+//
+//
+//    public void toShare(View view){
+//        Date now = new Date();
+//        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+//
+//        try {
+//            // image naming and path  to include sd card  appending name you choose for file
+//            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+//
+//            // create bitmap screen capture
+//            View v1 = getWindow().getDecorView().getRootView();
+//            v1.setDrawingCacheEnabled(true);
+//            Bitmap bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+//            v1.setDrawingCacheEnabled(false);
+//            Log.d("FinalScreen", "success");
+//
+//            File imageFile = new File(mPath);
+//
+//            FileOutputStream outputStream = new FileOutputStream(imageFile);
+//            int quality = 100;
+//            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+//            outputStream.flush();
+//            outputStream.close();
+//
+//            openScreenshot(imageFile);
+//
+//        } catch (Throwable e) {
+//            Log.d("FinalScreen", "error");
+//            // Several error may come out with file handling or DOM
+//            e.printStackTrace();
+//        }
+//    }
+
+    public void toShare(View view) {
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("image/jpeg");
+        share.putExtra(Intent.EXTRA_STREAM, Uri.parse("C:\\Users\\Marynar\\Documents\\UX\\UX-Small-App\\app\\src\\main\\res\\drawable\\tshirt_referee.png"));
+        startActivity(Intent.createChooser(share, "Share Image"));
+    }
+
+
+    public void saveToJSOMfile() { //TODO: AVIAD?
+        // save the GameData gameData obj
+    }
 }

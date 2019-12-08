@@ -4,9 +4,9 @@ public class StringConst {
     // Data Json example.
     public static final String data = "{"+
             "\"gameName\": \"Game On!\","+
-            "\"date\": \"9.12.2019\","+
+            "\"date\": \"09.12.2019\"," +
             "\"time\": \"18:00\","+
-            "\"location\": \"Jerusalem\","+
+            "\"location\": \"Jerusalem, Jaffa 37\"," +
             "\"referee\": \"Sam\","+
             "\"teams\": ["+
     "{"+
