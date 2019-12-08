@@ -4,21 +4,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.TextView;
 
-/*
-use case for example: ("location" is a name of an editText box)
-
-location.addTextChangedListener(new TextValidator(location) {
-            @Override public void validate(TextView textView, String text) {
-                Pattern p = Pattern.compile( "[0-9]" );
-                Matcher m = p.matcher(text);
-                if (m.find())
-                {
-                    textView.setError("location may not contain numbers");
-                }
-            }
-        });
- */
-
 public abstract class TextValidator implements TextWatcher {
     private final TextView textView;
     private final int validation;
@@ -31,7 +16,7 @@ public abstract class TextValidator implements TextWatcher {
     final static private int maxNumOfPlayers = 6;
     final static private String numOfPlayersMsg = "Number of players may only contain numbers";
     final static private String numOfPlayersMinMaxMsg = "Number of players must be between " + minNumOfPlayers + " and " + maxNumOfPlayers;
-    final static private String numOfPlayersIsMsg = "Number of players must be " + minNumOfPlayers;
+    final static private String numOfPlayersIsMsg = "Number of players in beta must be " + minNumOfPlayers;
 
     public TextValidator(TextView textView, int validation) {
         this.textView = textView;
@@ -63,10 +48,6 @@ public abstract class TextValidator implements TextWatcher {
     private void validateNumPlayers(TextView textView, String text)
     {
         String number_regex = "\\d*";
-        // may be relevant for other validations
-        //Pattern p = Pattern.compile( "[^0-9]" );
-        //Matcher m = p.matcher(text);
-        //if (m.find()) {}
         if(!text.matches(number_regex))
         {
             textView.setError(numOfPlayersMsg);

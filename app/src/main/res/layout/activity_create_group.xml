@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><!-- <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android" -->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,13 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container"
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/background"
+            android:background="@color/TeamCreationBackground"
             android:orientation="vertical"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
@@ -31,7 +32,7 @@
                 android:text="@string/game_creation"
                 android:textAlignment="center"
                 android:textAllCaps="false"
-                android:textColor="#D5FFFFFF"
+                android:textColor="@color/TeamCreationTitleColor"
                 android:textSize="30sp"
                 android:textStyle="bold|italic"
                 android:visibility="visible"
@@ -43,20 +44,20 @@
                 android:id="@+id/gameName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
                 android:layout_marginTop="30dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
 
-                android:backgroundTint="#D0FFFFFF"
                 android:hint="@string/promt_game_name"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:selectAllOnFocus="true"
-                android:textColor="#D5FFFFFF"
-                android:textColorHint="#99FFFFFF"
+                android:textColor="@color/EditTextColor"
+                android:textColorHint="@color/EditTextHintColor"
+                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 app:layout_constraintBottom_toTopOf="@+id/numOfPlayers"
-                app:layout_constraintTop_toBottomOf="@+id/teamCreationTitleView" />
+                app:layout_constraintTop_toBottomOf="@+id/teamCreationTitleView"/>
 
             <EditText
                 android:id="@+id/numOfPlayers"
@@ -66,14 +67,14 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="24dp"
 
-                android:backgroundTint="#D0FFFFFF"
                 android:hint="@string/promt_num_of_players"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:inputType="number"
                 android:selectAllOnFocus="true"
-                android:textColor="#D5FFFFFF"
-                android:textColorHint="#99FFFFFF"
+                android:textColor="@color/EditTextColor"
+                android:textColorHint="@color/EditTextHintColor"
+                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 app:layout_constraintBottom_toTopOf="@+id/date"
                 app:layout_constraintTop_toBottomOf="@+id/gameName" />
 
@@ -85,14 +86,14 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="24dp"
 
-                android:backgroundTint="#D0FFFFFF"
                 android:hint="@string/prompt_date"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:selectAllOnFocus="true"
                 android:focusableInTouchMode="false"
-                android:textColor="#D5FFFFFF"
-                android:textColorHint="#99FFFFFF"
+                android:textColor="@color/EditTextColor"
+                android:textColorHint="@color/EditTextHintColor"
+                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/numOfPlayers" />
@@ -105,14 +106,14 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="24dp"
 
-                android:backgroundTint="#D0FFFFFF"
                 android:hint="@string/prompt_time"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:selectAllOnFocus="true"
                 android:focusableInTouchMode="false"
-                android:textColor="#D5FFFFFF"
-                android:textColorHint="#99FFFFFF"
+                android:textColor="@color/EditTextColor"
+                android:textColorHint="@color/EditTextHintColor"
+                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 app:layout_constraintBottom_toTopOf="@+id/location"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -126,14 +127,14 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="24dp"
 
-                android:backgroundTint="#D0FFFFFF"
                 android:hint="@string/prompt_location"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:selectAllOnFocus="true"
-                android:textColor="#D5FFFFFF"
-                android:textColorHint="#99FFFFFF"
+                android:textColor="@color/EditTextColor"
+                android:textColorHint="@color/EditTextHintColor"
+                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/time" />
@@ -161,14 +162,14 @@
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="24dp"
 
-                        android:backgroundTint="#D0FFFFFF"
                         android:hint="@string/prompt_captain1"
                         android:imeOptions="actionDone"
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:selectAllOnFocus="true"
-                        android:textColor="#D5FFFFFF"
-                        android:textColorHint="#99FFFFFF"
+                        android:textColor="@color/EditTextColor"
+                        android:textColorHint="@color/EditTextHintColor"
+                        android:backgroundTint="@color/EditTextBackgroundTintColor"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -181,14 +182,14 @@
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="24dp"
 
-                        android:backgroundTint="#D0FFFFFF"
                         android:hint="@string/prompt_captain2"
                         android:imeOptions="actionDone"
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:selectAllOnFocus="true"
-                        android:textColor="#D5FFFFFF"
-                        android:textColorHint="#99FFFFFF"
+                        android:textColor="@color/EditTextColor"
+                        android:textColorHint="@color/EditTextHintColor"
+                        android:backgroundTint="@color/EditTextBackgroundTintColor"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -200,14 +201,14 @@
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="24dp"
 
-                        android:backgroundTint="#D0FFFFFF"
                         android:hint="@string/prompt_referee"
                         android:imeOptions="actionDone"
                         android:importantForAutofill="no"
                         android:inputType="text"
                         android:selectAllOnFocus="true"
-                        android:textColor="#D5FFFFFF"
-                        android:textColorHint="#99FFFFFF"
+                        android:textColor="@color/EditTextColor"
+                        android:textColorHint="@color/EditTextHintColor"
+                        android:backgroundTint="@color/EditTextBackgroundTintColor"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -226,7 +227,7 @@
                 android:onClick="toggle_contents"
                 android:text="@string/advanced"
                 android:textAlignment="viewStart"
-                android:textColor="#D5FFFFFF"
+                android:textColor="@color/moreButtonTextColor"
                 android:textSize="13sp"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toTopOf="@+id/createTeamButton"
@@ -241,11 +242,10 @@
                 android:layout_marginTop="10dp"
                 android:enabled="true"
                 android:onClick="create"
-                android:backgroundTint="#00000000"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/add_pitch"
-
+                app:srcCompat="@drawable/add_pitch2"
+                android:backgroundTint="@color/createButtonBackgroundTintColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/moreButton" />

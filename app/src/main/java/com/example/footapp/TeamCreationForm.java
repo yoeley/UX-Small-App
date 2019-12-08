@@ -192,15 +192,6 @@ public class TeamCreationForm extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        //TODO: delete this printing option before submission
-        /*
-        try {
-            System.out.println(game.toString(4));
-        }
-        catch (org.json.JSONException e) {
-            e.printStackTrace();
-        }
-        */
         startActivity(EditTeam);
     }
     public void toggle_contents(View v){
