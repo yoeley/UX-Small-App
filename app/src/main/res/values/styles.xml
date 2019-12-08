@@ -9,4 +9,14 @@
         <item name = "android:windowBackground">@drawable/background</item>
     </style>
 
+    <style name="DatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/date_picker_accent</item>
+        <item name="android:datePickerStyle">@style/DatePickerStyle</item>
+    </style>
+
+    <style name="DatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
+        <item name="android:headerBackground">@color/chosen_header_bg_color</item>
+    </style>
+
+
 </resources>

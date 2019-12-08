@@ -18,14 +18,14 @@
     <string name="to_final_screen">"Finished"</string>
     <string name="prompt_field1">Captain</string>
     <string name="prompt_field2">Judge</string>
-    <string name="advanced">Advanced</string>
+    <string name="advanced">more...</string>
     <string name="numOfPlayers">Players: </string>
     <string name="last_config">Load Last Unsaved Configuration </string>
     <string name="name">Name</string>
     <string name="logo">Logo</string>
     <string name="promt_num_of_players">Number of players</string>
     <string name="game_creation">Create Game</string>
-    <string name="prompt_referee">referee</string>
+    <string name="prompt_referee">Referee</string>
     <string name="prompt_captain1">Team 1 captain</string>
     <string name="prompt_captain2">Team 2 captain</string>
 

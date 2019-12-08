@@ -12,18 +12,25 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.PrintWriter;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -35,9 +42,12 @@ import com.fasterxml.jackson.databind.util.JSONPObject;
 public class TeamCreationForm extends AppCompatActivity {
 
     private ScrollView TeamCreationScrollView;
+    private Button moreButton;
     private EditText gameName;
     private EditText numOfPlayers;
     private EditText date;
+    private DatePickerDialog datePicker;
+    private TimePickerDialog timePicker;
     private EditText time;
     private EditText location;
     private EditText referee;
@@ -51,6 +61,8 @@ public class TeamCreationForm extends AppCompatActivity {
         setContentView(R.layout.activity_create_group);
 
         TeamCreationScrollView = findViewById(R.id.TeamCreationScrollView);
+        moreButton = findViewById(R.id.moreButton);
+
         gameName = findViewById(R.id.gameName);
         numOfPlayers = findViewById(R.id.numOfPlayers);
         date = findViewById(R.id.date);
@@ -60,15 +72,61 @@ public class TeamCreationForm extends AppCompatActivity {
         captain1 = findViewById(R.id.captain1);
         captain2 = findViewById(R.id.captain2);
 
+        setDatePicker();
+        setTimePicker();
+
         // hide until "advanced" is clicked
         TeamCreationScrollView.setVisibility(View.GONE);
 
         numOfPlayers.addTextChangedListener(new TextValidator(numOfPlayers, TextValidator.numPlayersValid){});
     }
 
+    private void setDatePicker() {
+        date.setInputType(InputType.TYPE_NULL);
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                // date picker dialog
+                datePicker = new DatePickerDialog(TeamCreationForm.this, R.style.DatePickerDialogTheme,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            }
+                        }, year, month, day);
+                datePicker.show();
+            }
+        });
+    }
+
+    private void setTimePicker() {
+        time.setInputType(InputType.TYPE_NULL);
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int hour = cldr.get(Calendar.HOUR_OF_DAY);
+                int minutes = cldr.get(Calendar.MINUTE);
+                // time picker dialog
+                timePicker = new TimePickerDialog(TeamCreationForm.this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
+                                time.setText(sHour + ":" + sMinute);
+                            }
+                        }, hour, minutes, true);
+                timePicker.show();
+            }
+        });
+    }
+
     private void createGameJSON() {
         try {
-            game = new JSONObject(StringConst.newTeamJason);
+            game = new JSONObject(StringConst.newTeamJSON);
 
             game.put("gameName", gameName.getText().toString());
             game.put("date", date.getText().toString());
@@ -99,10 +157,12 @@ public class TeamCreationForm extends AppCompatActivity {
         }
          */
     }
-
+    /*
     public void back(View view) {
         startActivity(new Intent(this, MainActivity.class));
     }
+
+    */
     public void create(View view) {
         Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
         createGameJSON();
@@ -147,5 +207,7 @@ public class TeamCreationForm extends AppCompatActivity {
         TeamCreationScrollView.setVisibility( TeamCreationScrollView.isShown()
                 ? View.GONE
                 : View.VISIBLE );
+
+        moreButton.setText(moreButton.getText().equals("more...") ? "less..." : "more...");
     }
 }

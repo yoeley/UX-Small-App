@@ -40,7 +40,7 @@ public class StringConst {
         "]"+
 "}";
 
-    public static final String newTeamJason = "{"+
+    public static final String newTeamJSON = "{"+
             "\"gameName\": \"\","+
             "\"date\": \"\","+
             "\"time\": \"\","+
