@@ -1,21 +1,264 @@
 {
-  "boolean": true,
-  "Thursday night": {
-    "goal": "b",
-    "def": "d",
-    "mid": "f",
-    "att": "e"
-  },
-  "Sunday evening": {
-    "goal": "b",
-    "def": "d",
-    "mid": "f",
-    "att": "e"
-  },
-  "Saturday morning": {
-    "goal": "b",
-    "def": "d",
-    "mid": "f",
-    "att": "e"
-  }
+    "hasNames": "true",
+    "savedGames":
+    [
+        {
+            "gameName": "I Exist",
+            "date": "4.5.19",
+            "time": "22:22",
+            "location": "Emperor Palpatine's Chambers",
+            "referee": "The dark lord",
+            "teams":
+            [
+                {
+                    "teamName": "teamOne",
+                    "numOfPlayers": "",
+                    "captain": "",
+                    "players":
+                    [
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos0",
+                            "playerPos": "GK"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos1",
+                            "playerPos": "MID"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos2",
+                            "playerPos": "LB"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos3",
+                            "playerPos": "RB"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos4",
+                            "playerPos": "LF"
+                        },
+						{
+                            "playerName": "",
+                            "playerId": "team1Pos5",
+                            "playerPos": "RF"
+                        }
+                    ]
+                },
+                {
+                    "teamName": "teamTwo",
+                    "numOfPlayers": "",
+                    "captain": "",
+                    "players":
+                    [
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos0",
+                            "playerPos": "GK"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos1",
+                            "playerPos": "MID"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos2",
+                            "playerPos": "LB"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos3",
+                            "playerPos": "RB"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos4",
+                            "playerPos": "LF"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos5",
+                            "playerPos": "LR"
+                        }
+                    ]
+                }
+            ]
+        },
+		{
+            "gameName": "Me Too!",
+            "date": "",
+            "time": "",
+            "location": "",
+            "referee": "",
+            "teams":
+            [
+                {
+                    "teamName": "teamOne",
+                    "numOfPlayers": "",
+                    "captain": "",
+                    "players":
+                    [
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos0",
+                            "playerPos": "GK"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos1",
+                            "playerPos": "MID"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos2",
+                            "playerPos": "LB"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos3",
+                            "playerPos": "RB"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos4",
+                            "playerPos": "LF"
+                        },
+						{
+                            "playerName": "",
+                            "playerId": "team1Pos5",
+                            "playerPos": "RF"
+                        }
+                    ]
+                },
+                {
+                    "teamName": "teamTwo",
+                    "numOfPlayers": "",
+                    "captain": "",
+                    "players":
+                    [
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos0",
+                            "playerPos": "GK"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos1",
+                            "playerPos": "MID"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos2",
+                            "playerPos": "LB"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos3",
+                            "playerPos": "RB"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos4",
+                            "playerPos": "LF"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos5",
+                            "playerPos": "LR"
+                        }
+                    ]
+                }
+            ]
+        },
+		{
+            "gameName": "",
+            "date": "",
+            "time": "",
+            "location": "",
+            "referee": "",
+            "teams":
+            [
+                {
+                    "teamName": "teamOne",
+                    "numOfPlayers": "",
+                    "captain": "",
+                    "players":
+                    [
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos0",
+                            "playerPos": "GK"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos1",
+                            "playerPos": "MID"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos2",
+                            "playerPos": "LB"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos3",
+                            "playerPos": "RB"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team1Pos4",
+                            "playerPos": "LF"
+                        },
+						{
+                            "playerName": "",
+                            "playerId": "team1Pos5",
+                            "playerPos": "RF"
+                        }
+                    ]
+                },
+                {
+                    "teamName": "teamTwo",
+                    "numOfPlayers": "",
+                    "captain": "",
+                    "players":
+                    [
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos0",
+                            "playerPos": "GK"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos1",
+                            "playerPos": "MID"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos2",
+                            "playerPos": "LB"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos3",
+                            "playerPos": "RB"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos4",
+                            "playerPos": "LF"
+                        },
+                        {
+                            "playerName": "",
+                            "playerId": "team2Pos5",
+                            "playerPos": "LR"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

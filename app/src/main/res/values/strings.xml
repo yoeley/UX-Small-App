@@ -20,6 +20,9 @@
     <string name="name">Name</string>
     <string name="logo">Logo</string>
 
+<!--    <string name="back">Back</string>-->
+    <string name="selectSaved">Or select one of your saved teams</string>
+
 <!--    screen names -->
     <string name="final_screen_name">Game lineup</string>
     <string name="edit_team_screen_name">Edit game</string>
