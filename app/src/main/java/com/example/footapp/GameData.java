@@ -9,6 +9,9 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GameData implements Serializable {
 
+    @JsonProperty("gameName")
+    private String gameName;
+
     @JsonProperty("referee")
     private String referee;
 
@@ -23,7 +26,6 @@ public class GameData implements Serializable {
 
     @JsonProperty("teams")
     private List<TeamData> teamData;
-
 
     public String getDate() {
         return date;
@@ -63,5 +65,13 @@ public class GameData implements Serializable {
 
     public void setTeamData(List<TeamData> teamData) {
         this.teamData = teamData;
+    }
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 }

@@ -25,7 +25,7 @@
     <string name="logo">Logo</string>
     <string name="promt_num_of_players">Number of players</string>
     <string name="game_creation">Create Game</string>
-    <string name="prompt_referee">Team 1 referee</string>
+    <string name="prompt_referee">referee</string>
     <string name="prompt_captain1">Team 1 captain</string>
     <string name="prompt_captain2">Team 2 captain</string>
     <string name="back">Back</string>
@@ -49,12 +49,14 @@
     </string-array>
 
 <!--    edit team screen-->
+    <string name="back">Back</string>
 
 <!--    final screen -->
     <string name="go_to_edit_screen">"Edit game"</string>
     <string name="team_name">Current team name</string>
     <string name="location_button">location</string>
     <string name="date_and_time_button">date and time</string>
+    <string name="promt_game_name">Game Name</string>
 
 
 </resources>
