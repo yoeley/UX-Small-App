@@ -4,10 +4,10 @@
     [
         {
             "gameName": "I Exist",
-            "date": "",
-            "time": "",
-            "location": "",
-            "referee": "",
+            "date": "4.5.19",
+            "time": "22:22",
+            "location": "Emperor Palpatine's Chambers",
+            "referee": "The dark lord",
             "teams":
             [
                 {
@@ -89,7 +89,7 @@
             ]
         },
 		{
-            "gameName": "",
+            "gameName": "Me Too!",
             "date": "",
             "time": "",
             "location": "",

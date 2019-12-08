@@ -33,7 +33,7 @@ public class MainActivity extends Activity {
 //    List<String> gameStrings = new ArrayList<String>();
 //    String saved_1, saved_2, saved_3;
 //    String LoadedTeam;
-    String[] jsonString;
+    String[] jsonString = new String[3];
     JSONObject gamesJson;
     JSONArray gamesArray;
 

@@ -28,7 +28,7 @@
     <string name="prompt_referee">referee</string>
     <string name="prompt_captain1">Team 1 captain</string>
     <string name="prompt_captain2">Team 2 captain</string>
-    <string name="back">Back</string>
+<!--    <string name="back">Back</string>-->
     <string name="selectSaved">Or select one of your saved teams</string>
 
 <!--    screen names -->
