@@ -6,7 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
-        <item name = "android:windowBackground">@color/colorBackground</item>
+        <item name="android:windowBackground">@drawable/background</item>
+        <item name="android:fontFamily">@font/droid_sans</item>
     </style>
 
     <style name="DatePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
@@ -16,5 +17,10 @@
 
     <style name="DatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
         <item name="android:headerBackground">@color/chosen_header_bg_color</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name = "android:windowBackground">@drawable/background</item>
+        <item name="android:layoutDirection">ltr</item>
     </style>
+
+
 </resources>

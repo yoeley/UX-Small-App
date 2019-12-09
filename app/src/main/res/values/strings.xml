@@ -16,6 +16,9 @@
     <string name="todo">"Todo"</string>
     <string name="search_google">"Search Google"</string>
     <string name="to_final_screen">"Finished"</string>
+    <string name="prompt_field1">Captain</string>
+    <string name="prompt_field2">Judge</string>
+    <string name="numOfPlayers">Players: </string>
     <string name="last_config">Load Last Unsaved Configuration </string>
     <string name="name">Name</string>
     <string name="logo">Logo</string>
@@ -37,7 +40,7 @@
     <string name="prompt_captain1">Team 1 captain</string>
     <string name="prompt_captain2">Team 2 captain</string>
     <string name="promt_game_name">Name your game</string>
-    <string name="advanced">more...</string>
+    <string name="advanced">more…</string>
 
     <!--    edit team screen-->
     <string name="back">Back</string>
@@ -49,5 +52,8 @@
     <string name="team_name">Current team name</string>
     <string name="location_button">location</string>
     <string name="date_and_time_button">date and time</string>
-
+    <string name="details_bg">details_of_game</string>
+    <string name="players_shirt">player_shirt</string>
+    <string name="pitch_bg">pitchBackground</string>
+    <string name="no_player">No player</string>
 </resources>
