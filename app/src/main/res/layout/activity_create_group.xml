@@ -10,7 +10,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/bg">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container"
@@ -44,9 +45,10 @@
                 android:id="@+id/gameName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:layout_marginStart="24dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="24dp"
+                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 android:hint="@string/promt_game_name"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
@@ -54,9 +56,8 @@
                 android:selectAllOnFocus="true"
                 android:textColor="@color/EditTextColor"
                 android:textColorHint="@color/EditTextHintColor"
-                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 app:layout_constraintBottom_toTopOf="@+id/numOfPlayers"
-                app:layout_constraintTop_toBottomOf="@+id/teamCreationTitleView"/>
+                app:layout_constraintTop_toBottomOf="@+id/teamCreationTitleView" />
 
             <EditText
                 android:id="@+id/numOfPlayers"
@@ -66,6 +67,7 @@
                 android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                 android:layout_marginEnd="24dp"
 
+                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 android:hint="@string/promt_num_of_players"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
@@ -73,7 +75,6 @@
                 android:selectAllOnFocus="true"
                 android:textColor="@color/EditTextColor"
                 android:textColorHint="@color/EditTextHintColor"
-                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 app:layout_constraintBottom_toTopOf="@+id/date"
                 app:layout_constraintTop_toBottomOf="@+id/gameName" />
 
@@ -85,14 +86,14 @@
                 android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                 android:layout_marginEnd="24dp"
 
+                android:backgroundTint="@color/EditTextBackgroundTintColor"
+                android:focusableInTouchMode="false"
                 android:hint="@string/prompt_date"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:selectAllOnFocus="true"
-                android:focusableInTouchMode="false"
                 android:textColor="@color/EditTextColor"
                 android:textColorHint="@color/EditTextHintColor"
-                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/numOfPlayers" />
@@ -105,14 +106,14 @@
                 android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                 android:layout_marginEnd="24dp"
 
+                android:backgroundTint="@color/EditTextBackgroundTintColor"
+                android:focusableInTouchMode="false"
                 android:hint="@string/prompt_time"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
                 android:selectAllOnFocus="true"
-                android:focusableInTouchMode="false"
                 android:textColor="@color/EditTextColor"
                 android:textColorHint="@color/EditTextHintColor"
-                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 app:layout_constraintBottom_toTopOf="@+id/location"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -126,6 +127,7 @@
                 android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                 android:layout_marginEnd="24dp"
 
+                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 android:hint="@string/prompt_location"
                 android:imeOptions="actionDone"
                 android:importantForAutofill="no"
@@ -133,7 +135,6 @@
                 android:selectAllOnFocus="true"
                 android:textColor="@color/EditTextColor"
                 android:textColorHint="@color/EditTextHintColor"
-                android:backgroundTint="@color/EditTextBackgroundTintColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/time" />
@@ -161,6 +162,7 @@
                         android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                         android:layout_marginEnd="24dp"
 
+                        android:backgroundTint="@color/EditTextBackgroundTintColor"
                         android:hint="@string/prompt_captain1"
                         android:imeOptions="actionDone"
                         android:importantForAutofill="no"
@@ -168,7 +170,6 @@
                         android:selectAllOnFocus="true"
                         android:textColor="@color/EditTextColor"
                         android:textColorHint="@color/EditTextHintColor"
-                        android:backgroundTint="@color/EditTextBackgroundTintColor"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -181,6 +182,7 @@
                         android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                         android:layout_marginEnd="24dp"
 
+                        android:backgroundTint="@color/EditTextBackgroundTintColor"
                         android:hint="@string/prompt_captain2"
                         android:imeOptions="actionDone"
                         android:importantForAutofill="no"
@@ -188,7 +190,6 @@
                         android:selectAllOnFocus="true"
                         android:textColor="@color/EditTextColor"
                         android:textColorHint="@color/EditTextHintColor"
-                        android:backgroundTint="@color/EditTextBackgroundTintColor"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -200,6 +201,7 @@
                         android:layout_marginTop="@dimen/editTextMarginTopCreateTeam"
                         android:layout_marginEnd="24dp"
 
+                        android:backgroundTint="@color/EditTextBackgroundTintColor"
                         android:hint="@string/prompt_referee"
                         android:imeOptions="actionDone"
                         android:importantForAutofill="no"
@@ -207,7 +209,6 @@
                         android:selectAllOnFocus="true"
                         android:textColor="@color/EditTextColor"
                         android:textColorHint="@color/EditTextHintColor"
-                        android:backgroundTint="@color/EditTextBackgroundTintColor"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
@@ -225,9 +226,9 @@
                 android:onClick="toggle_contents"
                 android:text="@string/advanced"
                 android:textAlignment="viewStart"
+                android:textAllCaps="false"
                 android:textColor="@color/moreButtonTextColor"
                 android:textSize="13sp"
-                android:textAllCaps="false"
                 app:layout_constraintBottom_toTopOf="@+id/createTeamButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/TeamCreationScrollView" />
@@ -239,15 +240,17 @@
                 android:layout_height="120dp"
                 android:layout_gravity="start"
                 android:layout_marginTop="10dp"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/create_game_selector"
+                android:backgroundTint="@color/createButtonBackgroundTintColor"
                 android:enabled="true"
                 android:onClick="create"
-                android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/create_game_selector"
                 android:background="@android:color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/moreButton" />
+                app:layout_constraintTop_toBottomOf="@+id/moreButton"
+                app:srcCompat="@drawable/create_game_selector" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
