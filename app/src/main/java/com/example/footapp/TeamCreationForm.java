@@ -51,6 +51,9 @@ public class TeamCreationForm extends AppCompatActivity {
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        System.out.println(AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt"));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_group);
 
@@ -189,39 +192,9 @@ public class TeamCreationForm extends AppCompatActivity {
         catch (org.json.JSONException e) {
             e.printStackTrace();
         }
-        // making JSONString into GameData class - if needed
-        /*
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            GameData gameData = mapper.readValue(game.toString(4), GameData.class);
-            String gameDataString = mapper.writeValueAsString(gameData);
-            System.out.println(gameDataString);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-         */
-    }
-    /*
-    public void back(View view) {
-        startActivity(new Intent(this, MainActivity.class));
+
     }
 
-    */
-    private void writeGameToJSON() {
-        try {
-            JSONArray gamesArr = gamesJSON.getJSONArray("savedGames");
-            gamesJSON.getJSONArray("savedGames").put(2, gamesArr.getJSONObject(1));
-            gamesJSON.getJSONArray("savedGames").put(1, gamesArr.getJSONObject(0));
-            gamesJSON.getJSONArray("savedGames").put(0, game);
-
-            AppFileManager.writeToFile(gamesJSON.toString(4), "savedGames.txt", getApplicationContext());
-
-            System.out.println(AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt"));
-        }
-        catch (org.json.JSONException e) {
-            e.printStackTrace();
-        }
-    }
 
     public void create(View view) {
         if (!createButtonActive) {
@@ -231,7 +204,6 @@ public class TeamCreationForm extends AppCompatActivity {
         else {
             Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
             createGameJSON();
-            writeGameToJSON();
 
             EditTeam.putExtra("Orig", 2);
             EditTeam.putExtra("Game", game.toString());
