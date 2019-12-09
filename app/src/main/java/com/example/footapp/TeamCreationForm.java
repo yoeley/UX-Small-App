@@ -46,6 +46,17 @@ public class TeamCreationForm extends AppCompatActivity {
     private JSONObject gamesJSON;
     private List<String> gamesNames;
     private Boolean createButtonActive;
+    private Boolean isReturnVisit = false;
+    private Boolean toggleMore = true;
+
+    private String gameNameS;
+    private String numOfPlayersS;
+    private String dateS;
+    private String timeS;
+    private String locationS;
+    private String refereeS;
+    private String captain1S;
+    private String captain2S;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +91,21 @@ public class TeamCreationForm extends AppCompatActivity {
         date.addTextChangedListener(new TextValidator(date, TextValidator.emptyChecker, this){});
         time.addTextChangedListener(new TextValidator(time, TextValidator.emptyChecker, this){});
         location.addTextChangedListener(new TextValidator(location, TextValidator.emptyChecker, this){});
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (isReturnVisit) {
+            gameName.setText(gameNameS);
+            numOfPlayers.setText(numOfPlayersS);
+            date.setText(dateS);
+            time.setText(timeS);
+            location.setText(locationS);
+            referee.setText(refereeS);
+            captain1.setText(captain1S);
+            captain2.setText(captain2S);
+        }
     }
 
     public List<String> getGamesNames() {
@@ -192,6 +218,18 @@ public class TeamCreationForm extends AppCompatActivity {
     }
 
 
+    private void saveFields() {
+        gameNameS = gameName.getText().toString();
+        numOfPlayersS = numOfPlayers.getText().toString();
+        dateS = date.getText().toString();
+        timeS = time.getText().toString();
+        locationS = location.getText().toString();
+        refereeS = referee.getText().toString();
+        captain1S = captain1.getText().toString();
+        captain2S = captain2.getText().toString();
+    }
+
+
     public void create(View view) {
         if (!createButtonActive) {
             createButton.setImageResource(R.drawable.add_pitch_disabled);
@@ -200,6 +238,8 @@ public class TeamCreationForm extends AppCompatActivity {
         else {
             Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
             createGameJSON();
+            saveFields();
+            isReturnVisit = true;
 
             EditTeam.putExtra("Orig", 2);
             EditTeam.putExtra("Game", game.toString());
@@ -209,10 +249,17 @@ public class TeamCreationForm extends AppCompatActivity {
     }
 
     public void toggle_contents(View v){
+        if (toggleMore) {
+            moreButton.setText("less...");
+            toggleMore = false;
+        }
+        else {
+            moreButton.setText("more...");
+            toggleMore = true;
+        }
+
         TeamCreationScrollView.setVisibility( TeamCreationScrollView.isShown()
                 ? View.GONE
                 : View.VISIBLE );
-
-        moreButton.setText(moreButton.getText().equals("more...") ? "less..." : "more...");
     }
 }
