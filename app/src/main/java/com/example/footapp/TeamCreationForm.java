@@ -117,6 +117,7 @@ public class TeamCreationForm extends AppCompatActivity {
             String gamesString = AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt");
             if (gamesString.equals("")) {
                 gamesJSON = new JSONObject(StringConst.savedTeamsHeader);
+                AppFileManager.writeToFile(gamesJSON.toString(4), "savedGames.txt", getApplicationContext());
             }
             else {
                 gamesJSON = new JSONObject(gamesString);
