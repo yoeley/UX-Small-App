@@ -7,7 +7,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
@@ -99,7 +106,31 @@ public class EditTeam extends AppCompatActivity implements Serializable {
 
     }
 
+
+    private void writeJSONToFile() {
+        try {
+            String gamesString = AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt");
+            JSONObject gamesJSON = new JSONObject(gamesString);
+
+            ObjectMapper mapper = new ObjectMapper();
+            JSONObject gameDataJSON = new JSONObject(mapper.writeValueAsString(gameData));
+
+            JSONArray gamesArr = gamesJSON.getJSONArray("savedGames");
+            gamesJSON.getJSONArray("savedGames").put(2, gamesArr.getJSONObject(1));
+            gamesJSON.getJSONArray("savedGames").put(1, gamesArr.getJSONObject(0));
+            gamesJSON.getJSONArray("savedGames").put(0, gameDataJSON);
+
+            AppFileManager.writeToFile(gamesJSON.toString(4), "savedGames.txt", getApplicationContext());
+
+            System.out.println(AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt"));
+        }
+        catch (JSONException | JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void toFinalScreen(View view) {
+        writeJSONToFile();
         insertDataToGameObject();
         Intent FinalScreen = new Intent(getApplicationContext(), FinalScreen.class);
         FinalScreen.putExtra("Data", gameData);
