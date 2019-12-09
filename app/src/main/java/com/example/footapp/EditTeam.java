@@ -119,7 +119,7 @@ public class EditTeam extends AppCompatActivity implements Serializable {
             gamesJSON.getJSONArray("savedGames").put(2, gamesArr.getJSONObject(1));
             gamesJSON.getJSONArray("savedGames").put(1, gamesArr.getJSONObject(0));
             gamesJSON.getJSONArray("savedGames").put(0, gameDataJSON);
-
+            gamesJSON.put("hasNames", "true");
             AppFileManager.writeToFile(gamesJSON.toString(4), "savedGames.txt", getApplicationContext());
 
             System.out.println(AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt"));

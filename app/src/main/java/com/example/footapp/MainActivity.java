@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -27,12 +28,7 @@ public class MainActivity extends Activity {
     public static final int THIRD_FAVORITE = 2;
     public static final int FIRST_FAVORITE = 0;
     public Button create, favorite1, favorite2, favorite3;
-//    public Spinner loadSpinner;
-//    public String loadFilePath = Environment. + "load";
-//    List<String> gameList = new ArrayList<String>();
-//    List<String> gameStrings = new ArrayList<String>();
-//    String saved_1, saved_2, saved_3;
-//    String LoadedTeam;
+    public TextView favorite1text, favorite2text, favorite3text;
     String[] jsonString = new String[3];
     JSONObject gamesJson;
     JSONArray gamesArray;
@@ -42,47 +38,62 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String games = read_file("savedTeams.txt");
+//        String games;
+//        try {
+//
+//            games = AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt");
+//
+//        }
+//        catch (Exception e)
+//        {
+//            AppFileManager.writeToFile("", "savedGames.txt", getApplicationContext());
+//            games = AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt");
+//        }
+//        if (games.equals("")) {
+//            games = StringConst.savedTeamsHeader;
+//        }
         favorite1 = findViewById(R.id.favoriteGroup1Button);
+        favorite1text = findViewById(R.id.favorite1);
         favorite2 = findViewById(R.id.favoriteGroup2Button);
+        favorite2text = findViewById(R.id.favorite2);
         favorite3 = findViewById(R.id.favoriteGroup3Button);
+        favorite3text = findViewById(R.id.favorite3);
         try {
             gamesJson = new JSONObject(games);
             if(gamesJson.getBoolean("hasNames"))
             {
+                //might need to check for json errors if parts of the array are empty
                 gamesArray = gamesJson.getJSONArray("savedGames");
                 if(gamesArray.getJSONObject(FIRST_FAVORITE).getString("gameName").equals(""))
                 {
-//                    gameList.add("");
-                    killButton(favorite1);
+                    killButton(favorite1, 1);
                 }
                 else
                 {
-//                    gameList.add(gamesArray.getJSONObject(0).toString());
                     jsonString[MainActivity.FIRST_FAVORITE] = gamesArray.getJSONObject(FIRST_FAVORITE).toString();
-                    favorite1.setText(gamesArray.getJSONObject(FIRST_FAVORITE).getString("gameName"));
+                    favorite1text.setText(gamesArray.getJSONObject(FIRST_FAVORITE).getString("gameName"));
                     // add the whole game string to pass on
                 }
                 if(gamesArray.getJSONObject(SECOND_FAVORITE).getString("gameName").equals(""))
                 {
-//                    gameList.add("");
-                    killButton(favorite2);
+                    killButton(favorite2, 2);
                 }
                 else
                 {
 //                    gameList.add(gamesArray.getJSONObject(1).toString());
                     jsonString[SECOND_FAVORITE] = gamesArray.getJSONObject(SECOND_FAVORITE).toString();
-                    favorite2.setText(gamesArray.getJSONObject(SECOND_FAVORITE).getString("gameName"));
+                    favorite2text.setText(gamesArray.getJSONObject(SECOND_FAVORITE).getString("gameName"));
                 }
                 if(gamesArray.getJSONObject(THIRD_FAVORITE).getString("gameName").equals(""))
                 {
 //                    gameList.add("");
-                    killButton(favorite3);
+                    killButton(favorite3, 3);
                 }
                 else
                 {
 //                    gameList.add(gamesArray.getJSONObject(2).toString());
                     jsonString[MainActivity.THIRD_FAVORITE] = gamesArray.getJSONObject(MainActivity.THIRD_FAVORITE).toString();
-                    favorite3.setText(gamesArray.getJSONObject(MainActivity.THIRD_FAVORITE).getString("gameName"));
+                    favorite3text.setText(gamesArray.getJSONObject(MainActivity.THIRD_FAVORITE).getString("gameName"));
                 }
 //                gameList.add(gamesArray.getJSONObject(0).getString("Team_1"));
 //                gameList.add(array_names_json.getJSONObject(0).getString("Team_2"));
@@ -90,9 +101,9 @@ public class MainActivity extends Activity {
             }
             else
             {
-                killButton(favorite1);
-                killButton(favorite2);
-                killButton(favorite3);
+                killButton(favorite1, 1);
+                killButton(favorite2, 2);
+                killButton(favorite3, 3);
             }
         } catch (JSONException e) {
             e.printStackTrace(); //for debug
@@ -129,11 +140,27 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void killButton(Button button)
+    public void killButton(Button button, int id)
     {
-        button.setText("No Favorite");
-        button.setTextColor(getResources().getColor(R.color.greydOut));
-        button.setShadowLayer(5,0,0,getResources().getColor(R.color.white));
+        TextView text;
+        switch (id)
+        {
+            case 1:
+                text = favorite1text;
+                break;
+            case 2:
+                text = favorite2text;
+                break;
+            case 3:
+                text = favorite3text;
+                break;
+            default:
+                text = favorite1text;
+                break;
+        }
+        text.setText("No Favorite");
+        text.setTextColor(getResources().getColor(R.color.greydOut));
+        text.setShadowLayer(5,0,0,getResources().getColor(R.color.white));
         button.setBackground(getResources().getDrawable(R.drawable.small2));
         button.setEnabled(false);
     }
