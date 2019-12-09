@@ -48,13 +48,14 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_final_screen);
 
         Intent in = getIntent();
+        gameData =(GameData) in.getSerializableExtra("Data");
 //        data = in.getStringExtra("Game");
-        data = StringConst.data; // Test screen without previous screen being ready.
-        parseDataIntoGameObject();
+//        data = StringConst.data; // Test screen without previous screen being ready.
+//        parseDataIntoGameObject();
         setCreativeDayDetails();
         initPlayerNames();
         setGameInfoOnScreen();
-        saveToJSOMfile();
+//        saveToJSOMfile();
     }
 
     private void initPlayerNames() {
@@ -119,7 +120,7 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
     }
 
     public void setCreativeDayDetails() {
-        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("kk:mm");
         calDate = LocalDate.parse(gameData.getDate(), formatterDate);
         calTime = LocalTime.parse(gameData.getTime(), formatterTime);
