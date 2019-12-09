@@ -2,47 +2,37 @@ package com.example.footapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Calendar;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.io.PrintWriter;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ScrollView;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONArray;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 public class TeamCreationForm extends AppCompatActivity {
 
+    final static private String fieldsMissingMsg = "Required fields are missing!";
+
     private ScrollView TeamCreationScrollView;
     private Button moreButton;
+    private ImageButton createButton;
     private EditText gameName;
     private EditText numOfPlayers;
     private EditText date;
@@ -54,7 +44,11 @@ public class TeamCreationForm extends AppCompatActivity {
     private EditText captain1;
     private EditText captain2;
     private JSONObject game;
+    private JSONObject gamesJSON;
+    private List<String> gamesNames;
+    private Boolean createButtonActive;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +56,7 @@ public class TeamCreationForm extends AppCompatActivity {
 
         TeamCreationScrollView = findViewById(R.id.TeamCreationScrollView);
         moreButton = findViewById(R.id.moreButton);
+        createButton = findViewById(R.id.createTeamButton);
 
         gameName = findViewById(R.id.gameName);
         numOfPlayers = findViewById(R.id.numOfPlayers);
@@ -71,16 +66,46 @@ public class TeamCreationForm extends AppCompatActivity {
         referee = findViewById(R.id.referee);
         captain1 = findViewById(R.id.captain1);
         captain2 = findViewById(R.id.captain2);
+        gamesNames = new ArrayList<String>();
+        createButtonActive = false;
 
         setDatePicker();
         setTimePicker();
+        getTeamsNames();
 
         // hide until "advanced" is clicked
         TeamCreationScrollView.setVisibility(View.GONE);
 
-        numOfPlayers.addTextChangedListener(new TextValidator(numOfPlayers, TextValidator.numPlayersValid){});
+        numOfPlayers.addTextChangedListener(new TextValidator(numOfPlayers, TextValidator.numPlayersValid, this){});
+        gameName.addTextChangedListener(new TextValidator(gameName, TextValidator.gameNameValid, this){});
+        date.addTextChangedListener(new TextValidator(date, TextValidator.emptyChecker, this){});
+        time.addTextChangedListener(new TextValidator(time, TextValidator.emptyChecker, this){});
+        location.addTextChangedListener(new TextValidator(location, TextValidator.emptyChecker, this){});
     }
 
+    public List<String> getGamesNames() {
+        return this.gamesNames;
+    }
+
+    private void getTeamsNames() {
+        try {
+            String gamesString = AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt");
+            if (gamesString.equals("")) {
+                gamesJSON = new JSONObject(StringConst.savedTeamsHeader);
+            }
+            else {
+                gamesJSON = new JSONObject(gamesString);
+            }
+
+            JSONArray gamesArr = gamesJSON.getJSONArray("savedGames");
+            gamesNames.add(gamesArr.getJSONObject(0).getString("gameName"));
+            gamesNames.add(gamesArr.getJSONObject(1).getString("gameName"));
+            gamesNames.add(gamesArr.getJSONObject(2).getString("gameName"));
+        }
+        catch (org.json.JSONException e) {
+            e.printStackTrace();
+        }
+    }
     private void setDatePicker() {
         date.setInputType(InputType.TYPE_NULL);
         date.setOnClickListener(new View.OnClickListener() {
@@ -124,6 +149,25 @@ public class TeamCreationForm extends AppCompatActivity {
         });
     }
 
+    public void setCreateButtonActiveOrNot() {
+
+        createButtonActive = false;
+        createButton.setImageResource(R.drawable.add_pitch_disabled);
+
+        String gameNameS = gameName.getText().toString();
+        String numOfPlayersS = numOfPlayers.getText().toString();
+        String dateS = date.getText().toString();
+        String timeS = time.getText().toString();
+        String locationS = location.getText().toString();
+
+        if(!gameNameS.trim().equals("") && !numOfPlayersS.trim().equals("") &&
+                !dateS.trim().equals("") && !timeS.trim().equals("") && !locationS.trim().equals(""))
+        {
+            createButtonActive = true;
+            createButton.setImageResource(R.drawable.add_pitch2);
+        }
+    }
+
     private void createGameJSON() {
         try {
             game = new JSONObject(StringConst.newTeamJSON);
@@ -163,22 +207,8 @@ public class TeamCreationForm extends AppCompatActivity {
     }
 
     */
-    public void create(View view) {
-        Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
-        createGameJSON();
-        EditTeam.putExtra("Orig", 2);
-        EditTeam.putExtra("Game", game.toString());
-
+    private void writeGameToJSON() {
         try {
-            String gamesString = AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt");
-            JSONObject gamesJSON;
-            if (gamesString.equals("")) {
-                gamesJSON = new JSONObject(StringConst.savedTeamsHeader);
-            }
-            else {
-                gamesJSON = new JSONObject(gamesString);
-            }
-
             JSONArray gamesArr = gamesJSON.getJSONArray("savedGames");
             gamesJSON.getJSONArray("savedGames").put(2, gamesArr.getJSONObject(1));
             gamesJSON.getJSONArray("savedGames").put(1, gamesArr.getJSONObject(0));
@@ -191,9 +221,25 @@ public class TeamCreationForm extends AppCompatActivity {
         catch (org.json.JSONException e) {
             e.printStackTrace();
         }
-
-        startActivity(EditTeam);
     }
+
+    public void create(View view) {
+        if (!createButtonActive) {
+            createButton.setImageResource(R.drawable.add_pitch_disabled);
+            Toast.makeText(this, fieldsMissingMsg, Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
+            createGameJSON();
+            writeGameToJSON();
+
+            EditTeam.putExtra("Orig", 2);
+            EditTeam.putExtra("Game", game.toString());
+
+            startActivity(EditTeam);
+        }
+    }
+
     public void toggle_contents(View v){
         TeamCreationScrollView.setVisibility( TeamCreationScrollView.isShown()
                 ? View.GONE
