@@ -244,7 +244,7 @@
                 android:onClick="create"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/add_pitch2"
+                app:srcCompat="@drawable/create_game_selector"
                 android:backgroundTint="@color/createButtonBackgroundTintColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
