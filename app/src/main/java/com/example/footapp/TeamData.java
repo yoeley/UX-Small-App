@@ -22,7 +22,6 @@ public class TeamData implements Serializable {
     @JsonProperty("captain")
     private String captain;
 
-
     public int getNumOfPlayers() {
         return numOfPlayers;
     }

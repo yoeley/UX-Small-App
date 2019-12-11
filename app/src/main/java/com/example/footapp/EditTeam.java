@@ -64,7 +64,7 @@ public class EditTeam extends AppCompatActivity implements Serializable {
 
 
     private void initEditTexts(){
-        List<TeamData> teamsData = gameData.getTeamData();
+        List<TeamData> teamsData = gameData.getTeams();
         String playerId;
         for(TeamData teamData : teamsData) {
             for (Player player : teamData.getPlayers()) {
@@ -90,7 +90,7 @@ public class EditTeam extends AppCompatActivity implements Serializable {
 
 
     private void insertDataToGameObject(){
-        List<TeamData> teamsData = gameData.getTeamData();
+        List<TeamData> teamsData = gameData.getTeams();
         String playerId;
         for(TeamData teamData : teamsData) {
             for (Player player : teamData.getPlayers()) {
@@ -109,7 +109,7 @@ public class EditTeam extends AppCompatActivity implements Serializable {
 
     private void writeJSONToFile() {
         try {
-            String gamesString = AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt");
+            String gamesString = AppFileManager.readFromFile(getApplicationContext(), "savedGames.json");
             JSONObject gamesJSON = new JSONObject(gamesString);
 
             ObjectMapper mapper = new ObjectMapper();
@@ -121,9 +121,9 @@ public class EditTeam extends AppCompatActivity implements Serializable {
             gamesJSON.getJSONArray("savedGames").put(0, gameDataJSON);
 
             gamesJSON.put("hasNames", "true");
-            AppFileManager.writeToFile(gamesJSON.toString(4), "savedGames.txt", getApplicationContext());
+            AppFileManager.writeToFile(gamesJSON.toString(4), "savedGames.json", getApplicationContext());
 
-            System.out.println(AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt"));
+            System.out.println(AppFileManager.readFromFile(getApplicationContext(), "savedGames.json"));
         }
         catch (JSONException | JsonProcessingException e) {
             e.printStackTrace();

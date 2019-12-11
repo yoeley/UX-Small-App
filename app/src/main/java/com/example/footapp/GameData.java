@@ -25,7 +25,7 @@ public class GameData implements Serializable {
     private String date;
 
     @JsonProperty("teams")
-    private List<TeamData> teamData;
+    private List<TeamData> teams;
 
     public String getDate() {
         return date;
@@ -59,12 +59,12 @@ public class GameData implements Serializable {
         this.referee = referee;
     }
 
-    public List<TeamData> getTeamData() {
-        return teamData;
+    public List<TeamData> getTeams() {
+        return teams;
     }
 
-    public void setTeamData(List<TeamData> teamData) {
-        this.teamData = teamData;
+    public void setTeams(List<TeamData> teams) {
+        this.teams = teams;
     }
 
     public String getGameName() {

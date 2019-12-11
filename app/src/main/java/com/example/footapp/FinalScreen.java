@@ -59,7 +59,7 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
     }
 
     private void initPlayerNames() {
-        List<TeamData> teamsData = gameData.getTeamData();
+        List<TeamData> teamsData = gameData.getTeams();
         String playerId;
         TextView et;
         for(TeamData teamData : teamsData) {
