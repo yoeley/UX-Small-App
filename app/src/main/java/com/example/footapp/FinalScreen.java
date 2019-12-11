@@ -10,15 +10,11 @@ import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -29,8 +25,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class FinalScreen extends AppCompatActivity implements Serializable {
-
-    String data;
     GameData gameData;
     TextView dateAndTime;
     TextView location;
@@ -48,18 +42,14 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_final_screen);
 
         Intent in = getIntent();
-        gameData =(GameData) in.getSerializableExtra("Data");
-//        data = in.getStringExtra("Game");
-//        data = StringConst.data; // Test screen without previous screen being ready.
-//        parseDataIntoGameObject();
+        gameData =(GameData) in.getSerializableExtra("Game");
         setCreativeDayDetails();
         initPlayerNames();
         setGameInfoOnScreen();
-//        saveToJSOMfile();
     }
 
     private void initPlayerNames() {
-        List<TeamData> teamsData = gameData.getTeamData();
+        List<TeamData> teamsData = gameData.getTeams();
         String playerId;
         TextView et;
         for(TeamData teamData : teamsData) {
@@ -70,16 +60,6 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
                 et.setText(player.getPlayerName());
                 et.setEnabled(false);
             }
-        }
-    }
-
-    private void parseDataIntoGameObject(){
-        final ObjectMapper mapper = new ObjectMapper();
-        try {
-            gameData = mapper.readValue(data, GameData.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(FinalScreen.this, "oops! something's wrong!", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -227,10 +207,5 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
         share.setType("image/jpeg");
         share.putExtra(Intent.EXTRA_STREAM, Uri.parse("C:\\Users\\Marynar\\Documents\\UX\\UX-Small-App\\app\\src\\main\\res\\drawable\\tshirt_referee.png"));
         startActivity(Intent.createChooser(share, "Share Image"));
-    }
-
-
-    public void saveToJSOMfile() { //TODO: AVIAD?
-        // save the GameData gameData obj
     }
 }

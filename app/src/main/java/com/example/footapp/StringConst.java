@@ -10,7 +10,7 @@ public class StringConst {
             "\"referee\": \"Sam\","+
             "\"teams\": ["+
     "{"+
-        "\"teamName\": \"teamOne\","+
+        "\"teamNumber\": 1,"+
             "\"numOfPlayers\": \"6\","+
             "\"captain\": \"Ain?\","+
             "\"players\":"+
@@ -24,7 +24,7 @@ public class StringConst {
             "]"+
     "},"+
     "{"+
-        "\"teamName\": \"teamTwo\","+
+        "\"teamNumber\": 2,"+
             "\"numOfPlayers\": \"6\","+
             "\"captain\": \"Capt\","+
             "\"players\":"+
@@ -48,7 +48,7 @@ public class StringConst {
             "\"referee\": \"\","+
             "\"teams\": ["+
             "{"+
-            "\"teamName\": \"teamOne\","+
+            "\"teamNumber\": 1,"+
             "\"numOfPlayers\": \"6\","+
             "\"captain\": \"\","+
             "\"players\":"+
@@ -62,7 +62,7 @@ public class StringConst {
             "]"+
             "},"+
             "{"+
-            "\"teamName\": \"teamTwo\","+
+            "\"teamNumber\": 2,"+
             "\"numOfPlayers\": \"6\","+
             "\"captain\": \"Capt\","+
             "\"players\":"+
@@ -79,7 +79,7 @@ public class StringConst {
             "}";
 
     public static final String savedTeamsHeader = "{\n" +
-            "    \"hasNames\": false,\n" +
-            "    \"savedGames\": [{gameName:\"\"}, {gameName:\"\"}, {gameName:\"\"}]\n" +
-            "}";
+            "    \"numGames\": 0,\n" +
+            "    \"gameDataList\": null}";//[{\"gameName\":\"\"}, {\"gameName\":\"\"}, {\"gameName\":\"\"}]\n" +
+            //"}";
 }

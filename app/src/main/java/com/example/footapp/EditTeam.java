@@ -6,29 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
 public class EditTeam extends AppCompatActivity implements Serializable {
 
-    private String noName = "No Name";
+    private final String noName = "No Name";
 
-    String data;
-    GameData gameData;
-    TextView dateAndTime;
-    TextView gameNameTextView;
-    TextView location;
-    TextView referee;
+    private GameData game;
+    private GamesList gamesList;
+    private TextView dateAndTime;
+    private TextView gameNameTextView;
+    private TextView location;
+    private TextView referee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +27,9 @@ public class EditTeam extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_edit_team);
 
         Intent in = getIntent();
-        data = in.getStringExtra("Game");
+        game = (GameData) in.getSerializableExtra("Game");
+        gamesList = (GamesList) in.getSerializableExtra("GamesList");
 
-//        data = StringConst.data; # Test screen without previous screen being ready.
-
-        parseDataIntoGameObject();
         initEditTexts();
         updateGameSettings();
     }
@@ -49,22 +38,22 @@ public class EditTeam extends AppCompatActivity implements Serializable {
     private void updateGameSettings(){
 
         gameNameTextView = findViewById(R.id.gameNameTextView);
-        if(gameData.getGameName().equals("")) gameNameTextView.setText("Game on!");
-        else gameNameTextView.setText(gameData.getGameName());
+        if(game.getGameName().equals("")) gameNameTextView.setText("Game on!");
+        else gameNameTextView.setText(game.getGameName());
 
         dateAndTime = findViewById(R.id.dateAndTime);
-        dateAndTime.setText("Date: " + gameData.getDate() + "     Time: " + gameData.getTime());
+        dateAndTime.setText("Date: " + game.getDate() + "     Time: " + game.getTime());
 
         location = findViewById(R.id.location);
-        location.setText("Location: " + gameData.getLocation());
+        location.setText("Location: " + game.getLocation());
 
         referee = findViewById(R.id.referee);
-        referee.setText("Referee: " + gameData.getReferee());
+        referee.setText("Referee: " + game.getReferee());
     }
 
 
     private void initEditTexts(){
-        List<TeamData> teamsData = gameData.getTeamData();
+        List<TeamData> teamsData = game.getTeams();
         String playerId;
         for(TeamData teamData : teamsData) {
             for (Player player : teamData.getPlayers()) {
@@ -76,21 +65,8 @@ public class EditTeam extends AppCompatActivity implements Serializable {
         }
     }
 
-
-    private void parseDataIntoGameObject(){
-        final ObjectMapper mapper
-                = new ObjectMapper();
-        try {
-            gameData = mapper.readValue(data, GameData.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-            Toast.makeText(EditTeam.this,"Failed parsing the json",Toast.LENGTH_LONG).show();
-        }
-    }
-
-
     private void insertDataToGameObject(){
-        List<TeamData> teamsData = gameData.getTeamData();
+        List<TeamData> teamsData = game.getTeams();
         String playerId;
         for(TeamData teamData : teamsData) {
             for (Player player : teamData.getPlayers()) {
@@ -103,38 +79,32 @@ public class EditTeam extends AppCompatActivity implements Serializable {
                 else player.setPlayerName(et.getText().toString());
             }
         }
-
     }
 
 
     private void writeJSONToFile() {
-        try {
-            String gamesString = AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt");
-            JSONObject gamesJSON = new JSONObject(gamesString);
+        List<GameData> gameDataList = gamesList.getGameDataList();
+        gameDataList.set(2, gameDataList.get(1));
+        gameDataList.set(1, gameDataList.get(0));
+        gameDataList.set(0, game);
 
-            ObjectMapper mapper = new ObjectMapper();
-            JSONObject gameDataJSON = new JSONObject(mapper.writeValueAsString(gameData));
-
-            JSONArray gamesArr = gamesJSON.getJSONArray("savedGames");
-            gamesJSON.getJSONArray("savedGames").put(2, gamesArr.getJSONObject(1));
-            gamesJSON.getJSONArray("savedGames").put(1, gamesArr.getJSONObject(0));
-            gamesJSON.getJSONArray("savedGames").put(0, gameDataJSON);
-
-            gamesJSON.put("hasNames", "true");
-            AppFileManager.writeToFile(gamesJSON.toString(4), "savedGames.txt", getApplicationContext());
-
-            System.out.println(AppFileManager.readFromFile(getApplicationContext(), "savedGames.txt"));
+        if (gamesList.getNumGames() < GamesList.maxNumGames) {
+            gamesList.setNumGames(gamesList.getNumGames() + 1);
         }
-        catch (JSONException | JsonProcessingException e) {
-            e.printStackTrace();
-        }
+
+
+        String gamesString = GamesList.GamesListToJSON(gamesList);
+        AppFileManager.writeToFile(gamesString, "savedGames.json", getApplicationContext());
+
+
+        System.out.println(AppFileManager.readFromFile(getApplicationContext(), "savedGames.json"));
     }
 
     public void toFinalScreen(View view) {
         writeJSONToFile();
         insertDataToGameObject();
         Intent FinalScreen = new Intent(getApplicationContext(), FinalScreen.class);
-        FinalScreen.putExtra("Data", gameData);
+        FinalScreen.putExtra("Game", game);
         startActivity(FinalScreen);
     }
 }

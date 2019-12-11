@@ -1,27 +1,28 @@
 package com.example.footapp;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TeamData implements Serializable {
+
+    private static final String idFormat = "team%dPos%d";
+
     @JsonProperty("numOfPlayers")
     private int numOfPlayers;
 
     @JsonProperty("players")
-    private List<Player> players;
+    private ArrayList<Player> players;
 
-    @JsonProperty("teamName")
-    private String teamName;
+    @JsonProperty("teamNumber")
+    private int teamNumber;
 
     @JsonProperty("captain")
     private String captain;
-
 
     public int getNumOfPlayers() {
         return numOfPlayers;
@@ -35,16 +36,16 @@ public class TeamData implements Serializable {
         return players;
     }
 
-    public void setPlayers(List<Player> players) {
+    public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public int getTeamNumber() {
+        return teamNumber;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
+    public void setTeamNumber(int teamNumber) {
+        this.teamNumber = teamNumber;
     }
 
     public String getCaptain() {
@@ -53,5 +54,23 @@ public class TeamData implements Serializable {
 
     public void setCaptain(String captain) {
         this.captain = captain;
+    }
+
+    public void addPlayers() {
+        for (int i = 0; i < numOfPlayers; ++i) {
+            Player player = new Player();
+            player.initPlayer();
+            player.setPlayerId(String.format(idFormat, teamNumber, i));
+            players.add(player);
+        }
+    }
+
+    public void initTeamData(int teamNumber) {
+        if (players == null) {
+            players = new ArrayList<Player>();
+            this.teamNumber = teamNumber;
+        }
+
+        captain = "";
     }
 }

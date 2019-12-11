@@ -25,14 +25,14 @@
 
         <activity android:name=".EditTeam"
             android:label = "@string/edit_team_screen_name"
-            android:parentActivityName=".TeamCreationForm">
+            android:parentActivityName=".CreateTeam">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=
-                    "com.example.footapp.TeamCreationForm" />
+                    "com.example.footapp.CreateTeam" />
         </activity>
 
-        <activity android:name=".TeamCreationForm"
+        <activity android:name=".CreateTeam"
             android:label = "@string/creation_form_screen_name"
             android:parentActivityName=".MainActivity">
             <meta-data

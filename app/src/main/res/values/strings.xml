@@ -32,15 +32,17 @@
     <string name="creation_form_screen_name">Game details</string>
 
 <!--    main screen-->
+    <string name="no_fav">No favorites</string>
 
-<!--    create group screen-->
+<!--    create game screen-->
     <string name="promt_num_of_players">How many players?</string>
     <string name="game_creation">Let\'s play</string>
     <string name="prompt_referee">Referee</string>
     <string name="prompt_captain1">Team 1 captain</string>
     <string name="prompt_captain2">Team 2 captain</string>
     <string name="promt_game_name">Name your game</string>
-    <string name="advanced">more…</string>
+    <string name="more">more…</string>
+    <string name="less">less…</string>
 
     <!--    edit team screen-->
     <string name="back">Back</string>

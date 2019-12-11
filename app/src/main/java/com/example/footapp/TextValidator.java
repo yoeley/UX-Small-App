@@ -10,7 +10,7 @@ public abstract class TextValidator implements TextWatcher {
     private final TextView textView;
     private final int validation;
     private List<String> gamesNames;
-    private TeamCreationForm teamCreationForm;
+    private CreateTeam createTeam;
 
     final static public int emptyChecker = 0;
     final static public int gameNameValid = 1;
@@ -24,11 +24,11 @@ public abstract class TextValidator implements TextWatcher {
     final static private String gameNameMsg = "A game named %s already exists. choose a unique name";
     final static private String emptyFieldMsg = "Required field";
 
-    public TextValidator(TextView textView, int validation, TeamCreationForm teamCreationForm) {
+    public TextValidator(TextView textView, int validation, CreateTeam createTeam) {
         this.textView = textView;
         this.validation = validation;
-        this.teamCreationForm = teamCreationForm;
-        this.gamesNames = this.teamCreationForm.getGamesNames();
+        this.createTeam = createTeam;
+        this.gamesNames = this.createTeam.getGamesNames();
     }
 
     private void validate(TextView textView, String text)
@@ -49,7 +49,7 @@ public abstract class TextValidator implements TextWatcher {
 
     @Override
     final public void afterTextChanged(Editable s) {
-        teamCreationForm.setCreateButtonActiveOrNot();
+        createTeam.setCreateButtonActiveOrNot();
         String text = textView.getText().toString();
         validate(textView, text);
     }
