@@ -92,8 +92,10 @@ public class EditTeam extends AppCompatActivity implements Serializable {
             gamesList.setNumGames(gamesList.getNumGames() + 1);
         }
 
+
         String gamesString = GamesList.GamesListToJSON(gamesList);
         AppFileManager.writeToFile(gamesString, "savedGames.json", getApplicationContext());
+
 
         System.out.println(AppFileManager.readFromFile(getApplicationContext(), "savedGames.json"));
     }
