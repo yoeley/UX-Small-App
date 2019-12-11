@@ -1,23 +1,28 @@
 package com.example.footapp;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TeamData implements Serializable {
+
+    private static final int initialNumPlayers = 0;
+    private static final String idFormat = "team%dPos%d";
+
+    public TeamData(int teamNumber) {
+        players = new ArrayList<Player>(initialNumPlayers);
+        this.teamNumber = teamNumber;
+    }
+
     @JsonProperty("numOfPlayers")
     private int numOfPlayers;
 
     @JsonProperty("players")
-    private List<Player> players;
+    private ArrayList<Player> players;
 
-    @JsonProperty("teamName")
-    private String teamName;
+    @JsonProperty("teamNumber")
+    private int teamNumber;
 
     @JsonProperty("captain")
     private String captain;
@@ -27,6 +32,10 @@ public class TeamData implements Serializable {
     }
 
     public void setNumOfPlayers(int numOfPlayers) {
+        players.ensureCapacity(numOfPlayers);
+        for (int i = 0; i < numOfPlayers; ++i) {
+            players.add(new Player(String.format(idFormat, teamNumber, i)));
+        }
         this.numOfPlayers = numOfPlayers;
     }
 
@@ -34,16 +43,16 @@ public class TeamData implements Serializable {
         return players;
     }
 
-    public void setPlayers(List<Player> players) {
+    public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
 
-    public String getTeamName() {
-        return teamName;
+    public int getTeamNumber() {
+        return teamNumber;
     }
 
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
+    public void setTeamNumber(int teamNumber) {
+        this.teamNumber = teamNumber;
     }
 
     public String getCaptain() {

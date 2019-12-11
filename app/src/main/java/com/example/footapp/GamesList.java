@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -13,13 +14,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GamesList implements Serializable {
 
-    private final int maxNumGames = 3;
+    public static final int maxNumGames = 3;
+
+    public GamesList() {
+        gameDataList = new ArrayList<GameData>(3);
+        for (int i = 0; i < maxNumGames; ++i) {
+            gameDataList.add(new GameData());
+        }
+    }
 
     @JsonProperty("numGames")
     private int numGames;
 
-    @JsonProperty("games")
-    private List<GameData> gameDataList;
+    @JsonProperty("gameDataList")
+    private ArrayList<GameData> gameDataList;
 
 
     public int getNumGames() {
@@ -30,14 +38,13 @@ public class GamesList implements Serializable {
         this.numGames = numGames;
     }
 
-    public List<GameData> getGameDataList() {
+    public ArrayList<GameData> getGameDataList() {
         return gameDataList;
     }
 
-    public void setTeamData(List<GameData> gameDataList) {
+    public void setTeamData(ArrayList<GameData> gameDataList) {
         this.gameDataList = gameDataList;
     }
-
 
     public static GamesList JSONToGamesList(String gamesListString){
         final ObjectMapper mapper = new ObjectMapper();

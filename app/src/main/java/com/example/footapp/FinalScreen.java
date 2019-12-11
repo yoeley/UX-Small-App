@@ -10,15 +10,11 @@ import android.provider.CalendarContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -29,8 +25,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class FinalScreen extends AppCompatActivity implements Serializable {
-
-    String data;
     GameData gameData;
     TextView dateAndTime;
     TextView location;

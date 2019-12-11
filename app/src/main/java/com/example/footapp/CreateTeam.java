@@ -24,8 +24,6 @@ import android.widget.ScrollView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import static java.time.LocalDate.of;
-
 public class CreateTeam extends AppCompatActivity {
 
     final static private String fieldsMissingMsg = "Required fields are missing!";
@@ -46,8 +44,6 @@ public class CreateTeam extends AppCompatActivity {
     private DatePickerDialog datePicker;
     private TimePickerDialog timePicker;
 
-    private GameData game;
-
     private List<String> gamesNames;
     private Boolean createButtonActive;
     private Boolean isReturnVisit = false;
@@ -62,6 +58,7 @@ public class CreateTeam extends AppCompatActivity {
     private String captain1S;
     private String captain2S;
 
+    private GameData game;
     private GamesList gamesList;
 
     @Override
@@ -71,7 +68,8 @@ public class CreateTeam extends AppCompatActivity {
         setContentView(R.layout.activity_create_group);
 
         Intent in = getIntent();
-        gamesList = (GamesList) in.getSerializableExtra("Game");
+        game = (GameData) in.getSerializableExtra("Game");
+        gamesList = (GamesList) in.getSerializableExtra("GamesList");
 
         TeamCreationScrollView = findViewById(R.id.TeamCreationScrollView);
         moreButton = findViewById(R.id.moreButton);
@@ -128,7 +126,7 @@ public class CreateTeam extends AppCompatActivity {
         gamesNames.add(gameDataList.get(2).getGameName());
     }
     private void setDatePicker() {
-        date.setInputType(InputType.TYPE_DATETIME_VARIATION_DATE);
+        date.setInputType(InputType.TYPE_NULL);
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +139,8 @@ public class CreateTeam extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                date.setText(LocalDate.of(year, monthOfYear, dayOfMonth).format(DateTimeFormatter.ISO_LOCAL_DATE));
+                                DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                date.setText(LocalDate.of(year, monthOfYear, dayOfMonth).format(formatterDate));//DateTimeFormatter.ISO_LOCAL_DATE));
                             }
                         }, year, month, day);
                 datePicker.show();
@@ -150,7 +149,7 @@ public class CreateTeam extends AppCompatActivity {
     }
 
     private void setTimePicker() {
-        time.setInputType(InputType.TYPE_DATETIME_VARIATION_TIME);
+        time.setInputType(InputType.TYPE_NULL);
         time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +161,8 @@ public class CreateTeam extends AppCompatActivity {
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                                time.setText(LocalTime.of(sHour, sMinute, 0).format(DateTimeFormatter.ISO_LOCAL_TIME));
+                                DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("kk:mm");
+                                time.setText(LocalTime.of(sHour, sMinute, 0).format(formatterTime));//DateTimeFormatter.ISO_LOCAL_TIME));
                             }
                         }, hour, minutes, true);
                 timePicker.show();
@@ -198,11 +198,9 @@ public class CreateTeam extends AppCompatActivity {
         game.setLocation(location.getText().toString());
         game.setReferee(referee.getText().toString());
 
-        game.getTeams().get(0).setTeamName("teamOne");
         game.getTeams().get(0).setNumOfPlayers(Integer.parseInt(numOfPlayers.getText().toString()));
         game.getTeams().get(0).setCaptain(captain1.getText().toString());
 
-        game.getTeams().get(1).setTeamName("teamTwo");
         game.getTeams().get(1).setNumOfPlayers(Integer.parseInt(numOfPlayers.getText().toString()));
         game.getTeams().get(1).setCaptain(captain1.getText().toString());
     }
@@ -241,11 +239,11 @@ public class CreateTeam extends AppCompatActivity {
 
     public void toggle_contents(View v){
         if (toggleMore) {
-            moreButton.setText("less...");
+            moreButton.setText(R.string.less);
             toggleMore = false;
         }
         else {
-            moreButton.setText("more...");
+            moreButton.setText(R.string.more);
             toggleMore = true;
         }
 

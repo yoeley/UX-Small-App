@@ -224,7 +224,7 @@
                 android:layout_marginStart="16dp"
                 android:enabled="true"
                 android:onClick="toggle_contents"
-                android:text="@string/advanced"
+                android:text="@string/more"
                 android:textAlignment="viewStart"
                 android:textAllCaps="false"
                 android:textColor="@color/moreButtonTextColor"

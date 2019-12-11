@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
 import java.util.List;
 
 import org.json.JSONArray;
@@ -115,10 +117,10 @@ public class MainActivity extends Activity {
                 text = favorite1text;
                 break;
         }
-        text.setText("No Favorite");
-        text.setTextColor(getResources().getColor(R.color.greydOut));
-        text.setShadowLayer(5,0,0,getResources().getColor(R.color.white));
-        button.setBackground(getResources().getDrawable(R.drawable.small2));
+        text.setText(R.string.no_fav);
+        text.setTextColor(ContextCompat.getColor(getApplicationContext() ,R.color.greydOut));
+        text.setShadowLayer(5,0,0,ContextCompat.getColor(getApplicationContext() ,R.color.white));
+        button.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small2));
         button.setEnabled(false);
     }
 
@@ -146,7 +148,7 @@ public class MainActivity extends Activity {
 
     public void createNewTeam(View view) {
         Intent CreateTeam = new Intent(getApplicationContext(), com.example.footapp.CreateTeam.class);
-        CreateTeam.putExtra("GamesList",gamesList);
+        CreateTeam.putExtra("GamesList", gamesList);
         startActivity(CreateTeam);
     }
 

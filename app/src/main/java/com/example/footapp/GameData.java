@@ -4,10 +4,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GameData implements Serializable {
+
+    private static final int numTeams = 2;
+
+    public GameData() {
+        teams = new ArrayList<TeamData>(numTeams);
+        for (int i = 1; i <= numTeams; ++i) {
+            teams.add(new TeamData(i));
+        }
+    }
 
     @JsonProperty("gameName")
     private String gameName;
@@ -25,7 +35,7 @@ public class GameData implements Serializable {
     private String date;
 
     @JsonProperty("teams")
-    private List<TeamData> teams;
+    private ArrayList<TeamData> teams;
 
     public String getDate() {
         return date;
@@ -59,11 +69,11 @@ public class GameData implements Serializable {
         this.referee = referee;
     }
 
-    public List<TeamData> getTeams() {
+    public ArrayList<TeamData> getTeams() {
         return teams;
     }
 
-    public void setTeams(List<TeamData> teams) {
+    public void setTeams(ArrayList<TeamData> teams) {
         this.teams = teams;
     }
 

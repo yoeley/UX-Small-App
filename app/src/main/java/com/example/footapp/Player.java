@@ -1,12 +1,14 @@
 package com.example.footapp;
 
-import android.widget.EditText;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
 public class Player implements Serializable {
+
+    public Player(String playerId) {
+        this.playerId = playerId;
+    }
 
     @JsonProperty("playerName")
     private String playerName;
