@@ -3,6 +3,9 @@ package com.example.footapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -20,6 +23,8 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import static java.time.LocalDate.of;
 
 public class CreateTeam extends AppCompatActivity {
 
@@ -136,7 +141,7 @@ public class CreateTeam extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                date.setText(LocalDate.of(year, monthOfYear, dayOfMonth).format(DateTimeFormatter.ISO_LOCAL_DATE));
                             }
                         }, year, month, day);
                 datePicker.show();
@@ -157,7 +162,7 @@ public class CreateTeam extends AppCompatActivity {
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                                time.setText(sHour + ":" + sMinute);
+                                time.setText(LocalTime.of(sHour, sMinute, 0).format(DateTimeFormatter.ISO_LOCAL_TIME));
                             }
                         }, hour, minutes, true);
                 timePicker.show();
