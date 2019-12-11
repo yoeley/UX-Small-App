@@ -29,16 +29,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String gamesString;
-
-        gamesString = AppFileManager.readFromFile(getApplicationContext(), "savedGames.json");
-        if (gamesString.equals("")) {
-            gamesString = StringConst.savedTeamsHeader;
-            AppFileManager.writeToFile(gamesString, "savedGames.json", getApplicationContext());
-        }
-
-        gamesList = GamesList.JSONToGamesList(gamesString);
-
+        create = findViewById(R.id.createTeamButton);
         favorite1 = findViewById(R.id.favoriteGroup1Button);
         favorite1text = findViewById(R.id.favorite1);
         favorite2 = findViewById(R.id.favoriteGroup2Button);
@@ -46,6 +37,30 @@ public class MainActivity extends Activity {
         favorite3 = findViewById(R.id.favoriteGroup3Button);
         favorite3text = findViewById(R.id.favorite3);
 
+        setFavoriteButtons();
+
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+//                android.R.layout.simple_spinner_item, gameList);
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        loadSpinner.setAdapter(dataAdapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setFavoriteButtons();
+    }
+
+    public void setFavoriteButtons() {
+        String gamesString;
+        gamesString = AppFileManager.readFromFile(getApplicationContext(), "savedGames.json");
+        if (gamesString.equals("")) {
+            gamesString = StringConst.savedTeamsHeader;
+            AppFileManager.writeToFile(gamesString, "savedGames.json", getApplicationContext());
+        }
+
+        gamesList = GamesList.JSONToGamesList(gamesString);
+        gamesList.initGamesList();
 
         if(gamesList.getNumGames() != 0)
         {
@@ -89,14 +104,6 @@ public class MainActivity extends Activity {
             killButton(favorite3, 3);
         }
 
-
-
-        create = findViewById(R.id.createTeamButton);
-
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-//                android.R.layout.simple_spinner_item, gameList);
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        loadSpinner.setAdapter(dataAdapter);
     }
 
     public void killButton(Button button, int id)

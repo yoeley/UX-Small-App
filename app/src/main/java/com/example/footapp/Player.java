@@ -1,14 +1,13 @@
 package com.example.footapp;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Player implements Serializable {
-
-    public Player(String playerId) {
-        this.playerId = playerId;
-    }
 
     @JsonProperty("playerName")
     private String playerName;
@@ -42,5 +41,11 @@ public class Player implements Serializable {
 
     public void setPlayerPosition(String playerPosition) {
         this.playerPosition = playerPosition;
+    }
+
+    public void initPlayer() {
+        if (playerName == null) playerName = "";
+        if (playerId == null) playerId = "";
+        if (playerPosition == null) playerPosition = "";
     }
 }

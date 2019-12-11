@@ -12,13 +12,6 @@ public class GameData implements Serializable {
 
     private static final int numTeams = 2;
 
-    public GameData() {
-        teams = new ArrayList<TeamData>(numTeams);
-        for (int i = 1; i <= numTeams; ++i) {
-            teams.add(new TeamData(i));
-        }
-    }
-
     @JsonProperty("gameName")
     private String gameName;
 
@@ -83,5 +76,21 @@ public class GameData implements Serializable {
 
     public void setGameName(String gameName) {
         this.gameName = gameName;
+    }
+
+    public void initGameData() {
+        if (teams == null) {
+            teams = new ArrayList<TeamData>(numTeams);
+            for (int i = 1; i <= numTeams; ++i) {
+                TeamData team = new TeamData();
+                team.initTeamData(i);
+                teams.add(team);
+            }
+        }
+        gameName = "";
+        referee = "";
+        location = "";
+        time = "";
+        date = "";
     }
 }

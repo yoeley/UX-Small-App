@@ -17,10 +17,7 @@ public class GamesList implements Serializable {
     public static final int maxNumGames = 3;
 
     public GamesList() {
-        gameDataList = new ArrayList<GameData>(3);
-        for (int i = 0; i < maxNumGames; ++i) {
-            gameDataList.add(new GameData());
-        }
+
     }
 
     @JsonProperty("numGames")
@@ -42,8 +39,19 @@ public class GamesList implements Serializable {
         return gameDataList;
     }
 
-    public void setTeamData(ArrayList<GameData> gameDataList) {
+    public void setGameDataList(ArrayList<GameData> gameDataList) {
         this.gameDataList = gameDataList;
+    }
+
+    public void initGamesList() {
+        if (gameDataList== null) {
+            gameDataList = new ArrayList<GameData>();
+            for (int i = 0; i < maxNumGames; ++i) {
+                GameData gameData = new GameData();
+                gameData.initGameData();
+                gameDataList.add(gameData);
+            }
+        }
     }
 
     public static GamesList JSONToGamesList(String gamesListString){

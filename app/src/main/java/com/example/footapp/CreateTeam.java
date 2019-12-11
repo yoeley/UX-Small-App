@@ -191,6 +191,7 @@ public class CreateTeam extends AppCompatActivity {
 
     private void createGameData() {
         game = new GameData();
+        game.initGameData();
 
         game.setGameName(gameName.getText().toString());
         game.setDate(date.getText().toString());
@@ -200,9 +201,11 @@ public class CreateTeam extends AppCompatActivity {
 
         game.getTeams().get(0).setNumOfPlayers(Integer.parseInt(numOfPlayers.getText().toString()));
         game.getTeams().get(0).setCaptain(captain1.getText().toString());
+        game.getTeams().get(0).addPlayers();
 
         game.getTeams().get(1).setNumOfPlayers(Integer.parseInt(numOfPlayers.getText().toString()));
         game.getTeams().get(1).setCaptain(captain1.getText().toString());
+        game.getTeams().get(1).addPlayers();
     }
 
 

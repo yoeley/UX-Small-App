@@ -1,19 +1,16 @@
 package com.example.footapp;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class TeamData implements Serializable {
 
-    private static final int initialNumPlayers = 0;
     private static final String idFormat = "team%dPos%d";
-
-    public TeamData(int teamNumber) {
-        players = new ArrayList<Player>(initialNumPlayers);
-        this.teamNumber = teamNumber;
-    }
 
     @JsonProperty("numOfPlayers")
     private int numOfPlayers;
@@ -32,10 +29,6 @@ public class TeamData implements Serializable {
     }
 
     public void setNumOfPlayers(int numOfPlayers) {
-        players.ensureCapacity(numOfPlayers);
-        for (int i = 0; i < numOfPlayers; ++i) {
-            players.add(new Player(String.format(idFormat, teamNumber, i)));
-        }
         this.numOfPlayers = numOfPlayers;
     }
 
@@ -61,5 +54,23 @@ public class TeamData implements Serializable {
 
     public void setCaptain(String captain) {
         this.captain = captain;
+    }
+
+    public void addPlayers() {
+        for (int i = 0; i < numOfPlayers; ++i) {
+            Player player = new Player();
+            player.initPlayer();
+            player.setPlayerId(String.format(idFormat, teamNumber, i));
+            players.add(player);
+        }
+    }
+
+    public void initTeamData(int teamNumber) {
+        if (players == null) {
+            players = new ArrayList<Player>();
+            this.teamNumber = teamNumber;
+        }
+
+        captain = "";
     }
 }
