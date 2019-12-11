@@ -122,31 +122,25 @@ public class MainActivity extends Activity {
         button.setEnabled(false);
     }
 
-    public void goToNextScreen(Intent intent, int idx)
+    public void goToNextScreen(int idx)
     {
-        intent.putExtra("Game",gameDataList.get(idx));
-        startActivity(intent);
+        Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
+        EditTeam.putExtra("Orig", 1);
+        EditTeam.putExtra("Game",gameDataList.get(idx));
+        EditTeam.putExtra("GamesList",gamesList);
+        startActivity(EditTeam);
     }
 
     public void loadTeam1(View v) {
-
-        Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
-        EditTeam.putExtra("Orig", 1);
-        goToNextScreen(EditTeam, FIRST_FAVORITE);
+        goToNextScreen(FIRST_FAVORITE);
     }
 
     public void loadTeam2(View v) {
-
-        Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
-        EditTeam.putExtra("Orig", 1);
-        goToNextScreen(EditTeam, SECOND_FAVORITE);
+        goToNextScreen(SECOND_FAVORITE);
     }
 
     public void loadTeam3(View v) {
-
-        Intent EditTeam = new Intent(getApplicationContext(), EditTeam.class);
-        EditTeam.putExtra("Orig", 1);
-        goToNextScreen(EditTeam, THIRD_FAVORITE);
+        goToNextScreen(THIRD_FAVORITE);
     }
 
 

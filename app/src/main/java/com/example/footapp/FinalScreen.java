@@ -48,7 +48,7 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_final_screen);
 
         Intent in = getIntent();
-        gameData =(GameData) in.getSerializableExtra("Data");
+        gameData =(GameData) in.getSerializableExtra("Game");
 //        data = in.getStringExtra("Game");
 //        data = StringConst.data; // Test screen without previous screen being ready.
 //        parseDataIntoGameObject();

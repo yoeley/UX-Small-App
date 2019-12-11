@@ -13,6 +13,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GamesList implements Serializable {
 
+    private final int maxNumGames = 3;
+
     @JsonProperty("numGames")
     private int numGames;
 

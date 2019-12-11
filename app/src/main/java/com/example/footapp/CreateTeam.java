@@ -228,6 +228,7 @@ public class CreateTeam extends AppCompatActivity {
 
             EditTeam.putExtra("Orig", 2);
             EditTeam.putExtra("Game", game);
+            EditTeam.putExtra("GamesList",gamesList);
 
             startActivity(EditTeam);
         }
