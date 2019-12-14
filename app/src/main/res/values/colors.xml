@@ -14,6 +14,6 @@
     <color name="colorBackground">#d6d6d6</color>
     <color name="greydOut">#C3464343</color>
     <color name="white">#FFFFFF</color>
-    <color name="player_names_bg">#00000000</color>
+    <color name="player_names_bg">#33363636</color>
     <color name="player_name">#FFFFFF</color>
 </resources>

@@ -83,43 +83,53 @@ public class EditTeam extends AppCompatActivity implements Serializable, View.On
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         EditText et = (EditText)v;
-        String imageSuffix = "Image";
-        if(!et.getText().toString().equals("") && !hasFocus)
+        String etName = et.getResources().getResourceName(et.getId());
+        if(!hasFocus)
         {
-            String etName = et.getResources().getResourceName(et.getId());
-            int resID = getResources().getIdentifier( etName + imageSuffix , "drawable", getPackageName());
-            ImageView imageView = findViewById(resID);
+            ImageView imageView = getImageViewViaEditText(etName);
             if(etName.contains("team1")) {
-                if(etName.contains("Pos0")) {
-                    imageView.setImageResource(R.drawable.tshirt_goalkeeper1);
+                if(!et.getText().toString().equals("")) {
+                    if (etName.contains("Pos0")) {
+                        imageView.setImageResource(R.drawable.tshirt_goalkeeper1);
+                    } else imageView.setImageResource(R.drawable.team_1_tshirt);
                 }
-                else imageView.setImageResource(R.drawable.team_1_tshirt);
+                else imageView.setImageResource(R.drawable.add_player_icon1);
             }
             else if(etName.contains("team2")) {
-                imageView.setImageResource(R.drawable.tshirt_goalkeeper1);
-
-                if (etName.contains("Pos0")) {
-                    imageView.setImageResource(R.drawable.tshirt_goalkeeper2);
-                } else imageView.setImageResource(R.drawable.team_2_tshirt);
+                if(!et.getText().toString().equals("")) {
+                    if (etName.contains("Pos0")) {
+                        imageView.setImageResource(R.drawable.tshirt_goalkeeper2);
+                    } else imageView.setImageResource(R.drawable.team_2_tshirt);
+                }
+                else imageView.setImageResource(R.drawable.add_player_icon2);
             }
 
         }
     }
 
+    private ImageView getImageViewViaEditText(String etName){
+        String imageSuffix = "Image";
+        int resID = getResources().getIdentifier( etName + imageSuffix , "drawable", getPackageName());
+        return findViewById(resID);
+    }
 
     public void selectEditTextViaImage(ImageView iv) {
 
         String ivName = iv.getResources().getResourceName(iv.getId());
         String etName = ivName.substring(0, ivName.length() - 5);
 
-        int resID = getResources().getIdentifier(etName, "edittext", getPackageName());
-        EditText et = findViewById(resID);
+        EditText et = getEditTextViaName(etName);
         et.setFocusable(true);
         et.requestFocus();
 
         if (et.requestFocus()) {
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         }
+    }
+
+    private EditText getEditTextViaName(String etName){
+        int resID = getResources().getIdentifier(etName, "edittext", getPackageName());
+        return findViewById(resID);
     }
 
     private void insertDataToGameObject(){
