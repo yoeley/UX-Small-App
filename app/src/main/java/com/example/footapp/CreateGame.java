@@ -24,7 +24,7 @@ import android.widget.ScrollView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-public class CreateTeam extends AppCompatActivity {
+public class CreateGame extends AppCompatActivity {
 
     final static private String fieldsMissingMsg = "Required fields are missing!";
 
@@ -65,7 +65,7 @@ public class CreateTeam extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_group);
+        setContentView(R.layout.activity_create_game);
 
         Intent in = getIntent();
         game = (GameData) in.getSerializableExtra("Game");
@@ -73,7 +73,7 @@ public class CreateTeam extends AppCompatActivity {
 
         TeamCreationScrollView = findViewById(R.id.TeamCreationScrollView);
         moreButton = findViewById(R.id.moreButton);
-        createButton = findViewById(R.id.createTeamButton);
+        createButton = findViewById(R.id.newGameButton);
 
         gameName = findViewById(R.id.gameName);
         numOfPlayers = findViewById(R.id.numOfPlayers);
@@ -135,7 +135,7 @@ public class CreateTeam extends AppCompatActivity {
                 int month = cldr.get(Calendar.MONTH);
                 int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
-                datePicker = new DatePickerDialog(CreateTeam.this, R.style.DatePickerDialogTheme,
+                datePicker = new DatePickerDialog(CreateGame.this, R.style.DatePickerDialogTheme,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -157,7 +157,7 @@ public class CreateTeam extends AppCompatActivity {
                 int hour = cldr.get(Calendar.HOUR_OF_DAY);
                 int minutes = cldr.get(Calendar.MINUTE);
                 // time picker dialog
-                timePicker = new TimePickerDialog(CreateTeam.this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
+                timePicker = new TimePickerDialog(CreateGame.this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {

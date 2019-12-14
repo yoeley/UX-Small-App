@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GamesList implements Serializable {
 
-    public static final int maxNumGames = 3;
+    //public static final int maxNumGames = 3;
 
     public GamesList() {
 
@@ -46,11 +46,11 @@ public class GamesList implements Serializable {
     public void initGamesList() {
         if (gameDataList== null) {
             gameDataList = new ArrayList<GameData>();
-            for (int i = 0; i < maxNumGames; ++i) {
-                GameData gameData = new GameData();
-                gameData.initGameData();
-                gameDataList.add(gameData);
-            }
+//            for (int i = 0; i < maxNumGames; ++i) {
+//                GameData gameData = new GameData();
+//                gameData.initGameData();
+//                gameDataList.add(gameData);
+//            }
         }
     }
 

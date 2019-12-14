@@ -1,6 +1,10 @@
 package com.example.footapp;
 
 import android.content.Intent;
+import android.content.Context;
+import android.content.ClipData;
+import android.os.Build;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.net.Uri;
@@ -12,10 +16,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
+import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -23,17 +32,27 @@ import java.time.format.TextStyle;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import android.Manifest;
+import android.content.pm.PackageManager;
 
 public class FinalScreen extends AppCompatActivity implements Serializable {
-    GameData gameData;
-    TextView dateAndTime;
-    TextView location;
-    TextView referee;
-    LocalDate calDate;
-    LocalTime calTime;
-    String dayOfWeek;
-    String partOfDay;
-    Calendar cal;
+
+    private final String timeDescriptionFormat = "%s, %s, %s";
+    private final String noNameGameLocationFormat = "Soccer game, location: %s";
+    private final String gameLocationFormat = "%s location: %s";
+    private final String screenshotFileName = "game.png";
+
+    private GameData gameData;
+    private TextView dateAndTime;
+    private TextView location;
+    private TextView referee;
+    private LocalDate calDate;
+    private LocalTime calTime;
+    private String dayOfWeek;
+    private String partOfDay;
+    private Calendar cal;
+    private Bitmap bitmap;
+    private File screenshotFile;
 
 
     @Override
@@ -43,9 +62,26 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
 
         Intent in = getIntent();
         gameData =(GameData) in.getSerializableExtra("Game");
+
         setCreativeDayDetails();
         initPlayerNames();
+
         setGameInfoOnScreen();
+    }
+
+    public void setCreativeDayDetails() {
+        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("kk:mm");
+        calDate = LocalDate.parse(gameData.getDate(), formatterDate);
+        calTime = LocalTime.parse(gameData.getTime(), formatterTime);
+        cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, calDate.getYear());
+        cal.set(Calendar.MONTH, calDate.getMonthValue() - 1);
+        cal.set(Calendar.DAY_OF_MONTH, calDate.getDayOfMonth());
+        cal.set(Calendar.HOUR_OF_DAY, calTime.getHour());
+        cal.set(Calendar.MINUTE, calTime.getMinute());
+        dayOfWeek = calDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        Log.d("FinalScreen", "time: " + Calendar.HOUR_OF_DAY);
     }
 
     private void initPlayerNames() {
@@ -67,15 +103,14 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
         location = findViewById(R.id.location);
         String gameNameTxt;
         if (gameData.getGameName().equals("")) {
-            gameNameTxt = "Soccer game, location: " + gameData.getLocation();
+            gameNameTxt = String.format(noNameGameLocationFormat, gameData.getLocation());
             location.setText(gameNameTxt);
         } else {
-            gameNameTxt = gameData.getGameName() + " location: " + gameData.getLocation();
+            gameNameTxt = String.format(gameLocationFormat, gameData.getGameName(), gameData.getLocation());
             location.setText(gameNameTxt);
         }
 
-        String timeDescription =
-                gameData.getDate() + ", " + dayOfWeek + " " + partOfDay + ", " + gameData.getTime();
+        String timeDescription = String.format(timeDescriptionFormat, dayOfWeek, gameData.getDate(), gameData.getTime());
         dateAndTime = findViewById(R.id.dateAndTime);
         dateAndTime.setText(timeDescription);
 
@@ -99,113 +134,102 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
         startActivity(intent);
     }
 
-    public void setCreativeDayDetails() {
-        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("kk:mm");
-        calDate = LocalDate.parse(gameData.getDate(), formatterDate);
-        calTime = LocalTime.parse(gameData.getTime(), formatterTime);
-        cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, calDate.getYear());
-        cal.set(Calendar.MONTH, calDate.getMonthValue() - 1);
-        cal.set(Calendar.DAY_OF_MONTH, calDate.getDayOfMonth());
-        cal.set(Calendar.HOUR_OF_DAY, calTime.getHour());
-        cal.set(Calendar.MINUTE, calTime.getMinute());
-        dayOfWeek = calDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
-        Log.d("FinalScreen", "time: " + Calendar.HOUR_OF_DAY);
-        if (calTime.getHour() <= 11) {
-            partOfDay = "morning";
-        } else if (calTime.getHour() <= 15) {
-            partOfDay = "noon";
-        } else partOfDay = "evening";
+    public void toShare(View view) {
+        view = view.getRootView();
+        view.setDrawingCacheEnabled(true);
+        bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+        view.setDrawingCacheEnabled(false);
+
+        saveBitmap();
+        //Uri uri = Uri.fromFile(new File(screenshotFile.getAbsolutePath()));
+        Uri uri = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".provider", screenshotFile);
+
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out my app.");
+        shareIntent.setDataAndType(uri, "image/*");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        shareIntent.setData(uri);
+        shareIntent.setType("image/*");
+
+        //TODO: these were 2 seperate tries to handle an exception the rise when trying to share picture.
+        //TODO: none of them worked, but the exception doesn't prevent the app from sharing the pic, so...
+        /*
+        List<ResolveInfo> resolvedIntentActivities = this.getPackageManager().queryIntentActivities(shareIntent, PackageManager.MATCH_DEFAULT_ONLY);
+        for (ResolveInfo resolvedIntentInfo : resolvedIntentActivities) {
+            String packageName = resolvedIntentInfo.activityInfo.packageName;
+            this.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        }
+
+
+        if ( Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP ) {
+            shareIntent.setClipData(ClipData.newRawUri( "", uri ) );
+            shareIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION|Intent.FLAG_GRANT_READ_URI_PERMISSION );
+        }
+        */
+
+        startActivity(Intent.createChooser(shareIntent, "share via"));
     }
 
 
+    private void writeScreenshotFile() {
+        try {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                screenshotFile.createNewFile();
+                FileOutputStream fOut = new FileOutputStream(screenshotFile);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 90, fOut);
+                fOut.flush();
+                fOut.close();
+            } else {
+                // Request permission from the user
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+            }
 
-    private static File saveBitmap(Bitmap bm, String fileName) {
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveBitmap() {
         final String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Screenshots";
         Log.d("FinalScreen", "filepath: " + path);
         File dir = new File(path);
         if (!dir.exists())
             dir.mkdirs();
-        File file = new File(dir, fileName);
-        try {
-            FileOutputStream fOut = new FileOutputStream(file);
-            bm.compress(Bitmap.CompressFormat.PNG, 90, fOut);
-            fOut.flush();
-            fOut.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        if (!isExternalStorageAvailable() || isExternalStorageReadOnly()) {
+            Log.d("FinalScreen", "trouble");
         }
-        return file;
-    }
-
-
-    public void captureScreenshot(View view) {
-        view = view.getRootView();
-        view.setDrawingCacheEnabled(true);
-        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        view.draw(canvas);
-        view.setDrawingCacheEnabled(false);
-
-        File file = saveBitmap(bitmap, "game.png");
-        Uri uri = Uri.fromFile(new File(file.getAbsolutePath()));
-        Intent shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out my app.");
-        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
-        shareIntent.setType("image/*");
-        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//        startActivity(shareIntent);
-        startActivity(Intent.createChooser(shareIntent, "share via"));
-        // TODO: find where the image stored, enable sending it and fix share here
-    }
-
-    private void openScreenshot(File imageFile) {
-        Uri uri = Uri.fromFile(imageFile);
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.putExtra(Intent.EXTRA_STREAM, uri);
-        intent.setType("image/*");
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//        intent.setDataAndType(uri, "image/*");
-//        Log.d("FinalScreen", "displayimage");
-        startActivity(intent);
-    }
-
-
-    public void captureScreenshot2(View view) {
-        try {
-            // image naming and path  to include sd card  appending name you choose for file
-            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + ".jpg";
-            // create bitmap screen capture
-            View v1 = view.getRootView();
-            v1.setDrawingCacheEnabled(true);
-            Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-//            Canvas canvas = new Canvas(bitmap);
-//            view.draw(canvas);
-            view.setDrawingCacheEnabled(false);
-
-            File imageFile = new File(mPath);
-            FileOutputStream outputStream = new FileOutputStream(imageFile);
-            int quality = 100;
-            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
-            outputStream.flush();
-            outputStream.close();
-
-            openScreenshot(imageFile);
-
-        } catch (Throwable e) {
-            Log.d("FinalScreen", "error");
-            // Several error may come out with file handling or DOM
-            e.printStackTrace();
+        else {
+            screenshotFile = new File(getExternalFilesDir(""), screenshotFileName);
         }
+        writeScreenshotFile();
     }
 
-    public void toShare(View view) {
-        Intent share = new Intent(Intent.ACTION_SEND);
-        share.setType("image/jpeg");
-        share.putExtra(Intent.EXTRA_STREAM, Uri.parse("C:\\Users\\Marynar\\Documents\\UX\\UX-Small-App\\app\\src\\main\\res\\drawable\\tshirt_referee.png"));
-        startActivity(Intent.createChooser(share, "Share Image"));
+    private static boolean isExternalStorageReadOnly() {
+        String extStorageState = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(extStorageState)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean isExternalStorageAvailable() {
+        String extStorageState = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(extStorageState)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case 0:
+                writeScreenshotFile();
+        }
     }
 }

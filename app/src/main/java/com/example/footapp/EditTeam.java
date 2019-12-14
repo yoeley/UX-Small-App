@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EditTeam extends AppCompatActivity implements Serializable {
@@ -83,19 +84,15 @@ public class EditTeam extends AppCompatActivity implements Serializable {
 
 
     private void writeJSONToFile() {
-        List<GameData> gameDataList = gamesList.getGameDataList();
-        gameDataList.set(2, gameDataList.get(1));
-        gameDataList.set(1, gameDataList.get(0));
-        gameDataList.set(0, game);
+        ArrayList<GameData> gameDataList = gamesList.getGameDataList();
 
-        if (gamesList.getNumGames() < GamesList.maxNumGames) {
-            gamesList.setNumGames(gamesList.getNumGames() + 1);
-        }
+        gameDataList.add(0, game);
+        gamesList.setNumGames(gamesList.getNumGames() + 1);
 
         String gamesString = GamesList.GamesListToJSON(gamesList);
-        AppFileManager.writeToFile(gamesString, "savedGames.json", getApplicationContext());
+        FileManager.writeToFile(gamesString, "savedGames.json", getApplicationContext());
 
-        System.out.println(AppFileManager.readFromFile(getApplicationContext(), "savedGames.json"));
+        System.out.println(FileManager.readFromFile(getApplicationContext(), "savedGames.json"));
     }
 
     public void toFinalScreen(View view) {

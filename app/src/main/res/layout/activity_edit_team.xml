@@ -12,7 +12,8 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     android:screenOrientation="portrait"
-    tools:context=".EditTeam">
+    tools:context=".EditTeam"
+    android:background="@color/colorPrimaryDark">
 
     <TextView
         android:id="@+id/gameNameTextView"
@@ -515,8 +516,7 @@
             android:id="@+id/detailsImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/for_text2" />
+            android:scaleType="fitXY"/>
 
         <RelativeLayout
             android:layout_width="match_parent"

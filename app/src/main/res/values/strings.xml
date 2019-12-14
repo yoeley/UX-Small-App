@@ -1,5 +1,5 @@
 <resources>
-<!--    not organized names (yet...)-->
+    <!--    not organized names (yet...)-->
     <string name="app_name">FootApp</string>
     <string name="prompt_date">Date</string>
     <string name="prompt_time">Time</string>
@@ -23,18 +23,22 @@
     <string name="name">Name</string>
     <string name="logo">Logo</string>
 
-<!--    <string name="back">Back</string>-->
-    <string name="selectSaved">Or select one of your saved teams</string>
+    <!--    <string name="back">Back</string>-->
 
-<!--    screen names -->
+
+    <!--    screen names -->
     <string name="final_screen_name">Game lineup</string>
     <string name="edit_team_screen_name">Edit game</string>
-    <string name="creation_form_screen_name">Game details</string>
+    <string name="create_game_screen_name">Create game</string>
+    <string name="choose_or_create_screen_name">Choose or create</string>
 
-<!--    main screen-->
+    <!--    choose or create-->
     <string name="no_fav">No favorites</string>
+    <string name="create_game">Create game</string>
+    <string name="new_game">New game</string>
+    <string name="loadGame">Load game</string>
 
-<!--    create game screen-->
+    <!--    create game screen-->
     <string name="promt_num_of_players">How many players?</string>
     <string name="game_creation">Let\'s play</string>
     <string name="prompt_referee">Referee</string>
@@ -58,4 +62,6 @@
     <string name="players_shirt">player_shirt</string>
     <string name="pitch_bg">pitchBackground</string>
     <string name="no_player">No player</string>
+    <string name="title_activity_choose_game">ChooseGame</string>
+
 </resources>
