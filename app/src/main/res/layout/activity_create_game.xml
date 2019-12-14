@@ -243,7 +243,7 @@
                 app:srcCompat="@drawable/create_game_selector"
                 android:backgroundTint="@color/createButtonBackgroundTintColor"
                 android:enabled="true"
-                android:onClick="create"
+                android:onClick="createGame"
                 android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"

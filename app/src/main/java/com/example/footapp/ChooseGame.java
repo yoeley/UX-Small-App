@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,18 @@ public class ChooseGame extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent ChooseOrCreate = new Intent(getApplicationContext(), ChooseOrCreate.class);
+
+        ArrayList<GameData> gameDataList = gamesList.getGameDataList();
+
+        String gamesString = GamesList.GamesListToJSON(gamesList);
+        FileManager.writeToFile(gamesString, "savedGames.json", getApplicationContext());
+
+        startActivity(ChooseOrCreate);
+    }
+
 
     private class GamesAdapter extends RecyclerView.Adapter<GamesAdapter.PlayerHolder> {
 
@@ -89,6 +102,7 @@ public class ChooseGame extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         deleteGameFromList(gameData.getGameName());
+                        gamesAdapter.notifyDataSetChanged();
                     }
                 });
 
@@ -100,6 +114,12 @@ public class ChooseGame extends AppCompatActivity {
                         EditTeam.putExtra("Orig", 1);
                         EditTeam.putExtra("Game", gameData);
                         EditTeam.putExtra("GamesList",gamesList);
+
+                        ArrayList<GameData> gameDataList = gamesList.getGameDataList();
+
+                        String gamesString = GamesList.GamesListToJSON(gamesList);
+                        FileManager.writeToFile(gamesString, "savedGames.json", getApplicationContext());
+
                         startActivity(EditTeam);
                     }
                 });

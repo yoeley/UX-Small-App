@@ -46,11 +46,6 @@ public class GamesList implements Serializable {
     public void initGamesList() {
         if (gameDataList== null) {
             gameDataList = new ArrayList<GameData>();
-//            for (int i = 0; i < maxNumGames; ++i) {
-//                GameData gameData = new GameData();
-//                gameData.initGameData();
-//                gameDataList.add(gameData);
-//            }
         }
     }
 

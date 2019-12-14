@@ -100,31 +100,7 @@ public class CreateGame extends AppCompatActivity {
         location.addTextChangedListener(new TextValidator(location, TextValidator.emptyChecker, this){});
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (isReturnVisit) {
-            gameName.setText(gameNameS);
-            numOfPlayers.setText(numOfPlayersS);
-            date.setText(dateS);
-            time.setText(timeS);
-            location.setText(locationS);
-            referee.setText(refereeS);
-            captain1.setText(captain1S);
-            captain2.setText(captain2S);
-        }
-    }
 
-    public List<String> getGamesNames() {
-        return this.gamesNames;
-    }
-
-    private void extractGameNames() {
-        List<GameData> gameDataList = gamesList.getGameDataList();
-        gamesNames.add(gameDataList.get(0).getGameName());
-        gamesNames.add(gameDataList.get(1).getGameName());
-        gamesNames.add(gameDataList.get(2).getGameName());
-    }
     private void setDatePicker() {
         date.setInputType(InputType.TYPE_NULL);
         date.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +124,7 @@ public class CreateGame extends AppCompatActivity {
         });
     }
 
+
     private void setTimePicker() {
         time.setInputType(InputType.TYPE_NULL);
         time.setOnClickListener(new View.OnClickListener() {
@@ -170,6 +147,19 @@ public class CreateGame extends AppCompatActivity {
         });
     }
 
+
+    public List<String> getGamesNames() {
+        return this.gamesNames;
+    }
+
+
+    private void extractGameNames() {
+        List<GameData> gameDataList = gamesList.getGameDataList();
+        for(GameData gameData : gameDataList) {
+            gamesNames.add(gameData.getGameName());
+        }
+    }
+
     public void setCreateButtonActiveOrNot() {
 
         createButtonActive = false;
@@ -188,6 +178,7 @@ public class CreateGame extends AppCompatActivity {
             createButton.setImageResource(R.drawable.add_pitch2);
         }
     }
+
 
     private void createGameData() {
         game = new GameData();
@@ -209,19 +200,7 @@ public class CreateGame extends AppCompatActivity {
     }
 
 
-    private void saveFields() {
-        gameNameS = gameName.getText().toString();
-        numOfPlayersS = numOfPlayers.getText().toString();
-        dateS = date.getText().toString();
-        timeS = time.getText().toString();
-        locationS = location.getText().toString();
-        refereeS = referee.getText().toString();
-        captain1S = captain1.getText().toString();
-        captain2S = captain2.getText().toString();
-    }
-
-
-    public void create(View view) {
+    public void createGame(View view) {
         if (!createButtonActive) {
             createButton.setImageResource(R.drawable.add_pitch_disabled);
             Toast.makeText(this, fieldsMissingMsg, Toast.LENGTH_SHORT).show();
@@ -240,6 +219,7 @@ public class CreateGame extends AppCompatActivity {
         }
     }
 
+
     public void toggle_contents(View v){
         if (toggleMore) {
             moreButton.setText(R.string.less);
@@ -253,5 +233,36 @@ public class CreateGame extends AppCompatActivity {
         TeamCreationScrollView.setVisibility( TeamCreationScrollView.isShown()
                 ? View.GONE
                 : View.VISIBLE );
+    }
+
+
+    private void saveFields() {
+        gameNameS = gameName.getText().toString();
+        numOfPlayersS = numOfPlayers.getText().toString();
+        dateS = date.getText().toString();
+        timeS = time.getText().toString();
+        locationS = location.getText().toString();
+        refereeS = referee.getText().toString();
+        captain1S = captain1.getText().toString();
+        captain2S = captain2.getText().toString();
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (isReturnVisit) {
+            gameName.setText(gameNameS);
+            numOfPlayers.setText(numOfPlayersS);
+            date.setText(dateS);
+            time.setText(timeS);
+            location.setText(locationS);
+            referee.setText(refereeS);
+            captain1.setText(captain1S);
+            captain2.setText(captain2S);
+
+            String gamesString = FileManager.readFromFile(getApplicationContext(), "savedGames.json");
+            gamesList = GamesList.JSONToGamesList(gamesString);
+        }
     }
 }

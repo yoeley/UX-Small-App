@@ -1,6 +1,6 @@
 <resources>
     <!--    not organized names (yet...)-->
-    <string name="app_name">FootApp</string>
+    <string name="app_name">Coach</string>
     <string name="prompt_date">Date</string>
     <string name="prompt_time">Time</string>
     <string name="prompt_location">Location</string>
@@ -32,13 +32,13 @@
     <string name="create_game_screen_name">Create game</string>
     <string name="choose_or_create_screen_name">Choose or create</string>
 
-    <!--    choose or create-->
+    <!--    choose or createGame-->
     <string name="no_fav">No favorites</string>
     <string name="create_game">Create game</string>
     <string name="new_game">New game</string>
     <string name="loadGame">Load game</string>
 
-    <!--    create game screen-->
+    <!--    createGame game screen-->
     <string name="promt_num_of_players">How many players?</string>
     <string name="game_creation">Let\'s play</string>
     <string name="prompt_referee">Referee</string>
