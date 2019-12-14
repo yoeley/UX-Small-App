@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/tshirt_goalkeeper2" />
+                    app:srcCompat="@drawable/add_player_icon1" />
 
             </FrameLayout>
 
@@ -84,7 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/team_2_tshirt" />
+                    app:srcCompat="@drawable/add_player_icon1" />
 
             </FrameLayout>
 
@@ -104,7 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/team_2_tshirt" />
+                    app:srcCompat="@drawable/add_player_icon1" />
 
             </FrameLayout>
 
@@ -124,7 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/team_2_tshirt" />
+                    app:srcCompat="@drawable/add_player_icon1" />
 
             </FrameLayout>
 
@@ -143,7 +143,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/team_2_tshirt" />
+                    app:srcCompat="@drawable/add_player_icon1" />
 
             </FrameLayout>
 
@@ -163,7 +163,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/team_2_tshirt" />
+                    app:srcCompat="@drawable/add_player_icon1" />
 
             </FrameLayout>
 
@@ -183,7 +183,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/tshirt_goalkeeper1" />
+                    app:srcCompat="@drawable/add_player_icon2" />
             </FrameLayout>
 
             <FrameLayout
@@ -202,7 +202,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/team_1_tshirt" />
+                    app:srcCompat="@drawable/add_player_icon2" />
             </FrameLayout>
 
             <FrameLayout
@@ -219,7 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/team_1_tshirt" />
+                    app:srcCompat="@drawable/add_player_icon2" />
             </FrameLayout>
 
             <FrameLayout
@@ -236,7 +236,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/team_1_tshirt" />
+                    app:srcCompat="@drawable/add_player_icon2" />
             </FrameLayout>
 
             <FrameLayout
@@ -256,7 +256,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/team_1_tshirt" />
+                    app:srcCompat="@drawable/add_player_icon2" />
             </FrameLayout>
 
             <FrameLayout
@@ -274,7 +274,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/team_1_tshirt" />
+                    app:srcCompat="@drawable/add_player_icon2" />
             </FrameLayout>
 
             <EditText
@@ -357,7 +357,7 @@
                 android:layout_above="@+id/team1Pos2"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="@dimen/player_name_margin"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="50dp"
                 android:background="@color/player_names_bg"
                 android:ems="10"
                 android:hint="@string/no_player"
@@ -375,7 +375,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/shrit_center_horizon_margin"
                 android:layout_marginEnd="@dimen/player_name_margin"
-                android:layout_marginBottom="35dp"
+                android:layout_marginBottom="50dp"
                 android:background="@color/player_names_bg"
                 android:ems="10"
                 android:hint="@string/no_player"
@@ -412,7 +412,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/shirt_center_margin"
-                android:layout_marginTop="@dimen/shrit_center_horizon_margin"
+                android:layout_marginTop="90dp"
                 android:layout_marginEnd="@dimen/shirt_center_margin"
                 android:background="@color/player_names_bg"
                 android:ems="10"
@@ -502,20 +502,21 @@
 
     <FrameLayout
         android:id="@+id/detailsFrameLayout"
-        android:layout_width="348dp"
-        android:layout_height="75dp"
+        android:layout_width="358dp"
+        android:layout_height="96dp"
         android:layout_marginTop="-16dp"
         android:layout_marginBottom="35dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_weight="10"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_weight="10">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/detailsImageView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
+
             app:srcCompat="@drawable/for_text2" />
 
         <RelativeLayout
@@ -530,6 +531,7 @@
                 android:id="@+id/detailsLayout"
                 android:layout_width="217dp"
                 android:layout_height="70dp"
+                android:layout_marginTop="16dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -591,6 +593,7 @@
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="16dp"
                 app:srcCompat="@drawable/check_circle_24px_full_white" />
         </RelativeLayout>
 
