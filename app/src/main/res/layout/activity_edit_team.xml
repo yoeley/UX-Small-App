@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center|center_vertical"
@@ -13,6 +14,12 @@
     app:layout_constraintTop_toTopOf="parent"
     android:screenOrientation="portrait"
     tools:context=".EditTeam">
+
+    <TextView
+        android:id="@+id/dummyTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="10" />
 
     <TextView
         android:id="@+id/gameNameTextView"
@@ -34,6 +41,7 @@
         android:id="@+id/pitchFrameLayout"
         android:layout_width="408dp"
         android:layout_height="525dp"
+        android:focusableInTouchMode="true"
         android:layout_weight="100">
 
         <ImageView
