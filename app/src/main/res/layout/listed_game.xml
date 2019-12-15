@@ -4,26 +4,29 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
-    android:background="@drawable/text_view_frame"
+    android:background="@drawable/reserved_game_background"
     android:id="@+id/gameFrame">
 
     <TextView
         android:id="@+id/listedGameName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="35dp"
         android:layout_weight="1"
+        android:layout_gravity="center_vertical"
         android:text="TextView"
         android:textSize="30sp"
-        android:textColor="@color/colorPrimary"/>
+        android:textColor="@color/colorPrimary" />
 
     <ImageButton
         android:id="@+id/deleteGame"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginEnd="24dp"
+        android:layout_marginTop="4dp"
         android:layout_weight="0.2"
+        android:layout_gravity="center_vertical"
         android:background="#00000000"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        app:srcCompat="@drawable/trash" />
 
 </LinearLayout>

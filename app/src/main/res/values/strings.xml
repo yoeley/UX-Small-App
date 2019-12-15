@@ -1,27 +1,9 @@
 <resources>
     <!--    not organized names (yet...)-->
-    <string name="app_name">Coach</string>
+    <string name="app_name">Derby</string>
     <string name="prompt_date">Date</string>
     <string name="prompt_time">Time</string>
     <string name="prompt_location">Location</string>
-    <string name="prompt_ip">URL</string>
-    <string name="create_new_team">Create team</string>
-    <string name="team_creation">Create Team</string>
-    <string name="load_team">Load team</string>
-    <string name="app_title">FootApp!</string>
-    <string name="welcome_msg">"Welcome to FootApp!"</string>
-    <string name="create">"Create"</string>
-    <string name="share">"Share"</string>
-    <string name="add_player">"Add Player"</string>
-    <string name="todo">"Todo"</string>
-    <string name="search_google">"Search Google"</string>
-    <string name="to_final_screen">"Finished"</string>
-    <string name="prompt_field1">Captain</string>
-    <string name="prompt_field2">Judge</string>
-    <string name="numOfPlayers">Players: </string>
-    <string name="last_config">Load Last Unsaved Configuration </string>
-    <string name="name">Name</string>
-    <string name="logo">Logo</string>
 
     <!--    <string name="back">Back</string>-->
 
@@ -33,8 +15,6 @@
     <string name="choose_or_create_screen_name">Choose or create</string>
 
     <!--    choose or createGame-->
-    <string name="no_fav">No favorites</string>
-    <string name="create_game">Create game</string>
     <string name="new_game">New game</string>
     <string name="loadGame">Load game</string>
 
@@ -49,15 +29,10 @@
     <string name="less">less…</string>
 
     <!--    edit team screen-->
-    <string name="back">Back</string>
 
 
     <!--    final screen -->
     <string name="save_date">save date to calendar</string>
-    <string name="go_to_edit_screen">"Edit game"</string>
-    <string name="team_name">Current team name</string>
-    <string name="location_button">location</string>
-    <string name="date_and_time_button">date and time</string>
     <string name="details_bg">details_of_game</string>
     <string name="players_shirt">player_shirt</string>
     <string name="pitch_bg">pitchBackground</string>

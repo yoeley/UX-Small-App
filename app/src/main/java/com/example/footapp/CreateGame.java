@@ -27,6 +27,8 @@ import android.widget.Toast;
 public class CreateGame extends AppCompatActivity {
 
     final static private String fieldsMissingMsg = "Required fields are missing!";
+    final static private String dateFormat = "%s/%s/%s";
+    final static private String timeFormat = "%s:%s";
 
     private ScrollView TeamCreationScrollView;
 
@@ -107,16 +109,21 @@ public class CreateGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
-                int day = cldr.get(Calendar.DAY_OF_MONTH);
-                int month = cldr.get(Calendar.MONTH);
-                int year = cldr.get(Calendar.YEAR);
+                final int day = cldr.get(Calendar.DAY_OF_MONTH);
+                final int month = cldr.get(Calendar.MONTH);
+                final int year = cldr.get(Calendar.YEAR);
                 // date picker dialog
                 datePicker = new DatePickerDialog(CreateGame.this, R.style.DatePickerDialogTheme,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                                date.setText(LocalDate.of(year, monthOfYear, dayOfMonth).format(formatterDate));//DateTimeFormatter.ISO_LOCAL_DATE));
+                                DateTimeFormatter formatterDate = null;
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                    formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                                    date.setText(LocalDate.of(year, monthOfYear, dayOfMonth).format(formatterDate));//DateTimeFormatter.ISO_LOCAL_DATE));
+                                } else {
+                                    date.setText(String.format(dateFormat, TimeParser.timeElementToString(dayOfMonth), TimeParser.timeElementToString(monthOfYear), TimeParser.timeElementToString(year)));
+                                }
                             }
                         }, year, month, day);
                 datePicker.show();
@@ -131,15 +138,21 @@ public class CreateGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final Calendar cldr = Calendar.getInstance();
-                int hour = cldr.get(Calendar.HOUR_OF_DAY);
-                int minutes = cldr.get(Calendar.MINUTE);
+                final int hour = cldr.get(Calendar.HOUR_OF_DAY);
+                final int minutes = cldr.get(Calendar.MINUTE);
                 // time picker dialog
                 timePicker = new TimePickerDialog(CreateGame.this, android.R.style.Theme_Holo_Light_Dialog_NoActionBar,
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(TimePicker tp, int sHour, int sMinute) {
-                                DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("kk:mm");
-                                time.setText(LocalTime.of(sHour, sMinute, 0).format(formatterTime));//DateTimeFormatter.ISO_LOCAL_TIME));
+                                DateTimeFormatter formatterTime = null;
+                                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                                    formatterTime = DateTimeFormatter.ofPattern("kk:mm");
+                                    time.setText(LocalTime.of(sHour, sMinute, 0).format(formatterTime));//DateTimeFormatter.ISO_LOCAL_TIME));
+                                }
+                                else {
+                                    time.setText(String.format(timeFormat, TimeParser.timeElementToString(sHour), TimeParser.timeElementToString(sMinute)));
+                                }
                             }
                         }, hour, minutes, true);
                 timePicker.show();
@@ -163,7 +176,7 @@ public class CreateGame extends AppCompatActivity {
     public void setCreateButtonActiveOrNot() {
 
         createButtonActive = false;
-        createButton.setImageResource(R.drawable.add_pitch_disabled);
+        createButton.setImageResource(R.drawable.plus);
 
         String gameNameS = gameName.getText().toString();
         String numOfPlayersS = numOfPlayers.getText().toString();
@@ -202,7 +215,7 @@ public class CreateGame extends AppCompatActivity {
 
     public void createGame(View view) {
         if (!createButtonActive) {
-            createButton.setImageResource(R.drawable.add_pitch_disabled);
+            createButton.setImageResource(R.drawable.plus);
             Toast.makeText(this, fieldsMissingMsg, Toast.LENGTH_SHORT).show();
         }
         else {

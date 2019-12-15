@@ -70,17 +70,31 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
     }
 
     public void setCreativeDayDetails() {
-        DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("kk:mm");
-        calDate = LocalDate.parse(gameData.getDate(), formatterDate);
-        calTime = LocalTime.parse(gameData.getTime(), formatterTime);
-        cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, calDate.getYear());
-        cal.set(Calendar.MONTH, calDate.getMonthValue() - 1);
-        cal.set(Calendar.DAY_OF_MONTH, calDate.getDayOfMonth());
-        cal.set(Calendar.HOUR_OF_DAY, calTime.getHour());
-        cal.set(Calendar.MINUTE, calTime.getMinute());
-        dayOfWeek = calDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        DateTimeFormatter formatterDate = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            formatterDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            DateTimeFormatter formatterTime = DateTimeFormatter.ofPattern("kk:mm");
+            calDate = LocalDate.parse(gameData.getDate(), formatterDate);
+            calTime = LocalTime.parse(gameData.getTime(), formatterTime);
+            cal = Calendar.getInstance();
+            cal.set(Calendar.YEAR, calDate.getYear());
+            cal.set(Calendar.MONTH, calDate.getMonthValue() - 1);
+            cal.set(Calendar.DAY_OF_MONTH, calDate.getDayOfMonth());
+            cal.set(Calendar.HOUR_OF_DAY, calTime.getHour());
+            cal.set(Calendar.MINUTE, calTime.getMinute());
+            dayOfWeek = calDate.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        }
+        else {
+            String[] date = gameData.getDate().split("/");
+            String[] time = gameData.getTime().split(":");
+            cal = Calendar.getInstance();
+            cal.set(Calendar.YEAR, Integer.parseInt(date[2]));
+            cal.set(Calendar.MONTH, Integer.parseInt(date[1]) - 1);
+            cal.set(Calendar.DAY_OF_MONTH, Integer.parseInt(date[0]));
+            cal.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time[0]));
+            cal.set(Calendar.MINUTE, Integer.parseInt(time[1]));
+            dayOfWeek = "";
+        }
         Log.d("FinalScreen", "time: " + Calendar.HOUR_OF_DAY);
     }
 

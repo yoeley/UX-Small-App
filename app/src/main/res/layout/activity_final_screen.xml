@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center|center_vertical"
     android:orientation="vertical"
-    android:weightSum="120"
+    android:weightSum="100"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -21,8 +21,7 @@
         android:layout_width="348dp"
         android:layout_height="70dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="-16dp"
-        android:layout_weight="10">
+        android:layout_marginBottom="0dp">
 
         <ImageView
             android:id="@+id/detailsImageView"
@@ -84,7 +83,8 @@
                 android:layout_height="25dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="0dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginBottom="4dp">
 
                 <ImageView
@@ -103,7 +103,7 @@
         android:id="@+id/pitchFrameLayout"
         android:layout_width="408dp"
         android:layout_height="525dp"
-        android:layout_weight="100">
+        android:layout_weight="90">
 
         <ImageView
             android:id="@+id/pitchImageView"
@@ -133,7 +133,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/tshirt_goalkeeper2" />
+                    app:srcCompat="@drawable/team_2_tshirt" />
 
             </FrameLayout>
 
@@ -205,6 +205,7 @@
                 android:layout_above="@+id/team1Pos4"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="@dimen/shirt_margin"
+                android:layout_marginEnd="279dp"
                 android:layout_marginBottom="1dp">
 
                 <ImageView
@@ -252,7 +253,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/players_shirt"
-                    app:srcCompat="@drawable/tshirt_goalkeeper1" />
+                    app:srcCompat="@drawable/team_1_tshirt" />
             </FrameLayout>
 
             <FrameLayout
@@ -443,7 +444,7 @@
                 android:layout_above="@+id/team1Pos3"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="@dimen/player_name_margin"
-                android:layout_marginBottom="35dp"
+                android:layout_marginBottom="40dp"
                 android:background="@color/player_names_bg"
                 android:ems="10"
                 android:hint="@string/no_player"
@@ -572,8 +573,8 @@
         android:id="@+id/shareFrameLayout"
         android:layout_width="348dp"
         android:layout_height="55dp"
-        android:layout_marginTop="-18dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="10dp"
         android:layout_weight="10">
 
         <ImageView

@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import androidx.core.content.ContextCompat;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChooseOrCreate extends Activity {
@@ -68,4 +69,8 @@ public class ChooseOrCreate extends Activity {
         startActivity(CreateTeam);
     }
 
+    public void onBackPressed() {
+        finish();
+        moveTaskToBack(true);
+    }
 }
