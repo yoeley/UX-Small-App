@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/layer1"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -13,10 +13,10 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/soccer_ball"
+        android:id="@+id/logo"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/soccerball0"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,5 +33,5 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/soccer_ball" />
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

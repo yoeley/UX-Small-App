@@ -13,7 +13,7 @@
     app:layout_constraintTop_toTopOf="parent"
     android:screenOrientation="portrait"
     tools:context=".EditTeam"
-    android:background="@color/colorPrimaryDark">
+    android:background="@drawable/layer1">
 
     <TextView
         android:id="@+id/gameNameTextView"

@@ -175,7 +175,7 @@ public class CreateGame extends AppCompatActivity {
                 !dateS.trim().equals("") && !timeS.trim().equals("") && !locationS.trim().equals(""))
         {
             createButtonActive = true;
-            createButton.setImageResource(R.drawable.add_pitch2);
+            createButton.setImageResource(R.drawable.plus);
         }
     }
 

@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3AB626</color>
-    <color name="colorPrimaryDark">#00574B</color>
+<!--    <color name="colorPrimary">#3AB626</color>-->
+    <color name="colorPrimary">@color/white</color>
+    <color name="colorPrimaryDark">#88FFFFFF</color>
     <color name="colorAccent">#D81B60</color>
     <color name="date_picker_accent">@color/colorPrimary</color>
     <color name="chosen_header_bg_color">@color/colorPrimary</color>
     <color name="CreateTeamTitleColor">@color/colorPrimary</color>
-    <color name="EditTextColor">#000000</color>
-    <color name="EditTextHintColor">#888888</color>
-    <color name="EditTextBackgroundTintColor">#000000</color>
+    <color name="EditTextColor">@color/colorPrimary</color>
+    <color name="EditTextHintColor">@color/colorPrimaryDark</color>
+    <color name="EditTextBackgroundTintColor">@color/colorPrimary</color>
     <color name="moreButtonTextColor">@color/colorPrimary</color>
     <color name="createButtonBackgroundTintColor">#EEEEEE</color>
     <color name="colorBackground">@color/white</color>
     <color name="greydOut">#C3464343</color>
-    <color name="white">#00FFFFFF</color>
+    <color name="white">@android:color/white</color>
     <color name="player_names_bg">#00000000</color>
     <color name="player_name">#FFFFFF</color>
 </resources>
