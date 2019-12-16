@@ -23,6 +23,7 @@ public class ChooseOrCreate extends Activity {
 
     private GamesList gamesList;
     private List<GameData> gameDataList;
+    private Boolean loadEnabled = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,14 +54,14 @@ public class ChooseOrCreate extends Activity {
         gamesList.initGamesList();
 
         if(gamesList.getNumGames() == 0) {
-            loadGameButton.setEnabled(false);
+            loadEnabled = false;
         }
     }
 
 
     public void toChooseGameActivity(View view)
     {
-        if ((!loadGameButton.isEnabled())) {
+        if ((!loadEnabled)) {
             Toast.makeText(this, noSvaedGamesToast, Toast.LENGTH_SHORT).show();
         }
         else {
