@@ -5,6 +5,7 @@
     <color name="colorPrimaryDark">#88FFFFFF</color>
     <color name="colorAccent">#D81B60</color>
     <color name="date_picker_accent">#BF62CDDB</color>
+    <color name="time_picker_accent">#BF62CDDB</color>
     <color name="chosen_header_bg_color">@color/date_picker_accent</color>
     <color name="CreateTeamTitleColor">@color/colorPrimary</color>
     <color name="EditTextColor">@color/colorPrimary</color>

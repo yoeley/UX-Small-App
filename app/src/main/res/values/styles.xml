@@ -16,9 +16,22 @@
     </style>
 
     <style name="DatePickerStyle" parent="@android:style/Widget.Material.Light.DatePicker">
-        <item name="android:headerBackground">@color/chosen_header_bg_color</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowBackground">@drawable/layer1</item>
+        <item name="android:headerBackground">@color/date_picker_accent</item>
+        <item name="colorAccent">@color/date_picker_accent</item>
+        <item name="android:windowBackground">@color/date_picker_accent</item>
+        <item name="android:layoutDirection">ltr</item>
+    </style>
+
+    <style name="TimePickerDialogTheme" parent="android:Theme.Material.Light.Dialog">
+        <item name="android:colorAccent">@color/time_picker_accent</item>
+        <item name="android:datePickerStyle">@style/TimePickerStyle</item>
+    </style>
+
+    <style name="TimePickerStyle" parent="@android:style/Widget.Material.Light.TimePicker">
+        <item name="android:headerBackground">@color/date_picker_accent</item>
+        <item name="colorAccent">@color/time_picker_accent</item>
+        <item name="android:windowBackground">@color/time_picker_accent</item>
+        <item name="android:timePickerMode">@string/spinner_mode</item>
         <item name="android:layoutDirection">ltr</item>
     </style>
 
@@ -27,5 +40,5 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-
+    <string name="spinner_mode">1</string>
 </resources>
