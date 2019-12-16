@@ -16,6 +16,11 @@
     tools:context=".EditTeam">
 
     <TextView
+        android:id="@+id/dummyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
         android:id="@+id/gameNameTextView"
         android:layout_width="343dp"
         android:layout_height="wrap_content"
@@ -36,6 +41,7 @@
         android:id="@+id/pitchFrameLayout"
         android:layout_width="408dp"
         android:layout_height="525dp"
+        android:focusableInTouchMode="true"
         android:layout_weight="100">
 
         <ImageView
@@ -359,7 +365,7 @@
                 android:layout_above="@+id/team1Pos2"
                 android:layout_alignParentStart="true"
                 android:layout_marginStart="@dimen/player_name_margin"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="50dp"
                 android:background="#33363636"
                 android:ems="10"
                 android:hint="@string/no_player"
@@ -377,7 +383,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="@dimen/shrit_center_horizon_margin"
                 android:layout_marginEnd="@dimen/player_name_margin"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="50dp"
                 android:background="#33363636"
                 android:ems="10"
                 android:hint="@string/no_player"

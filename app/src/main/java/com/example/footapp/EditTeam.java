@@ -1,23 +1,17 @@
 package com.example.footapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +19,11 @@ import java.util.List;
 public class EditTeam extends AppCompatActivity implements Serializable, View.OnFocusChangeListener {
 
     private final String noName = "No Name";
+    private final String dummyTextViewString = "com.example.footapp:id/dummyTextView";
 
     private GameData game;
     private GamesList gamesList;
+    private TextView dummyTextView;
     private TextView dateAndTime;
     private TextView gameNameTextView;
     private TextView location;
@@ -88,6 +84,10 @@ public class EditTeam extends AppCompatActivity implements Serializable, View.On
                 });
             }
         }
+        int resID = getResources().getIdentifier( dummyTextViewString, "drawable", getPackageName());
+        dummyTextView = findViewById(resID);
+        dummyTextView.setFocusable(true);
+        dummyTextView.requestFocus();
     }
 
     @Override
@@ -113,14 +113,18 @@ public class EditTeam extends AppCompatActivity implements Serializable, View.On
                 }
                 else imageView.setImageResource(R.drawable.add_player_icon2);
             }
-
         }
+        removeTextViewFocuse();
     }
 
     private ImageView getImageViewViaEditText(String etName){
         String imageSuffix = "Image";
         int resID = getResources().getIdentifier( etName + imageSuffix , "drawable", getPackageName());
         return findViewById(resID);
+    }
+
+    private void removeTextViewFocuse(){
+        dummyTextView.requestFocus();
     }
 
     public void selectEditTextViaImage(ImageView iv) {
@@ -133,8 +137,27 @@ public class EditTeam extends AppCompatActivity implements Serializable, View.On
         et.requestFocus();
 
         if (et.requestFocus()) {
-            getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            showKeyboardForET(et);
         }
+    }
+
+    private void showKeyboardForET(EditText et){
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        try {
+            imm.showSoftInput(et, InputMethodManager.SHOW_IMPLICIT);
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+    private void toggleShowKeyboard(){
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+    }
+    private void toggleCloseKeyboard(){
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
     }
 
     private EditText getEditTextViaName(String etName){

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 
@@ -15,6 +16,8 @@ public class ChooseOrCreate extends Activity {
     public static final String savedTeamsHeader = "{\n" +
             "    \"numGames\": 0,\n" +
             "    \"gameDataList\": null}";
+
+    private final String noSvaedGamesToast = "No games to load";
 
     public Button newGameButton, loadGameButton;
 
@@ -50,7 +53,6 @@ public class ChooseOrCreate extends Activity {
         gamesList.initGamesList();
 
         if(gamesList.getNumGames() == 0) {
-            loadGameButton.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.small2));
             loadGameButton.setEnabled(false);
         }
     }
@@ -58,9 +60,14 @@ public class ChooseOrCreate extends Activity {
 
     public void toChooseGameActivity(View view)
     {
-        Intent ChooseGame = new Intent(getApplicationContext(), ChooseGame.class);
-        ChooseGame.putExtra("GamesList",gamesList);
-        startActivity(ChooseGame);
+        if ((!loadGameButton.isEnabled())) {
+            Toast.makeText(this, noSvaedGamesToast, Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent ChooseGame = new Intent(getApplicationContext(), ChooseGame.class);
+            ChooseGame.putExtra("GamesList", gamesList);
+            startActivity(ChooseGame);
+        }
     }
 
     public void toCreateGameActivity(View view) {
