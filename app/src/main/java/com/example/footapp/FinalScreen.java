@@ -38,18 +38,17 @@ import android.content.pm.PackageManager;
 public class FinalScreen extends AppCompatActivity implements Serializable {
 
     private final String timeDescriptionFormat = "%s, %s, %s";
-    private final String noNameGameLocationFormat = "Soccer game, location: %s";
-    private final String gameLocationFormat = "%s location: %s";
+    private final String gameNameRefereeFormat = "%s, referee: %s";
+    private final String locationFormat = "location: %s";
     private final String screenshotFileName = "game.png";
 
     private GameData gameData;
     private TextView dateAndTime;
     private TextView location;
-    private TextView referee;
+    private TextView gameNameReferee;
     private LocalDate calDate;
     private LocalTime calTime;
     private String dayOfWeek;
-    private String partOfDay;
     private Calendar cal;
     private Bitmap bitmap;
     private File screenshotFile;
@@ -114,22 +113,22 @@ public class FinalScreen extends AppCompatActivity implements Serializable {
     }
 
     private void setGameInfoOnScreen() {
-        location = findViewById(R.id.location);
+        gameNameReferee = findViewById(R.id.gameNameReferee);
         String gameNameTxt;
-        if (gameData.getGameName().equals("")) {
-            gameNameTxt = String.format(noNameGameLocationFormat, gameData.getLocation());
-            location.setText(gameNameTxt);
+        if (gameData.getReferee().equals("")) {
+            gameNameReferee.setText(gameData.getGameName());
         } else {
-            gameNameTxt = String.format(gameLocationFormat, gameData.getGameName(), gameData.getLocation());
-            location.setText(gameNameTxt);
+            gameNameTxt = String.format(gameNameRefereeFormat, gameData.getGameName(), gameData.getReferee());
+            gameNameReferee.setText(gameNameTxt);
         }
 
         String timeDescription = String.format(timeDescriptionFormat, dayOfWeek, gameData.getDate(), gameData.getTime());
         dateAndTime = findViewById(R.id.dateAndTime);
         dateAndTime.setText(timeDescription);
 
-        referee = findViewById(R.id.referee);
-        referee.setText(gameData.getReferee());
+        String locationDescription  = String.format(locationFormat, gameData.getLocation());
+        location = findViewById(R.id.location);
+        location.setText(locationDescription);
     }
 
     public void toCalendar(View view) {

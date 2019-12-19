@@ -14,6 +14,6 @@
     <color name="moreButtonTextColor">@color/colorPrimary</color>
     <color name="createButtonBackgroundTintColor">#EEEEEE</color>
     <color name="white">@android:color/white</color>
-    <color name="player_names_bg">#00000000</color>
+    <color name="player_names_bg">#33363636</color>
     <color name="player_name">#FFFFFF</color>
 </resources>

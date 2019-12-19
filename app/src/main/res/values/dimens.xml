@@ -3,13 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="editTextMarginTopCreateTeam">0dp</dimen>
-    <dimen name="player_name_margin">48dp</dimen>
     <dimen name="shirt_height">38dp</dimen>
     <dimen name="shirt_width">94dp</dimen>
-    <dimen name="shirt_margin">42dp</dimen>
     <dimen name="text_margin_bottom_down">25dp</dimen>
-    <dimen name="shirt_center_margin">158dp</dimen>
-    <dimen name="shrit_center_horizon_margin">110dp</dimen>
     <dimen name="player_name_txt_size">20sp</dimen>
     <dimen name="player_text_width">90dp</dimen>
     <dimen name="title_size">30sp</dimen>

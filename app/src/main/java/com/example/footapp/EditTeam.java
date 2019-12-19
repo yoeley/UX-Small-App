@@ -24,10 +24,6 @@ public class EditTeam extends AppCompatActivity implements Serializable, View.On
     private GameData game;
     private GamesList gamesList;
     private TextView dummyTextView;
-    private TextView dateAndTime;
-    private TextView gameNameTextView;
-    private TextView location;
-    private TextView referee;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,26 +35,7 @@ public class EditTeam extends AppCompatActivity implements Serializable, View.On
         gamesList = (GamesList) in.getSerializableExtra("GamesList");
 
         initEditTexts();
-        updateGameSettings();
     }
-
-
-    private void updateGameSettings(){
-
-        gameNameTextView = findViewById(R.id.gameNameTextView);
-        if(game.getGameName().equals("")) gameNameTextView.setText("Game on!");
-        else gameNameTextView.setText(game.getGameName());
-
-        dateAndTime = findViewById(R.id.dateAndTime);
-        dateAndTime.setText("Date: " + game.getDate() + "     Time: " + game.getTime());
-
-        location = findViewById(R.id.location);
-        location.setText("Location: " + game.getLocation());
-
-        referee = findViewById(R.id.referee);
-        referee.setText("Referee: " + game.getReferee());
-    }
-
 
     private void initEditTexts(){
         List<TeamData> teamsData = game.getTeams();
@@ -103,7 +80,7 @@ public class EditTeam extends AppCompatActivity implements Serializable, View.On
                         imageView.setImageResource(R.drawable.tshirt_goalkeeper1);
                     } else imageView.setImageResource(R.drawable.team_1_tshirt);
                 }
-                else imageView.setImageResource(R.drawable.add_player_icon1);
+                else imageView.setImageResource(R.drawable.add_player_icon_team1);
             }
             else if(etName.contains("team2")) {
                 if(!et.getText().toString().equals("")) {
@@ -111,7 +88,7 @@ public class EditTeam extends AppCompatActivity implements Serializable, View.On
                         imageView.setImageResource(R.drawable.tshirt_goalkeeper2);
                     } else imageView.setImageResource(R.drawable.team_2_tshirt);
                 }
-                else imageView.setImageResource(R.drawable.add_player_icon2);
+                else imageView.setImageResource(R.drawable.add_player_icon_team2);
             }
         }
         removeTextViewFocuse();

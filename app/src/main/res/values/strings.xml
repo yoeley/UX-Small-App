@@ -29,7 +29,7 @@
     <string name="less">less…</string>
 
     <!--    edit team screen-->
-
+    <string name="guide_user_edit_field">edit players name on the field</string>
 
     <!--    final screen -->
     <string name="save_date">save date to calendar</string>
@@ -38,5 +38,6 @@
     <string name="pitch_bg">pitchBackground</string>
     <string name="no_player">No player</string>
     <string name="title_activity_choose_game">ChooseGame</string>
+    <string name="save_this_game">save this game</string>
 
 </resources>
