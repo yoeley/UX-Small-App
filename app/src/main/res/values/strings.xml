@@ -29,7 +29,7 @@
     <string name="less">less…</string>
 
     <!--    edit team screen-->
-    <string name="guide_user_edit_field">edit players name on the field</string>
+    <string name="guide_user_edit_field">Add Players</string>
 
     <!--    final screen -->
     <string name="save_date">save date to calendar</string>
